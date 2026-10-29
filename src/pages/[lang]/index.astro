@@ -11,6 +11,8 @@ import FavoritesBand from '~/components/islands/FavoritesBand';
 import EndOfIssue from '~/components/islands/EndOfIssue';
 import Onboarding from '~/components/islands/Onboarding';
 import MonthStrip from '~/components/islands/MonthStrip';
+import PulsePoll from '~/components/islands/PulsePoll';
+import SeriousPoll from '~/components/islands/SeriousPoll';
 import { mailto } from '~/lib/entities';
 import { currentIssue, eventsInMonth, loadAll, personById, storiesOf } from '~/data';
 import { formatDate, L, monthName, t } from '~/i18n';
@@ -32,6 +34,7 @@ const voicesSide = stories.filter((s) => s.section === 'contributions' && s.auth
 const guest = personById(issue.guestId);
 const month = monthName(lang, issue.year, issue.month);
 const funPoll = bundle.polls.find((p) => p.kind === 'fun' && p.issue === issue.number)!;
+const seriousPoll = bundle.polls.find((p) => p.kind === 'serious' && p.issue === issue.number)!;
 const hunt = bundle.hunts.find((h) => h.issue === issue.number)!;
 /** Prototype "today": the demo date the mockup used. A real build uses the real date. */
 const TODAY = '2026-09-12';
@@ -82,10 +85,27 @@ const description = `${L(issue.coverLine, lang)}. ${L(lead.summary, lang)}`;
     </section>
 
     <section class="pulse sec" id="pulse" aria-labelledby="pulse-title">
-      <div class="wrap">
-        <h2 id="pulse-title">{L(funPoll.question, lang)}</h2>
-        <p class="lead">{t(lang, 'pulse.voteFirst')}</p>
-        <div data-pulse></div>
+      <div class="wrap pulse-grid">
+        <div>
+          <h2 id="pulse-title">{L(funPoll.question, lang)}</h2>
+          <PulsePoll
+            client:visible
+            lang={lang}
+            issue={issue.number}
+            pollId={funPoll.id}
+            lead={funPoll.lead ? L(funPoll.lead, lang) : undefined}
+            options={funPoll.options.map((o) => ({ id: o.id, label: L(o.label, lang) }))}
+          />
+        </div>
+        <SeriousPoll
+          client:visible
+          lang={lang}
+          issue={issue.number}
+          pollId={seriousPoll.id}
+          question={L(seriousPoll.question, lang)}
+          options={seriousPoll.options.map((o) => ({ id: o.id, label: L(o.label, lang) }))}
+          answer={seriousPoll.answer ? L(seriousPoll.answer, lang) : undefined}
+        />
       </div>
     </section>
 
