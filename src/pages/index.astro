@@ -1,0 +1,26 @@
+---
+// Root: send the visitor to their saved language, Arabic by default.
+// The inline script runs before paint; the noscript meta refresh covers JS-off.
+---
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>الطلّابية</title>
+    <script is:inline>
+      (function () {
+        var lang = 'ar';
+        try {
+          var saved = localStorage.getItem('tullabiya:v1:lang');
+          if (saved === '"en"' || saved === 'en') lang = 'en';
+        } catch (e) {}
+        location.replace('/' + lang + '/');
+      })();
+    </script>
+    <noscript><meta http-equiv="refresh" content="0;url=/ar/" /></noscript>
+  </head>
+  <body>
+    <p><a href="/ar/">الطلّابية</a> · <a href="/en/">English</a></p>
+  </body>
+</html>

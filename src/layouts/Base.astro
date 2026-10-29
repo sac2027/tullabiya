@@ -1,0 +1,21 @@
+---
+// Task 0 stub. Task 1 adds tokens, fonts and the pre-paint theme script.
+type Lang = 'ar' | 'en';
+interface Props {
+  lang: Lang;
+  title: string;
+}
+const { lang, title } = Astro.props;
+const dir = lang === 'ar' ? 'rtl' : 'ltr';
+---
+<!doctype html>
+<html lang={lang} dir={dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

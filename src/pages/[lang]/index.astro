@@ -1,0 +1,14 @@
+---
+import Base from '~/layouts/Base.astro';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ar' } }, { params: { lang: 'en' } }];
+}
+const lang = Astro.params.lang as 'ar' | 'en';
+const title = lang === 'ar' ? 'الطلّابية | العدد 21' : 'Al-Tullabiya | Issue 21';
+---
+<Base lang={lang} title={title}>
+  <main id="main">
+    <h1>{lang === 'ar' ? 'الطلّابية' : 'Al-Tullabiya'}</h1>
+  </main>
+</Base>

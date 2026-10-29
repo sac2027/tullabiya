@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.astro/
+test-results/
+playwright-report/
+blob-report/
+.impeccable/
+public/pagefind/
+public/archive/*/
+!public/archive/21/
+*.log
+.DS_Store
+Thumbs.db

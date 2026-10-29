@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الطلّابية | العدد 21</title>
+<style>
+@font-face{font-family:"KFUPM Display";src:url(fonts/KFUPM-Regular.ttf);font-weight:400;font-display:swap}
+@font-face{font-family:"KFUPM Display";src:url(fonts/KFUPM-Bold.ttf);font-weight:700;font-display:swap}
+@font-face{font-family:"KFUPM Display";src:url(fonts/KFUPM-Black.ttf);font-weight:900;font-display:swap}
+@font-face{font-family:"IBM Plex Sans Arabic";src:url(fonts/IBMPlexSansArabic-Light.ttf);font-weight:300;font-display:swap}
+@font-face{font-family:"IBM Plex Sans Arabic";src:url(fonts/IBMPlexSansArabic-Regular.ttf);font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Sans Arabic";src:url(fonts/IBMPlexSansArabic-Medium.ttf);font-weight:500;font-display:swap}
+@font-face{font-family:"IBM Plex Sans Arabic";src:url(fonts/IBMPlexSansArabic-Bold.ttf);font-weight:700;font-display:swap}
+
+:root{
+  --turq:#115F66; --green:#009767; --beige:#ECE0C7; --sand:#A48A70; --yellow:#F0BA4F; --blue:#71B8D4;
+  --paper:#F7F2E6; --ink:#0B3A3F;
+  --eng:#F58220; --comp:#6BBDBE; --biz:#004A81;
+  --me:var(--eng); --me-ink:#0B3A3F;
+  --bg:var(--paper); --bg2:var(--beige); --fg:var(--ink); --fg2:#3E5F62; --quiet:#DDCFB0;
+  --btn-bg:var(--turq); --btn-fg:var(--beige);
+  --display:"KFUPM Display","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --text:"IBM Plex Sans Arabic","KFUPM Display",system-ui,sans-serif;
+  --gutter:clamp(20px,4.5vw,72px);
+  --gap:clamp(88px,11vw,176px);
+}
+[data-theme=dark]{
+  --bg:#0A2F33; --bg2:#0F4046; --fg:#F2E9D3; --fg2:#B7C9C4; --quiet:#18505A;
+  --btn-bg:var(--beige); --btn-fg:#0B3A3F;
+}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--text);font-size:18px;line-height:1.75;font-weight:400}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:900;line-height:1.2;letter-spacing:0}
+h2{font-size:clamp(34px,4.6vw,68px);line-height:1.15}
+h3{font-weight:700;font-size:clamp(22px,2vw,28px);line-height:1.4}
+p{max-width:62ch}
+.wrap{padding-inline:var(--gutter)}
+section{position:relative}
+.sec{padding-block:var(--gap)}
+.sec-tight{padding-block:calc(var(--gap)*.6)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:10px 26px;background:var(--btn-bg);color:var(--btn-fg);font-weight:700;font-size:19px;transition:transform .15s ease, background-color .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn.on-field{background:var(--beige);color:#0B3A3F}
+.btn.ghost{background:transparent;color:inherit;padding-inline:0;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+.btn.small{min-height:44px;padding:6px 18px;font-size:17px}
+.btn.done{background:var(--green);color:#fff}
+.slant{transform:skewX(-5deg)}
+.sr{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* notice */
+.notice{background:var(--yellow);color:#0B3A3F;font-size:16px;line-height:1.5;padding:8px var(--gutter);display:flex;gap:12px;align-items:center;justify-content:space-between}
+.notice button{font-weight:700;text-decoration:underline;text-underline-offset:4px;min-height:44px}
+
+/* top bar */
+.bar{display:flex;align-items:center;gap:clamp(16px,3vw,44px);padding:14px var(--gutter);background:var(--bg)}
+.mark{font-family:var(--display);font-weight:900;font-size:38px;line-height:1;color:var(--turq);text-decoration:none;white-space:nowrap}
+[data-theme=dark] .mark{color:var(--beige)}
+.nav{display:flex;gap:clamp(14px,2.2vw,34px);flex:1;font-weight:500;font-size:18px}
+.nav a{text-decoration:none;padding:8px 2px;white-space:nowrap}
+.nav a:hover{text-decoration:underline;text-underline-offset:8px;text-decoration-thickness:3px;text-decoration-color:var(--me)}
+.tools{display:flex;align-items:center;gap:6px}
+.tool{min-height:44px;min-width:44px;padding:0 12px;font-weight:700;font-size:17px;display:inline-flex;align-items:center;justify-content:center}
+.tool:hover{background:var(--bg2)}
+.me-chip{display:flex;align-items:center;gap:10px;padding:4px 14px 4px 4px;background:var(--bg2);min-height:48px;font-weight:700}
+.av{inline-size:40px;block-size:40px;border-radius:50%;display:grid;place-items:center;background:var(--me);color:var(--me-ink);font-family:var(--display);font-weight:900;font-size:22px;line-height:1}
+
+/* hero */
+.hero{background:var(--turq);color:var(--beige);display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);min-height:min(86vh,780px)}
+.hero-copy{padding:clamp(40px,6vw,88px) var(--gutter);display:flex;flex-direction:column;justify-content:center;gap:28px}
+.hero h1{font-size:clamp(46px,6vw,92px);line-height:1.12;overflow-wrap:anywhere}
+.hero p{font-size:clamp(19px,1.6vw,23px);color:var(--beige);max-width:34ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center}
+.hero-photo{position:relative;min-height:420px;overflow:hidden;clip-path:polygon(0 0,100% 0,calc(100% - 96px) 100%,0 100%)}
+[dir=ltr] .hero-photo{clip-path:polygon(96px 0,100% 0,100% 100%,0 100%)}
+.hero-photo img{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;object-position:50% 58%}
+.hero-label{position:absolute;inset-inline-end:clamp(20px,3vw,48px);inset-block-end:clamp(24px,4vw,56px);background:var(--yellow);color:#0B3A3F;font-family:var(--display);font-weight:900;font-size:clamp(26px,3vw,42px);line-height:1.2;padding:8px 34px 8px 26px;clip-path:polygon(18px 0,100% 0,calc(100% - 18px) 100%,0 100%)}
+[dir=ltr] .hero-label{padding:8px 26px 8px 34px}
+
+/* favourites band */
+.favs{background:var(--bg2);padding:36px var(--gutter)}
+.favs-in{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 56px;align-items:center}
+.favs h2{font-size:clamp(26px,2.6vw,36px);line-height:1.3;margin-bottom:6px}
+.favs p{color:var(--fg2);font-size:17px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.chip{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:6px 20px;background:var(--bg);font-weight:500;font-size:18px;transition:background-color .15s,color .15s,transform .15s}
+.chip svg{inline-size:20px;block-size:20px;flex:none}
+.chip[aria-pressed=true]{background:var(--turq);color:var(--beige)}
+[data-theme=dark] .chip[aria-pressed=true]{background:var(--beige);color:#0B3A3F}
+.chip:active{transform:scale(.97)}
+.progress{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.progress strong{font-size:19px}
+.pbars{display:flex;gap:6px}
+.pbars i{inline-size:34px;block-size:44px;background:var(--quiet);transform:skewX(-5deg);display:block}
+.pbars i.on{background:var(--green)}
+
+/* month */
+.month{background:var(--bg)}
+.month-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:56px}
+.month-head p{color:var(--fg2);max-width:46ch}
+.legend{display:flex;gap:22px;flex-wrap:wrap;font-size:17px;margin-top:14px}
+.legend span{display:inline-flex;align-items:center;gap:10px}
+.legend i{display:block;inline-size:14px;block-size:22px;transform:skewX(-5deg)}
+.strip-scroll{overflow-x:auto;padding-block-start:56px;scrollbar-width:thin}
+.strip{display:flex;align-items:flex-end;gap:5px;block-size:clamp(220px,28vw,360px);min-inline-size:100%}
+.day{position:relative;flex:1 1 0;min-inline-size:26px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;block-size:100%;gap:10px}
+.day .b{inline-size:100%;background:var(--quiet);transform:skewX(-5deg) scaleY(0);transform-origin:bottom;animation:grow .7s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*18ms);transition:background-color .15s;min-block-size:10px}
+.day.ev .b{background:var(--turq)}
+[data-theme=dark] .day.ev .b{background:var(--blue)}
+.day.mine .b{background:var(--me)}
+.day:hover .b,.day:focus-visible .b{filter:brightness(1.08)}
+.day[aria-pressed=true] .b{outline:4px solid var(--fg);outline-offset:3px}
+.day span.n{font-size:15px;line-height:1;color:var(--fg2);font-weight:500;min-block-size:18px}
+.day.ev span.n{color:var(--fg);font-weight:700}
+.day .you{flex:none;inline-size:40px;block-size:40px;font-size:20px;margin-bottom:-2px}
+@keyframes grow{to{transform:skewX(-5deg) scaleY(1)}}
+.detail{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:20px 44px;align-items:center;background:var(--bg2);padding:clamp(24px,3vw,44px);margin-top:36px}
+.detail .big{font-family:var(--display);font-weight:900;font-size:clamp(72px,9vw,128px);line-height:1;min-inline-size:1.2ch;text-align:center;color:var(--turq)}
+[data-theme=dark] .detail .big{color:var(--yellow)}
+.detail h3{font-size:clamp(26px,2.6vw,38px);margin-bottom:6px}
+.detail p{color:var(--fg2);font-size:18px}
+.detail .acts{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+
+/* pulse */
+.pulse{background:var(--bg)}
+.pulse-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:64px;align-items:start}
+.pulse h2{margin-bottom:18px}
+.pulse .lead{color:var(--fg2);margin-bottom:34px}
+.opts{display:grid;gap:14px}
+.opt{position:relative;inline-size:100%;min-block-size:96px;background:var(--quiet);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 32px;text-align:start;overflow:hidden;clip-path:polygon(0 0,100% 0,calc(100% - 22px) 100%,0 100%);transition:transform .15s}
+[dir=ltr] .opt{clip-path:polygon(22px 0,100% 0,100% 100%,0 100%)}
+.opt:hover:not([disabled]){transform:translateX(-6px)}
+[dir=ltr] .opt:hover:not([disabled]){transform:translateX(6px)}
+.opt .fill{position:absolute;inset-block:0;inset-inline-start:0;inline-size:100%;background:var(--turq);transition:inline-size 1s cubic-bezier(.2,.8,.2,1)}
+.opt .lab,.opt .pct{position:relative;z-index:1;font-family:var(--display);font-weight:900;font-size:clamp(28px,3.2vw,44px);line-height:1}
+.opt .pct{opacity:0;transition:opacity .4s .5s}
+.opts.voted .opt .pct{opacity:1}
+.opt.a .lab{color:var(--beige)}
+.opt.b .lab,.opt .pct{color:#0B3A3F}
+[data-theme=dark] .opt .fill{background:var(--blue)}
+[data-theme=dark] .opt.a .lab{color:#0B3A3F}
+[data-theme=dark] .opt .pct{color:var(--fg)}
+.opt.b .fill{background:var(--yellow)}
+.opt[disabled]{cursor:default}
+.opt.mine::after{content:"";position:absolute;inset-block:0;inset-inline-end:0;inline-size:10px;background:var(--yellow)}
+.cmp{margin-top:22px;font-size:19px;font-weight:500;min-block-size:34px}
+.cmp b{font-weight:700}
+.serious{background:var(--bg2);padding:clamp(22px,2.6vw,36px)}
+.serious h3{margin-bottom:12px}
+.serious p{color:var(--fg2);font-size:17px;margin-bottom:20px}
+.serious .row{display:flex;gap:12px;flex-wrap:wrap}
+.serious .tag{display:inline-block;background:var(--yellow);color:#0B3A3F;font-weight:700;padding:2px 14px;font-size:16px;margin-bottom:14px}
+
+/* news */
+.news{background:var(--bg2)}
+.news h2{margin-bottom:56px}
+.news-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:48px 56px}
+.lead-story .mosaic{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:8px;block-size:clamp(300px,36vw,520px);overflow:hidden}
+.mosaic img{inline-size:100%;block-size:100%;min-block-size:0;object-fit:cover}
+.mosaic img:first-child{grid-row:1 / span 2}
+.lead-story h3{font-family:var(--display);font-weight:900;font-size:clamp(30px,3.4vw,50px);line-height:1.25;margin:28px 0 12px}
+.lead-story p{color:var(--fg2)}
+.steps{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 28px}
+.step{min-height:56px;padding:6px 22px;background:var(--bg);text-align:start;font-weight:500;line-height:1.4;transition:background-color .15s}
+.step small{display:block;font-size:15px;color:var(--fg2);font-weight:400}
+.step[aria-pressed=true]{background:var(--turq);color:var(--beige)}
+.step[aria-pressed=true] small{color:var(--beige)}
+.step-note{min-block-size:56px;color:var(--fg2);margin-bottom:22px}
+.act-row{display:flex;gap:12px;flex-wrap:wrap}
+.side-stories{display:grid;gap:40px;align-content:start}
+.side-story img{inline-size:100%;block-size:clamp(190px,18vw,260px);object-fit:cover;margin-bottom:18px}
+.side-story h3{margin-bottom:8px}
+.side-story p{color:var(--fg2);font-size:17px;margin-bottom:14px}
+
+/* hunt */
+.hunt{background:var(--yellow);color:#0B3A3F}
+.hunt-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
+.hunt h2{margin-bottom:20px}
+.hunt .riddle{font-family:var(--display);font-weight:700;font-size:clamp(23px,2.3vw,32px);line-height:1.6;margin-bottom:28px;max-width:30ch}
+.hunt .clue{position:relative;aspect-ratio:4/3;overflow:hidden;clip-path:polygon(0 0,100% 0,calc(100% - 64px) 100%,0 100%)}
+[dir=ltr] .hunt .clue{clip-path:polygon(64px 0,100% 0,100% 100%,0 100%)}
+.hunt .clue img{inline-size:100%;block-size:100%;object-fit:cover;object-position:8% 50%;transform:scale(2.4);transform-origin:8% 50%}
+.answer{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.answer input{flex:1 1 240px;min-height:56px;padding:0 20px;background:#FBE9B8;border:0;font:inherit;font-size:19px;color:#0B3A3F}
+.answer input::placeholder{color:#5b5330}
+.hunt .btn{background:#0B3A3F;color:var(--beige)}
+.hunt-msg{min-block-size:30px;font-weight:700;margin-bottom:14px}
+.hunt-stats{display:flex;gap:40px;flex-wrap:wrap}
+.hunt-stats div{font-size:17px}
+.hunt-stats b{display:block;font-family:var(--display);font-weight:900;font-size:clamp(34px,3.4vw,50px);line-height:1.1}
+.hunt-prog{display:flex;align-items:center;gap:14px;margin-bottom:24px;font-weight:700}
+.hunt-prog .pbars i{background:#D69F2C}
+.hunt-prog .pbars i.on{background:#0B3A3F}
+.hunt-foot{margin-top:28px;font-size:17px}
+
+/* guest */
+.guest{background:var(--turq);color:var(--beige)}
+.guest-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.guest h2{font-size:clamp(32px,3.8vw,56px);margin-bottom:26px}
+.guest .quote{font-family:var(--display);font-weight:900;font-size:clamp(26px,2.5vw,36px);line-height:1.5;max-width:22ch}
+.guest .who{margin-top:22px;font-size:19px;color:var(--beige);max-width:36ch}
+.deck{background:var(--beige);color:#0B3A3F;padding:clamp(26px,3vw,44px);display:flex;flex-direction:column;gap:22px;min-block-size:380px}
+.deck .q{font-size:20px;font-weight:500;color:#3E5F62;min-block-size:64px}
+.deck .a{font-family:var(--display);font-weight:900;font-size:clamp(30px,3.2vw,46px);line-height:1.3;min-block-size:130px}
+.deck-nav{display:flex;align-items:center;gap:10px;margin-top:auto}
+.deck-nav .pbars{margin-inline-start:auto}
+.deck .pbars i{inline-size:22px;block-size:30px;background:#cdbf9f}
+.deck .pbars i.on{background:var(--turq)}
+.yours{display:flex;gap:10px;flex-wrap:wrap}
+.yours input{flex:1 1 200px;min-height:48px;padding:0 16px;border:0;background:#F7F2E6;font:inherit;font-size:18px;color:#0B3A3F}
+.yours .btn{background:var(--turq);color:var(--beige)}
+.deck .note{font-size:16px;color:#3E5F62;min-block-size:26px}
+
+/* voices */
+.voices{background:var(--bg)}
+.voices h2{margin-bottom:56px}
+.voices-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:48px 64px}
+.vo{display:flex;flex-direction:column;gap:14px}
+.vo.big img{inline-size:100%;block-size:clamp(220px,26vw,380px);object-fit:cover;clip-path:polygon(0 0,100% 0,calc(100% - 48px) 100%,0 100%);margin-bottom:10px}
+[dir=ltr] .vo.big img{clip-path:polygon(48px 0,100% 0,100% 100%,0 100%)}
+.vo h3{font-family:var(--display);font-weight:900;font-size:clamp(26px,2.6vw,40px);line-height:1.3}
+.vo.big h3{font-size:clamp(32px,3.6vw,54px)}
+.by{display:flex;align-items:center;gap:12px;font-weight:500}
+.by .av{inline-size:40px;block-size:40px;font-size:20px;background:var(--bg2);color:var(--fg)}
+.by small{color:var(--fg2);font-size:16px;font-weight:400}
+.vo p{color:var(--fg2);font-size:18px}
+.reacts{display:flex;gap:8px;flex-wrap:wrap}
+.react{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:4px 16px;background:var(--bg2);font-size:17px;font-weight:500;transition:background-color .15s,transform .15s}
+.react svg{inline-size:22px;block-size:22px}
+.react[aria-pressed=true]{background:var(--green);color:#fff}
+.react:active{transform:scale(.95)}
+.vo-side{display:grid;gap:44px;align-content:start}
+.vo-side .vo{background:var(--bg2);padding:clamp(22px,2.4vw,34px)}
+
+/* opportunities */
+.opp{background:var(--bg)}
+.opp-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
+.opp-head p{color:var(--fg2);max-width:42ch}
+.rows{display:grid;gap:10px}
+.row{display:grid;grid-template-columns:110px minmax(0,1fr) auto;gap:18px 36px;align-items:center;background:var(--bg2);padding:22px clamp(20px,2.6vw,40px)}
+.row .d{font-family:var(--display);font-weight:900;font-size:60px;line-height:1;color:var(--turq);text-align:center}
+[data-theme=dark] .row .d{color:var(--yellow)}
+.row h3{margin-bottom:2px}
+.row p{color:var(--fg2);font-size:17px}
+.row .acts{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+
+/* archive */
+.arch{background:var(--sand);color:#0B3A3F}
+.arch-in h2{margin-bottom:16px}
+.arch p.lead{max-width:48ch;margin-bottom:36px}
+.search{display:flex;gap:10px;margin-bottom:44px;flex-wrap:wrap}
+.search input{flex:1 1 280px;max-inline-size:520px;min-height:56px;padding:0 22px;border:0;background:var(--beige);font:inherit;font-size:19px;color:#0B3A3F}
+.search .btn{background:#0B3A3F;color:var(--beige)}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
+.iss{position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;aspect-ratio:3/4;background:#6F5B47;padding:12px 12px 8px;text-decoration:none;color:var(--beige);transition:transform .15s}
+.iss:hover{transform:translateY(-4px)}
+.iss .fp{display:flex;align-items:flex-end;gap:3px;flex:1;margin-bottom:10px}
+.iss .fp i{flex:1;background:#8E765E;transform:skewX(-5deg);display:block}
+.iss.lit{background:var(--beige);color:#0B3A3F}
+.iss.lit .fp i{background:var(--green)}
+.iss.part{background:#f3e8cf;color:#0B3A3F}
+.iss.part .fp i{background:var(--yellow)}
+.iss b{font-family:var(--display);font-weight:900;font-size:30px;line-height:1}
+.iss small{font-size:15px;line-height:1.3;opacity:.95}
+.arch-note{margin-top:26px;font-size:18px}
+
+/* end + footer */
+.end{background:var(--bg);text-align:center;padding:calc(var(--gap)*.7) var(--gutter)}
+.end p{margin-inline:auto;font-family:var(--display);font-weight:700;font-size:clamp(24px,2.8vw,38px);line-height:1.5;max-width:26ch}
+.foot{background:var(--turq);color:var(--beige);padding:clamp(56px,7vw,110px) var(--gutter) 36px}
+.foot .big{font-family:var(--display);font-weight:900;font-size:clamp(88px,22vw,360px);line-height:1;margin-bottom:32px;white-space:nowrap}
+.foot-grid{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr));gap:36px 56px;align-items:start}
+.foot h3{font-size:22px;margin-bottom:10px}
+.foot ul{list-style:none;padding:0;display:grid;gap:2px}
+.foot a{display:inline-block;padding:6px 0;text-underline-offset:5px}
+.foot .tag{font-family:var(--display);font-weight:700;font-size:clamp(22px,2vw,28px);line-height:1.4;max-width:24ch}
+.foot .sub{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.foot .sub input{flex:1 1 220px;min-height:52px;padding:0 18px;border:0;background:var(--beige);font:inherit;font-size:18px;color:#0B3A3F}
+.foot .sub .btn{background:var(--yellow);color:#0B3A3F}
+.foot small{display:block;margin-top:44px;font-size:16px;opacity:.9}
+
+/* persona panel */
+.demo{position:fixed;inset-block-end:16px;inset-inline-start:16px;z-index:50;font-size:16px}
+.demo > button{background:#0B3A3F;color:var(--beige);min-height:48px;padding:0 20px;font-weight:700}
+.demo .panel{background:#0B3A3F;color:var(--beige);padding:18px;margin-bottom:8px;display:none;inline-size:min(320px,calc(100vw - 32px))}
+.demo.open .panel{display:block}
+.demo .panel h4{font-family:var(--display);font-weight:700;font-size:19px;margin-bottom:10px;line-height:1.4}
+.demo .ps{display:grid;gap:6px}
+.demo .ps button{display:flex;gap:10px;align-items:center;min-height:48px;padding:6px 12px;background:#14515a;text-align:start}
+.demo .ps button[aria-pressed=true]{background:var(--beige);color:#0B3A3F}
+.demo .ps .av{inline-size:34px;block-size:34px;font-size:18px}
+
+/* responsive */
+@media (max-width:1023px){
+  .hero{grid-template-columns:1fr}
+  .hero-photo{order:-1;min-height:360px;clip-path:polygon(0 0,100% 0,100% calc(100% - 44px),0 100%)}
+  [dir=ltr] .hero-photo{clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - 44px))}
+  .hero-copy{padding-block:36px 56px}
+  .pulse-grid,.hunt-grid,.guest-grid,.news-grid,.voices-grid{grid-template-columns:1fr}
+  .favs-in{grid-template-columns:1fr}
+  .detail{grid-template-columns:auto minmax(0,1fr)}
+  .detail .acts{grid-column:1 / -1;flex-direction:row;flex-wrap:wrap}
+  .row{grid-template-columns:84px minmax(0,1fr)}
+  .row .acts{grid-column:1 / -1;justify-content:flex-start}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-grid > :first-child{grid-column:1 / -1}
+  .nav{order:5;flex-basis:100%;overflow-x:auto;padding-bottom:4px}
+  .bar{flex-wrap:wrap}
+  .tools{margin-inline-start:auto}
+}
+@media (max-width:600px){
+  body{font-size:17px}
+  .mark{font-size:32px}
+  .me-chip span.nm{display:none}
+  .me-chip{padding:4px}
+  .hero-label{font-size:24px}
+  .row .d{font-size:46px}
+  .detail .big{font-size:64px;text-align:start}
+  .detail{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .wall{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .iss b{font-size:24px}
+  .iss small{display:none}
+  .opt{padding:0 22px;min-block-size:84px}
+  .demo{inset-block-end:10px;inset-inline-start:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-delay:0s !important;transition-duration:.01ms !important}
+  .day .b{transform:skewX(-5deg) scaleY(1)}
+}
+</style>
+</head>
+<body>
+<a class="sr" href="#main">تخطَّ إلى المحتوى</a>
+
+<div class="notice" role="note">
+  <span class="t">نموذج تصميم: الأسئلة والألغاز والأرقام والأسماء في الشخصنة بيانات تجريبية، وصور العدد 21 حقيقية.</span>
+  <button type="button" id="closeNotice" class="t">إخفاء</button>
+</div>
+
+<header class="bar">
+  <a class="mark" href="#" aria-label="الطلّابية">الطلّابية</a>
+  <nav class="nav" aria-label="التنقل الرئيسي">
+    <a href="#month" class="t">العدد الحالي</a>
+    <a href="#pulse" class="t">النبض</a>
+    <a href="#hunt" class="t">اللغز</a>
+    <a href="#opp" class="t">الفرص</a>
+    <a href="#arch" class="t">الأرشيف</a>
+  </nav>
+  <div class="tools">
+    <button class="tool" id="langBtn" type="button" aria-label="English">EN</button>
+    <button class="tool" id="themeBtn" type="button" aria-label="الوضع الداكن">◐</button>
+    <button class="me-chip" type="button" id="meChip"><span class="av" id="meAv">ع</span><span class="nm" id="meNm">عبدالله</span></button>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" aria-labelledby="h1">
+  <div class="hero-copy">
+    <h1 id="h1"><span id="heroName">عبدالله</span><span id="heroComma">،</span><br><span class="t">هذا شهرك</span></h1>
+    <p id="heroSub">العدد 21، سبتمبر 2026. جهّزنا لك 3 فعاليات من كلية الهندسة والفيزياء ولغزاً ينتظرك.</p>
+    <div class="hero-cta">
+      <a class="btn on-field t" href="#month">ابدأ العدد</a>
+      <a class="btn ghost on-field t" href="#pulse">نسخة الخمس دقائق</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="img/cover.jpg" alt="طلاب مستجدون يجلسون في قاعة الاستقبال خلال برنامج الاستقبال" fetchpriority="high">
+    <div class="hero-label t">أهلاً بالرّواد</div>
+  </div>
+</section>
+
+<section class="favs" aria-labelledby="favT">
+  <div class="favs-in">
+    <div>
+      <h2 id="favT" class="t">أقسامك المفضّلة</h2>
+      <p class="t">ثبّت ما يهمك، وسنقدّمه لك أولاً في بريدك وإشعاراتك وفي أعداد الأشهر القادمة.</p>
+      <div class="chips" id="chips" role="group" aria-label="الأقسام"></div>
+    </div>
+    <div class="progress">
+      <strong id="progT">قرأتَ 2 من 5 أقسام</strong>
+      <div class="pbars" id="pbars" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<section class="month sec" id="month" aria-labelledby="monthT">
+  <div class="wrap">
+    <div class="month-head">
+      <div>
+        <h2 id="monthT" class="t">سبتمبر، يوماً بيوم</h2>
+        <div class="legend" aria-hidden="false">
+          <span><i id="lgMe"></i><span id="lgMeT">لكليتك</span></span>
+          <span><i style="background:var(--turq)"></i><span class="t">للجميع</span></span>
+          <span><i style="background:var(--quiet)"></i><span class="t">يوم هادئ</span></span>
+        </div>
+      </div>
+      <p class="t">كل عمود يوم. كلما ارتفع ازدادت الفعاليات. اضغط على أي يوم لتضيفه إلى تقويمك.</p>
+    </div>
+    <div class="strip-scroll"><div class="strip" id="strip" role="group" aria-label="أيام سبتمبر"></div></div>
+    <div class="detail" id="detail" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="pulse sec" id="pulse" aria-labelledby="pulseT">
+  <div class="wrap pulse-grid">
+    <div>
+      <h2 id="pulseT" class="t">شاي أم قهوة في ليلة الاختبار؟</h2>
+      <p class="lead t">الدكتور بدر الحميدي اختار الشاي في «ضيف الثلاثين». صوّت أولاً، ثم شاهد كيف صوّت الجميع.</p>
+      <div class="opts" id="opts">
+        <button class="opt a" type="button" data-k="tea"><span class="fill"></span><span class="lab t">الشاي</span><span class="pct">0%</span></button>
+        <button class="opt b" type="button" data-k="coffee"><span class="fill"></span><span class="lab t">القهوة</span><span class="pct">0%</span></button>
+      </div>
+      <p class="cmp" id="cmp" aria-live="polite"></p>
+    </div>
+    <aside class="serious" aria-labelledby="serT">
+      <span class="tag t">سؤال جاد</span>
+      <h3 id="serT" class="t">هل تريد مكتبة مفتوحة 24 ساعة في أسبوع الاختبارات؟</h3>
+      <p class="t">تجيب العمادة عن نتيجة التصويت علناً في العدد القادم.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap" id="ser">
+        <button class="btn small t" type="button" data-v="y">نعم</button>
+        <button class="btn small t" type="button" data-v="n">لا</button>
+      </div>
+      <p id="serMsg" style="margin-top:16px;min-height:28px;font-weight:700" aria-live="polite"></p>
+    </aside>
+  </div>
+</section>
+
+<section class="news sec" aria-labelledby="newsT">
+  <div class="wrap">
+    <h2 id="newsT" class="t">أخبار الشهر</h2>
+    <div class="news-grid">
+      <article class="lead-story">
+        <div class="mosaic">
+          <img src="img/orient-expo.jpg" alt="الطلاب المستجدون في معرض الاستقبال بالحرم الجامعي">
+          <img src="img/orient-booth.jpg" alt="ركن التصوير في فعاليات الاستقبال">
+          <img src="img/orient-chess.jpg" alt="طلاب يلعبون الشطرنج في الأنشطة الترفيهية">
+        </div>
+        <h3 class="t">البرنامج التعريفي لاستقبال الطلاب المستجدين 2026</h3>
+        <p class="t">برنامج بدأ بلقاءات يومية وانتهى بيوم استقبال في الحرم الجامعي، تعرّف فيه المستجدون على الجامعة ومجتمعها.</p>
+        <div class="steps" id="steps" role="group" aria-label="مراحل البرنامج">
+          <button class="step" type="button" aria-pressed="true" data-s="0"><span class="t">رحلة التحول</span><small class="t">6 إلى 12 أغسطس</small></button>
+          <button class="step" type="button" aria-pressed="false" data-s="1"><span class="t">يوم الاستقبال</span><small class="t">16 أغسطس</small></button>
+        </div>
+        <p class="step-note" id="stepNote" aria-live="polite"></p>
+        <div class="act-row">
+          <a class="btn small t" href="mailto:dsa-mag@kfupm.edu.sa?subject=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1">تواصل مع عمادة شؤون الطلاب</a>
+          <button class="btn small ghost t" type="button">اقرأ الخبر كاملاً</button>
+        </div>
+      </article>
+      <div class="side-stories">
+        <article class="side-story">
+          <img src="img/murshid.jpg" alt="طلاب برنامج الإرشاد">
+          <h3 class="t">برنامج الإرشاد يختتم نسخته الخامسة ويطلق السادسة</h3>
+          <p class="t">اختتم البرنامج نسخته الخامسة، وتبدأ النسخة السادسة قريباً.</p>
+          <button class="btn small t" type="button">اسأل عن التسجيل</button>
+        </article>
+        <article class="side-story">
+          <img src="img/council.jpg" alt="أعضاء المجلس الاستشاري الطلابي">
+          <h3 class="t">المجلس الاستشاري الطلابي يعرض إنجازات 2025-2026</h3>
+          <p class="t">تقرير سنوي عن المبادرات التي قادها الطلاب وما تحقق منها.</p>
+          <button class="btn small t" type="button">راسل المجلس</button>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hunt sec" id="hunt" aria-labelledby="huntT">
+  <div class="wrap hunt-grid">
+    <div>
+      <h2 id="huntT" class="t">لغز سبتمبر</h2>
+      <p class="riddle t">خمسة أحرف ضخمة تطلّ على الطريق، وعندها يلتقط الجميع صورتهم الأولى. أين هي؟</p>
+      <div class="hunt-prog"><span id="huntProgT">أنت عند الدليل 2 من 3</span><span class="pbars" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span></div>
+      <form class="answer" id="huntForm">
+        <label class="sr" for="ans">إجابتك</label>
+        <input id="ans" type="text" placeholder="اكتب إجابتك" autocomplete="off">
+        <button class="btn t" type="submit">أرسل</button>
+      </form>
+      <p class="hunt-msg" id="huntMsg" aria-live="polite"></p>
+      <div class="hunt-stats">
+        <div><b>7</b><span class="t">من أول 10 مقاعد محجوزة</span></div>
+        <div><b>5</b><span class="t">مقاعد إضافية بالقرعة</span></div>
+        <div><b id="cd">6 أيام</b><span class="t">على إغلاق اللغز</span></div>
+      </div>
+      <p class="hunt-foot t">الجائزة: قهوة على حساب العمادة.</p>
+    </div>
+    <div class="clue"><img src="img/kfupm-sign.jpg" alt="جزء من صورة الدليل الثاني"></div>
+  </div>
+</section>
+
+<section class="guest sec" aria-labelledby="guestT">
+  <div class="wrap guest-grid">
+    <div>
+      <h2 id="guestT" class="t">ضيف الثلاثين: د. بدر الحميدي</h2>
+      <p class="quote t">«المدينة المنورة أجمل من كل الدنيا»</p>
+      <p class="who t">غادر الطب واختار الرياضيات. أسئلة سريعة، وإجابات صريحة، وإجابتك أنت بعدها.</p>
+    </div>
+    <div class="deck" aria-live="polite">
+      <p class="q" id="dq"></p>
+      <p class="a" id="da"></p>
+      <form class="yours" id="yours">
+        <label class="sr" for="mine">إجابتك</label>
+        <input id="mine" type="text" placeholder="وأنت؟ اكتب إجابتك" autocomplete="off">
+        <button class="btn small t" type="submit">أرسل</button>
+      </form>
+      <p class="note" id="dnote"></p>
+      <div class="deck-nav">
+        <button class="btn small t" type="button" id="dprev">السابق</button>
+        <button class="btn small t" type="button" id="dnext">التالي</button>
+        <span class="pbars" id="dbars" aria-hidden="true"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="voices sec" aria-labelledby="voT">
+  <div class="wrap">
+    <h2 id="voT" class="t">أصوات الطلاب</h2>
+    <div class="voices-grid">
+      <article class="vo big">
+        <img src="img/musab.jpg" alt="طالب يتسلّم شهادة تقدير بعد مبادرته التطوعية">
+        <h3 class="t">مصعب.. والرسالة التي غيّرت المسار</h3>
+        <div class="by"><span class="av">م</span><div><span class="t">مصعب أحمد الباقر</span><br><small class="t">تجربتي، قراءة 6 دقائق</small></div></div>
+        <p class="t">كيف تغيّر تجربة تطوعية واحدة اتجاهك؟ قصة طالب وجد رسالته خارج القاعة.</p>
+        <div class="reacts" data-r="musab"></div>
+        <div class="act-row"><button class="btn small t" type="button">راسل الكاتب</button><button class="btn small ghost t" type="button">اقرأ التجربة</button></div>
+      </article>
+      <div class="vo-side">
+        <article class="vo">
+          <h3 class="t">مونديال 2026.. نسخة استثنائية لن تتكرر</h3>
+          <div class="by"><span class="av">ع</span><div><span class="t">عبدالعزيز يحيى قيسي</span><br><small class="t">مشاركاتي، قراءة 4 دقائق</small></div></div>
+          <div class="reacts" data-r="wc"></div>
+          <div class="act-row"><button class="btn small t" type="button">راسل الكاتب</button></div>
+        </article>
+        <article class="vo">
+          <h3 class="t">قائمة أفضل 5 مباريات في كأس العالم 2026</h3>
+          <div class="by"><span class="av">ه</span><div><span class="t">هادي أحمد السعيدي</span><br><small class="t">مشاركاتي، قراءة دقيقتان</small></div></div>
+          <div class="reacts" data-r="top5"></div>
+          <div class="act-row"><button class="btn small t" type="button">راسل الكاتب</button></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="opp sec" id="opp" aria-labelledby="oppT">
+  <div class="wrap">
+    <div class="opp-head">
+      <h2 id="oppT" class="t">فرص هذا الشهر</h2>
+      <p class="t">سجّل، أضف إلى تقويمك، أو اسأل الجهة المنظمة مباشرة.</p>
+    </div>
+    <div class="rows" id="rows"></div>
+  </div>
+</section>
+
+<section class="arch sec" id="arch" aria-labelledby="archT">
+  <div class="wrap arch-in">
+    <h2 id="archT" class="t">الأرشيف: 22 عدداً</h2>
+    <p class="lead t">كل عدد له بصمته من الأعمدة. أكمل قراءة العدد والتصويت والمشاركة في لغزه لتضيء بصمته في جدارك.</p>
+    <form class="search" role="search" onsubmit="return false">
+      <label class="sr" for="q">ابحث في كل الأعداد</label>
+      <input id="q" type="search" placeholder="ابحث في نصوص كل الأعداد">
+      <button class="btn t" type="submit">ابحث</button>
+    </form>
+    <div class="wall" id="wall"></div>
+    <p class="arch-note" id="archNote"></p>
+  </div>
+</section>
+
+<section class="end" aria-live="polite">
+  <p id="endT">وصلتَ إلى نهاية العدد يا عبدالله. نراك في العدد القادم يوم 1 أكتوبر.</p>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="big" aria-hidden="true">الطلّابية</div>
+  <div class="foot-grid">
+    <div>
+      <p class="tag t">مجلة كل الطلاب وكل الطالبات، من عمادة شؤون الطلاب.</p>
+      <form class="sub" onsubmit="return false">
+        <label class="sr" for="em">البريد الجامعي</label>
+        <input id="em" type="email" placeholder="بريدك الجامعي">
+        <button class="btn t" type="submit">اشترك</button>
+      </form>
+    </div>
+    <div>
+      <h3 class="t">تابعنا</h3>
+      <ul><li><a href="#" class="t">قناة واتساب</a></li><li><a href="#" class="t">منصة إكس</a></li><li><a href="#" class="t">اشترك في تقويم الحرم</a></li></ul>
+    </div>
+    <div>
+      <h3 class="t">شاركنا</h3>
+      <ul><li><a href="#" class="t">اكتب في الطلّابية</a></li><li><a href="#" class="t">اقترح سؤالاً للضيف</a></li><li><a href="mailto:dsa-mag@kfupm.edu.sa">dsa-mag@kfupm.edu.sa</a></li></ul>
+    </div>
+  </div>
+  <small class="t">جميع المشاركات تُراجَع من هيئة التحرير قبل نشرها. شؤون الطلاب، جامعة الملك فهد للبترول والمعادن.</small>
+</footer>
+
+<div class="demo" id="demo">
+  <div class="panel" id="panel">
+    <h4 class="t">جرّب الشخصنة: اختر طالباً</h4>
+    <div class="ps" id="ps"></div>
+  </div>
+  <button type="button" id="demoBtn" aria-expanded="false" class="t">جرّب الشخصنة</button>
+</div>
+
+<script>
+(function(){
+'use strict';
+var EN={
+"نموذج تصميم: الأسئلة والألغاز والأرقام والأسماء في الشخصنة بيانات تجريبية، وصور العدد 21 حقيقية.":"Design mockup: questions, riddles, numbers and the personalization names are sample data. The photos are from the real issue 21.",
+"إخفاء":"Hide","العدد الحالي":"Current issue","النبض":"Pulse","اللغز":"The Hunt","الفرص":"Opportunities","الأرشيف":"Archive",
+"هذا شهرك":"your month","ابدأ العدد":"Start the issue","نسخة الخمس دقائق":"The 5-minute version","أهلاً بالرّواد":"Welcome, Pioneers",
+"أقسامك المفضّلة":"Your favorite sections","ثبّت ما يهمك، وسنقدّمه لك أولاً في بريدك وإشعاراتك وفي أعداد الأشهر القادمة.":"Pin what matters to you. We'll put it first in your email, your notifications and the issues to come.",
+"سبتمبر، يوماً بيوم":"September, day by day","للجميع":"For everyone","يوم هادئ":"Quiet day",
+"كل عمود يوم. كلما ارتفع ازدادت الفعاليات. اضغط على أي يوم لتضيفه إلى تقويمك.":"Each bar is a day. The taller it is, the more is on. Tap a day to add it to your calendar.",
+"شاي أم قهوة في ليلة الاختبار؟":"Tea or coffee on exam night?","الدكتور بدر الحميدي اختار الشاي في «ضيف الثلاثين». صوّت أولاً، ثم شاهد كيف صوّت الجميع.":"Dr. Badr Al-Humaidi picked tea in \"Guest of the 30th\". Vote first, then see how everyone voted.",
+"الشاي":"Tea","القهوة":"Coffee","سؤال جاد":"A serious question","هل تريد مكتبة مفتوحة 24 ساعة في أسبوع الاختبارات؟":"Do you want a 24-hour library during exam week?","تجيب العمادة عن نتيجة التصويت علناً في العدد القادم.":"The Deanship will answer publicly on the result in the next issue.","نعم":"Yes","لا":"No",
+"أخبار الشهر":"This month's news","البرنامج التعريفي لاستقبال الطلاب المستجدين 2026":"The 2026 orientation program for new students",
+"برنامج بدأ بلقاءات يومية وانتهى بيوم استقبال في الحرم الجامعي، تعرّف فيه المستجدون على الجامعة ومجتمعها.":"A program that began with daily sessions and ended with a welcome day on campus, where new students got to know the university and its community.",
+"رحلة التحول":"The Transition Journey","6 إلى 12 أغسطس":"6 to 12 August","يوم الاستقبال":"Welcome day","16 أغسطس":"16 August",
+"تواصل مع عمادة شؤون الطلاب":"Contact Student Affairs","اقرأ الخبر كاملاً":"Read the full story",
+"برنامج الإرشاد يختتم نسخته الخامسة ويطلق السادسة":"The Murshid program closes its fifth edition and launches the sixth","اختتم البرنامج نسخته الخامسة، وتبدأ النسخة السادسة قريباً.":"The program closed its fifth edition, and the sixth starts soon.","اسأل عن التسجيل":"Ask about registration",
+"المجلس الاستشاري الطلابي يعرض إنجازات 2025-2026":"The Student Advisory Council presents its 2025-2026 achievements","تقرير سنوي عن المبادرات التي قادها الطلاب وما تحقق منها.":"An annual report on the student-led initiatives and what they achieved.","راسل المجلس":"Write to the council",
+"لغز سبتمبر":"September's riddle","خمسة أحرف ضخمة تطلّ على الطريق، وعندها يلتقط الجميع صورتهم الأولى. أين هي؟":"Five huge letters look over the road, and everyone takes their first photo there. Where are they?",
+"اكتب إجابتك":"Type your answer","أرسل":"Send","من أول 10 مقاعد محجوزة":"of the first 10 seats taken","مقاعد إضافية بالقرعة":"extra seats by draw","على إغلاق اللغز":"until the riddle closes","الجائزة: قهوة على حساب العمادة.":"Prize: coffee on the Deanship.",
+"ضيف الثلاثين: د. بدر الحميدي":"Guest of the 30th: Dr. Badr Al-Humaidi","«المدينة المنورة أجمل من كل الدنيا»":"\"Madinah is more beautiful than the whole world\"","غادر الطب واختار الرياضيات. أسئلة سريعة، وإجابات صريحة، وإجابتك أنت بعدها.":"He left medicine and chose mathematics. Quick questions, frank answers, and then your own.",
+"وأنت؟ اكتب إجابتك":"And you? Type your answer","السابق":"Previous","التالي":"Next",
+"أصوات الطلاب":"Student voices","مصعب.. والرسالة التي غيّرت المسار":"Musab and the message that changed his path","مصعب أحمد الباقر":"Musab Ahmed Al-Baqir","تجربتي، قراءة 6 دقائق":"My experience, 6 min read",
+"كيف تغيّر تجربة تطوعية واحدة اتجاهك؟ قصة طالب وجد رسالته خارج القاعة.":"How can one volunteering experience change your direction? A student who found his message outside the lecture hall.",
+"راسل الكاتب":"Write to the author","اقرأ التجربة":"Read the story",
+"مونديال 2026.. نسخة استثنائية لن تتكرر":"World Cup 2026: an exceptional edition that won't return","عبدالعزيز يحيى قيسي":"Abdulaziz Yahya Qaisi","مشاركاتي، قراءة 4 دقائق":"My contributions, 4 min read",
+"قائمة أفضل 5 مباريات في كأس العالم 2026":"The five best matches of World Cup 2026","هادي أحمد السعيدي":"Hadi Ahmed Al-Saidi","مشاركاتي، قراءة دقيقتان":"My contributions, 2 min read",
+"فرص هذا الشهر":"Opportunities this month","سجّل، أضف إلى تقويمك، أو اسأل الجهة المنظمة مباشرة.":"Register, add it to your calendar, or ask the organizer directly.",
+"الأرشيف: 22 عدداً":"Archive: 22 issues","كل عدد له بصمته من الأعمدة. أكمل قراءة العدد والتصويت والمشاركة في لغزه لتضيء بصمته في جدارك.":"Every issue has its own fingerprint of bars. Finish reading, voting and joining its riddle to light it up on your wall.",
+"ابحث":"Search","ابحث في نصوص كل الأعداد":"Search the text of every issue",
+"مجلة كل الطلاب وكل الطالبات، من عمادة شؤون الطلاب.":"The magazine of every student, from the Deanship of Student Affairs.","اشترك":"Subscribe","بريدك الجامعي":"Your university email",
+"تابعنا":"Follow us","قناة واتساب":"WhatsApp channel","منصة إكس":"X","اشترك في تقويم الحرم":"Subscribe to the campus calendar",
+"شاركنا":"Join in","اكتب في الطلّابية":"Write for Al-Tullabiya","اقترح سؤالاً للضيف":"Suggest a question for the guest",
+"جميع المشاركات تُراجَع من هيئة التحرير قبل نشرها. شؤون الطلاب، جامعة الملك فهد للبترول والمعادن.":"All submissions are reviewed by the editorial board before publishing. Student Affairs, King Fahd University of Petroleum and Minerals.",
+"جرّب الشخصنة: اختر طالباً":"Try personalization: pick a student","جرّب الشخصنة":"Try personalization","تخطَّ إلى المحتوى":"Skip to content"
+};
+var LG='ar', ARKEY='ar';
+function L(ar,en){return LG==='ar'?ar:en}
+function store(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k));localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}}
+
+var PERSONAS=[
+ {id:'eng',nm:{ar:'عبدالله',en:'Abdullah'},ini:{ar:'ع',en:'A'},col:{ar:'الهندسة والفيزياء',en:'Engineering & Physics'},c:'#F58220',ink:'#0B3A3F'},
+ {id:'comp',nm:{ar:'ريم',en:'Reem'},ini:{ar:'ر',en:'R'},col:{ar:'الحاسبات والرياضيات',en:'Computing & Mathematics'},c:'#6BBDBE',ink:'#0B3A3F'},
+ {id:'biz',nm:{ar:'فهد',en:'Fahad'},ini:{ar:'ف',en:'F'},col:{ar:'الأعمال',en:'Business'},c:'#004A81',ink:'#FFFFFF'}
+];
+var me=PERSONAS[store('me')||0]||PERSONAS[0];
+var SECTIONS=[
+ {id:'news',ar:'الأخبار',en:'News'},{id:'guest',ar:'ضيف الثلاثين',en:'Guest of the 30th'},
+ {id:'exp',ar:'تجربتي',en:'My Experience'},{id:'contrib',ar:'مشاركاتي',en:'My Contributions'},{id:'last',ar:'الأخيرة',en:'The Last Page'}
+];
+var favs=store('favs')||['guest','contrib'];
+
+var EVENTS=[
+ {d:1,ar:'برنامج Career Talks',en:'Career Talks program',org:{ar:'إدارة توظيف وتدريب الطلاب',en:'Student Recruitment & Training'},mine:true,descA:'لقاء مهني ضمن برنامج Career Talks لطلاب الجامعة.',descE:'A career session in the Career Talks program for university students.'},
+ {d:1,ar:'مؤتمر SRC 2026',en:'SRC 2026 conference',span:2,org:{ar:'عمادة شؤون الطلاب',en:'Deanship of Student Affairs'},mine:false,descA:'مؤتمر SRC 2026 على مدى يومين.',descE:'The two-day SRC 2026 conference.'},
+ {d:13,ar:'مسابقة The Stage @ KFUPM',en:'The Stage @ KFUPM competition',org:{ar:'عمادة شؤون الطلاب',en:'Deanship of Student Affairs'},mine:false,descA:'مسابقة المسرح الطلابي في الحرم الجامعي.',descE:'The student stage competition on campus.'},
+ {d:15,ar:'BCG في الحرم الجامعي',en:'BCG on Campus',org:{ar:'إدارة توظيف وتدريب الطلاب',en:'Student Recruitment & Training'},mine:true,descA:'لقاء تعريفي مع Boston Consulting Group لاستكشاف عالم الاستشارات والتعرف على طبيعة العمل في BCG ومجالاتها الاستراتيجية.',descE:'An introductory session with Boston Consulting Group to explore the world of consulting and how BCG works.'},
+ {d:23,ar:'افتتاح كأس الخليج 27',en:'Opening of Khaleeji 27 (Gulf Cup)',org:{ar:'عمادة شؤون الطلاب',en:'Deanship of Student Affairs'},mine:false,descA:'افتتاح بطولة كأس الخليج 27.',descE:'The opening of the Khaleeji 27 Gulf Cup.'},
+ {d:23,ar:'اليوم الوطني السعودي: عزنا بطبعنا',en:'Saudi National Day: Our pride is our nature',org:{ar:'عمادة شؤون الطلاب',en:'Deanship of Student Affairs'},mine:false,descA:'احتفال الجامعة باليوم الوطني السعودي.',descE:'The university celebrates Saudi National Day.'},
+ {d:29,ar:'برنامج Career Talks',en:'Career Talks program',org:{ar:'إدارة توظيف وتدريب الطلاب',en:'Student Recruitment & Training'},mine:true,descA:'لقاء مهني ضمن برنامج Career Talks لطلاب الجامعة.',descE:'A career session in the Career Talks program for university students.'}
+];
+var TODAY=12, sel=15;
+var registered=store('reg')||{};
+
+function dayEvents(d){return EVENTS.filter(function(e){return e.d===d||(e.span&&d>=e.d&&d<e.d+e.span)})}
+function dayName(d){return new Date(2026,8,d).toLocaleDateString(LG==='ar'?'ar-SA-u-nu-latn-ca-gregory':'en-GB',{weekday:'long'})}
+
+/* translate static nodes */
+function applyStatic(){
+  document.querySelectorAll('.t').forEach(function(n){
+    if(!n.dataset.ar)n.dataset.ar=n.textContent.trim();
+    n.textContent=LG==='ar'?n.dataset.ar:(EN[n.dataset.ar]||n.dataset.ar);
+  });
+  document.querySelectorAll('[placeholder]').forEach(function(n){
+    if(!n.dataset.phAr)n.dataset.phAr=n.getAttribute('placeholder');
+    n.setAttribute('placeholder',LG==='ar'?n.dataset.phAr:(EN[n.dataset.phAr]||n.dataset.phAr));
+  });
+  document.querySelectorAll('label.sr').forEach(function(n){
+    if(!n.dataset.ar)n.dataset.ar=n.textContent.trim();
+    var m={'إجابتك':'Your answer','ابحث في كل الأعداد':'Search every issue','البريد الجامعي':'University email'};
+    n.textContent=LG==='ar'?n.dataset.ar:(m[n.dataset.ar]||n.dataset.ar);
+  });
+  document.querySelector('.sr[href]').textContent=L('تخطَّ إلى المحتوى','Skip to content');
+  document.title=L('الطلّابية | العدد 21','Al-Tullabiya | Issue 21');
+  document.querySelector('.mark').textContent=L('الطلّابية','الطلّابية');
+  document.querySelector('.foot .big').textContent='الطلّابية';
+}
+
+function renderMe(){
+  var r=document.documentElement.style;
+  r.setProperty('--me',me.c);r.setProperty('--me-ink',me.ink);
+  document.getElementById('meAv').textContent=me.ini[LG];
+  document.getElementById('meNm').textContent=me.nm[LG];
+  document.getElementById('heroName').textContent=me.nm[LG];
+  document.getElementById('heroComma').textContent=L('،',',');
+  var n=EVENTS.filter(function(e){return e.mine}).length;
+  document.getElementById('heroSub').textContent=L(
+    'العدد 21، سبتمبر 2026. جهّزنا لك '+n+' فعاليات من كلية '+me.col.ar+' ولغزاً ينتظرك.',
+    'Issue 21, September 2026. We lined up '+n+' events from the College of '+me.col.en+' and a riddle waiting for you.');
+  document.getElementById('lgMe').style.background=me.c;
+  document.getElementById('lgMeT').textContent=L('لكلية '+me.col.ar,'For '+me.col.en);
+  document.getElementById('endT').textContent=L('وصلتَ إلى نهاية العدد يا '+me.nm.ar+'. نراك في العدد القادم يوم 1 أكتوبر.','You reached the end of the issue, '+me.nm.en+'. See you in the next one on 1 October.');
+  document.getElementById('huntProgT').textContent=L('أنت عند الدليل 2 من 3','You are at clue 2 of 3');
+  var ps=document.getElementById('ps');ps.innerHTML='';
+  PERSONAS.forEach(function(p,i){
+    var b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed',p===me);
+    b.innerHTML='<span class="av" style="background:'+p.c+';color:'+p.ink+'">'+p.ini[LG]+'</span><span>'+p.nm[LG]+'<br><small>'+p.col[LG]+'</small></span>';
+    b.onclick=function(){me=p;store('me',i);renderAll()};
+    ps.appendChild(b);
+  });
+}
+
+function renderChips(){
+  var box=document.getElementById('chips');box.innerHTML='';
+  var star='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 17l-5.4 2.9 1.1-6.1L3.2 9.6l6.1-.8z"/></svg>';
+  SECTIONS.forEach(function(s){
+    var on=favs.indexOf(s.id)>-1;
+    var b=document.createElement('button');b.type='button';b.className='chip';b.setAttribute('aria-pressed',on);
+    b.innerHTML=star.replace('fill="none"',on?'fill="currentColor"':'fill="none"')+'<span>'+s[LG]+'</span>';
+    b.onclick=function(){var i=favs.indexOf(s.id);if(i>-1)favs.splice(i,1);else favs.push(s.id);store('favs',favs);renderChips()};
+    box.appendChild(b);
+  });
+  var pb=document.getElementById('pbars');pb.innerHTML='';
+  for(var i=0;i<5;i++){var e=document.createElement('i');if(i<2)e.className='on';pb.appendChild(e)}
+  document.getElementById('progT').textContent=L('قرأتَ 2 من 5 أقسام','You read 2 of 5 sections');
+}
+
+function renderStrip(){
+  var s=document.getElementById('strip');s.innerHTML='';
+  var h=[22,34,26,40,30,24,36,28,42,32,26,38,30,44,34,28,40,26,36,30,24,42,32,28,38,34,26,40,30,36];
+  for(var d=1;d<=30;d++){
+    var evs=dayEvents(d),has=evs.length>0,mine=evs.some(function(e){return e.mine});
+    var pct=has?(48+evs.length*26+(d%3)*4):h[d-1];
+    var b=document.createElement('button');b.type='button';
+    b.className='day'+(has?' ev':'')+(mine?' mine':'');
+    b.style.setProperty('--i',d);
+    b.setAttribute('aria-pressed',d===sel);
+    b.setAttribute('aria-label',(LG==='ar'?'يوم ':'Day ')+d+(has?(': '+evs.map(function(e){return e[LG]}).join('، ')):''));
+    b.innerHTML=(d===TODAY?'<span class="av you" aria-hidden="true">'+me.ini[LG]+'</span>':'')+'<span class="b" style="block-size:'+Math.min(pct,100)+'%"></span><span class="n">'+d+'</span>';
+    b.onclick=function(dd){return function(){sel=dd;renderStrip();renderDetail()}}(d);
+    s.appendChild(b);
+  }
+  var sc=s.parentElement,t=s.children[sel-1];
+  if(t&&sc.scrollWidth>sc.clientWidth&&!renderStrip.done){
+    var a=t.getBoundingClientRect(),b=sc.getBoundingClientRect();
+    sc.scrollLeft+=(a.left+a.width/2)-(b.left+b.width/2);renderStrip.done=true;
+  }
+}
+
+function ics(e){
+  var d=2026,m='09',dd=('0'+e.d).slice(-2),end=('0'+(e.d+(e.span||1))).slice(-2);
+  var lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//KFUPM Student Affairs//Al-Tullabiya//AR','BEGIN:VEVENT',
+   'UID:'+d+m+dd+'-'+Math.abs(hash(e.en))+'@tullabiya.kfupm','DTSTAMP:20260901T000000Z','DTSTART;VALUE=DATE:'+d+m+dd,'DTEND;VALUE=DATE:'+d+m+end,
+   'SUMMARY:'+e[LG],'DESCRIPTION:'+(LG==='ar'?e.descA:e.descE),'END:VEVENT','END:VCALENDAR'];
+  var blob=new Blob([lines.join('\r\n')],{type:'text/calendar;charset=utf-8'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='tullabiya-'+m+dd+'.ics';document.body.appendChild(a);a.click();a.remove();
+}
+function hash(s){var h=0;for(var i=0;i<s.length;i++){h=(h<<5)-h+s.charCodeAt(i)|0}return h}
+
+function renderDetail(){
+  var box=document.getElementById('detail');var evs=dayEvents(sel);box.innerHTML='';
+  if(!evs.length){
+    box.innerHTML='<div class="big">'+sel+'</div><div><h3>'+L('يوم هادئ','A quiet day')+'</h3><p>'+L('لا فعاليات مجدولة. استغلّه في المذاكرة أو الراحة.','Nothing scheduled. Use it to study or rest.')+'</p></div>';
+    return;
+  }
+  var e=evs[0];
+  box.innerHTML='<div class="big">'+sel+'</div><div><h3>'+e[LG]+'</h3><p>'+dayName(sel)+(evs.length>1?(L(' ومعه '+(evs.length-1)+' فعالية أخرى',' and '+(evs.length-1)+' more')):'')+'</p><p>'+(LG==='ar'?e.descA:e.descE)+'</p><p>'+L('الجهة: ','Organizer: ')+e.org[LG]+'</p></div><div class="acts"></div>';
+  var acts=box.querySelector('.acts');
+  var b1=mk(L('أضف إلى التقويم','Add to calendar'),function(){ics(e)});
+  var b2=mk(L('ذكّرني قبلها بيوم','Remind me a day before'),function(){this.classList.toggle('done');this.textContent=this.classList.contains('done')?L('سنذكّرك','We will remind you'):L('ذكّرني قبلها بيوم','Remind me a day before')});
+  var a3=document.createElement('a');a3.className='btn small ghost';a3.href='mailto:dsa-mag@kfupm.edu.sa?subject='+encodeURIComponent(e[LG]);a3.textContent=L('تواصل مع الجهة','Contact the organizer');
+  acts.appendChild(b1);acts.appendChild(b2);acts.appendChild(a3);
+}
+function mk(txt,fn){var b=document.createElement('button');b.type='button';b.className='btn small';b.textContent=txt;b.onclick=fn;return b}
+
+/* pulse */
+var VOTE=store('vote');var BASE={tea:58,coffee:42};
+function renderPulse(){
+  var o=document.getElementById('opts');
+  var tea=BASE.tea,cof=BASE.coffee;
+  if(VOTE){var tot=1200;var t=Math.round((tea*tot/100+(VOTE==='tea'?1:0))/(tot+1)*100);tea=t;cof=100-t}
+  o.classList.toggle('voted',!!VOTE);
+  o.querySelectorAll('.opt').forEach(function(b){
+    var k=b.dataset.k,v=k==='tea'?tea:cof;
+    b.disabled=!!VOTE;b.classList.toggle('mine',VOTE===k);
+    b.querySelector('.pct').textContent=v+'%';
+    b.querySelector('.fill').style.inlineSize=VOTE?v+'%':'100%';
+    b.setAttribute('aria-label',(k==='tea'?L('الشاي','Tea'):L('القهوة','Coffee'))+(VOTE?' '+v+'%':''));
+  });
+  var c=document.getElementById('cmp');
+  if(!VOTE){c.textContent=''}
+  else{
+    var mineCol=VOTE==='tea'?64:59;
+    c.innerHTML=L('كلية '+me.col.ar+': الشاي <b>'+mineCol+'%</b>، والجميع: <b>'+tea+'%</b>. تظهر نتائج الكليات حين يصل المصوّتون إلى 20.','College of '+me.col.en+': tea <b>'+mineCol+'%</b>, everyone: <b>'+tea+'%</b>. College results appear once 20 students have voted.');
+  }
+}
+document.getElementById('opts').addEventListener('click',function(e){
+  var b=e.target.closest('.opt');if(!b||VOTE)return;VOTE=b.dataset.k;store('vote',VOTE);renderPulse();
+});
+document.getElementById('ser').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  document.getElementById('serMsg').textContent=L('وصل صوتك. ستعرف إجابة العمادة في العدد القادم.','Your vote is in. You will see the Deanship answer in the next issue.');
+  this.querySelectorAll('button').forEach(function(x){x.disabled=true});
+});
+
+/* news steps */
+var STEPS=[
+ {ar:'بدأ البرنامج بلقاءات يومية تعرّف فيها المستجدون بالجامعة وبمجتمعها وبمهارات الدراسة.',en:'The program opened with daily sessions introducing new students to the university, its community and study skills.'},
+ {ar:'استقبلت الجامعة المستجدين في معرض ضم ركناً للتصوير وألعاباً تفاعلية ومسابقات.',en:'The university welcomed new students to an exhibition with a photo booth, interactive games and contests.'}
+];
+var step=0;
+function renderStep(){
+  document.querySelectorAll('#steps .step').forEach(function(b){b.setAttribute('aria-pressed',+b.dataset.s===step)});
+  document.getElementById('stepNote').textContent=STEPS[step][LG];
+}
+document.getElementById('steps').addEventListener('click',function(e){var b=e.target.closest('.step');if(!b)return;step=+b.dataset.s;renderStep()});
+
+/* hunt */
+document.getElementById('huntForm').addEventListener('submit',function(e){
+  e.preventDefault();var v=document.getElementById('ans').value.trim();
+  document.getElementById('huntMsg').textContent=v?L('وصلتنا إجابتك يا '+me.nm.ar+'. تظهر النتيجة عند إغلاق اللغز.','We got your answer, '+me.nm.en+'. The result appears when the riddle closes.'):L('اكتب إجابتك أولاً.','Type your answer first.');
+});
+
+/* guest deck */
+var QA=[
+ {q:{ar:'من أنت؟',en:'Who are you?'},a:{ar:'متعلم مدى الحياة.',en:'A lifelong learner.'}},
+ {q:{ar:'هل تفضّل الشاي أم القهوة؟',en:'Tea or coffee?'},a:{ar:'الشاي.',en:'Tea.'}},
+ {q:{ar:'ما أبرز هواياتك؟',en:'What are your main hobbies?'},a:{ar:'كرة القدم سابقاً والطبخ حالياً.',en:'Football before, cooking now.'}},
+ {q:{ar:'ما أصعب قرار اتخذته في حياتك؟',en:'What is the hardest decision you have made?'},a:{ar:'التغيير من تخصص الطب إلى تخصص الرياضيات.',en:'Switching from medicine to mathematics.'}}
+];
+var qi=0;
+function renderDeck(){
+  document.getElementById('dq').textContent=QA[qi].q[LG];
+  document.getElementById('da').textContent=QA[qi].a[LG];
+  document.getElementById('dnote').textContent='';
+  var b=document.getElementById('dbars');b.innerHTML='';
+  QA.forEach(function(_,i){var e=document.createElement('i');if(i===qi)e.className='on';b.appendChild(e)});
+}
+document.getElementById('dnext').onclick=function(){qi=(qi+1)%QA.length;renderDeck()};
+document.getElementById('dprev').onclick=function(){qi=(qi+QA.length-1)%QA.length;renderDeck()};
+document.getElementById('yours').addEventListener('submit',function(e){
+  e.preventDefault();var i=document.getElementById('mine');
+  document.getElementById('dnote').textContent=i.value.trim()?L('شكراً. ستراجع هيئة التحرير إجابتك قبل نشرها.','Thanks. The editorial board will review your answer before it is published.'):L('اكتب إجابتك أولاً.','Type your answer first.');
+  i.value='';
+});
+
+/* reactions */
+var RE=[{k:'ok',ar:'أفادني',en:'Useful',n:[41,18,9],d:'<path d="M8 12.5l2.6 2.6L16 9.5"/>'},{k:'sp',ar:'ألهمني',en:'Inspiring',n:[67,22,12],d:'<path d="M12 7v10M7 12h10"/>'},{k:'me',ar:'مررتُ بنفس الشيء',en:'Me too',n:[28,35,14],d:'<circle cx="9.5" cy="12" r="1.6"/><circle cx="14.5" cy="12" r="1.6"/>'}];
+var RS=store('react')||{};
+function renderReacts(){
+  document.querySelectorAll('.reacts').forEach(function(box,bi){
+    box.innerHTML='';var id=box.dataset.r;
+    RE.forEach(function(r){
+      var key=id+r.k,on=!!RS[key];
+      var b=document.createElement('button');b.type='button';b.className='react';b.setAttribute('aria-pressed',on);
+      b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6l6 6v6l-6 6H9l-6-6V9z"/>'+r.d+'</svg><span>'+r[LG]+'</span><span>'+(r.n[bi]+(on?1:0))+'</span>';
+      b.onclick=function(){RS[key]=!RS[key];store('react',RS);renderReacts()};
+      box.appendChild(b);
+    });
+  });
+}
+
+/* opportunities */
+var OPP=[
+ {d:13,ar:'مسابقة The Stage @ KFUPM',en:'The Stage @ KFUPM competition',w:{ar:'عمادة شؤون الطلاب',en:'Deanship of Student Affairs'},ev:2},
+ {d:15,ar:'BCG في الحرم الجامعي',en:'BCG on Campus',w:{ar:'إدارة توظيف وتدريب الطلاب، لقاء تعريفي لاستكشاف عالم الاستشارات',en:'Student Recruitment & Training, an introduction to the world of consulting'},ev:3},
+ {d:29,ar:'برنامج Career Talks',en:'Career Talks program',w:{ar:'إدارة توظيف وتدريب الطلاب',en:'Student Recruitment & Training'},ev:6}
+];
+function renderOpp(){
+  var box=document.getElementById('rows');box.innerHTML='';
+  OPP.forEach(function(o){
+    var r=document.createElement('article');r.className='row';
+    var reg=!!registered[o.d];
+    r.innerHTML='<div class="d">'+o.d+'</div><div><h3>'+o[LG]+'</h3><p>'+o.w[LG]+'</p></div><div class="acts"></div>';
+    var a=r.querySelector('.acts');
+    var b1=mk(reg?L('تم تسجيلك','Registered'):L('سجّل','Register'),function(){registered[o.d]=!registered[o.d];store('reg',registered);renderOpp()});
+    if(reg)b1.classList.add('done');
+    var b2=mk(L('أضف إلى التقويم','Add to calendar'),function(){ics(EVENTS[o.ev])});
+    var l=document.createElement('a');l.className='btn small ghost';l.href='mailto:dsa-mag@kfupm.edu.sa?subject='+encodeURIComponent(o[LG]);l.textContent=L('اسأل الجهة','Ask the organizer');
+    a.appendChild(b1);a.appendChild(b2);a.appendChild(l);
+    box.appendChild(r);
+  });
+}
+
+/* archive */
+var LIT={14:1,15:1,16:1,17:1,18:1,20:1},PART={21:1};
+function renderArch(){
+  var w=document.getElementById('wall');w.innerHTML='';
+  for(var n=22;n>=1;n--){
+    var a=document.createElement('a');a.href='#';a.className='iss'+(LIT[n]?' lit':PART[n]?' part':'');
+    var fp='';for(var i=0;i<9;i++){fp+='<i style="block-size:'+(18+((n*37+i*53)%78))+'%"></i>'}
+    var st=LIT[n]?L('مكتمل','Complete'):PART[n]?L('قيد القراءة','In progress'):L('لم يُقرأ','Unread');
+    a.innerHTML='<div class="fp" aria-hidden="true">'+fp+'</div><b>'+n+'</b><small>'+st+'</small>';
+    a.setAttribute('aria-label',L('العدد ','Issue ')+n+': '+st);
+    a.onclick=function(e){e.preventDefault()};
+    w.appendChild(a);
+  }
+  document.getElementById('archNote').textContent=L('أكملتَ 6 أعداد من 22. العدد 21 في منتصف الطريق.','You completed 6 of 22 issues. Issue 21 is halfway there.');
+}
+
+function renderAll(){
+  applyStatic();renderMe();renderChips();renderStrip();renderDetail();renderPulse();renderStep();renderDeck();renderReacts();renderOpp();renderArch();
+}
+
+document.getElementById('langBtn').onclick=function(){
+  LG=LG==='ar'?'en':'ar';
+  var h=document.documentElement;h.lang=LG;h.dir=LG==='ar'?'rtl':'ltr';
+  this.textContent=LG==='ar'?'EN':'ع';this.setAttribute('aria-label',LG==='ar'?'English':'العربية');
+  document.getElementById('themeBtn').setAttribute('aria-label',L('الوضع الداكن','Dark mode'));
+  h.style.setProperty('--text',LG==='ar'?'"IBM Plex Sans Arabic","KFUPM Display",system-ui,sans-serif':'"IBM Plex Sans Arabic","KFUPM Display",system-ui,sans-serif');
+  renderAll();
+};
+document.getElementById('themeBtn').onclick=function(){
+  var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';
+};
+document.getElementById('closeNotice').onclick=function(){document.querySelector('.notice').remove()};
+document.getElementById('demoBtn').onclick=function(){var d=document.getElementById('demo');var o=d.classList.toggle('open');this.setAttribute('aria-expanded',o)};
+document.getElementById('meChip').onclick=function(){document.getElementById('demoBtn').click()};
+renderAll();
+var qp=new URLSearchParams(location.search);
+if(qp.get('lang')==='en')document.getElementById('langBtn').click();
+if(qp.get('theme')==='dark')document.getElementById('themeBtn').click();
+})();
+</script>
+</body>
+</html>

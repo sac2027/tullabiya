@@ -1,0 +1,35 @@
+{
+  "name": "tullabiya",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "الطلّابية: the interactive monthly magazine of the KFUPM Deanship of Student Affairs (front-end prototype)",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1 --port 4321",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1 --port 4321",
+    "typecheck": "astro check",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
+    "check": "astro check && vitest run && playwright test"
+  },
+  "dependencies": {
+    "@astrojs/preact": "6.1.1",
+    "@nanostores/preact": "1.1.1",
+    "astro": "7.4.4",
+    "nanostores": "1.5.5",
+    "preact": "11.1.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.64.1",
+    "pagefind": "1.5.2",
+    "typescript": "5.9.3",
+    "vitest": "5.0.5"
+  }
+}
