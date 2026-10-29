@@ -31,6 +31,7 @@
   "hero.subAnon": "العدد {issue}، {month}. {events} في الحرم ولغز الشهر ينتظرك.",
   "hero.start": "ابدأ العدد",
   "hero.quick": "نسخة الخمس دقائق",
+  "hero.personalize": "خصّص عددك",
   "events.count": { "zero": "لا فعاليات", "one": "فعالية واحدة", "two": "فعاليتان", "few": "{n} فعاليات", "many": "{n} فعالية", "other": "{n} فعالية" },
 
   "favs.title": "أقسامك المفضّلة",

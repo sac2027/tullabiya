@@ -58,7 +58,10 @@ const description = `${L(issue.coverLine, lang)}. ${L(lead.summary, lang)}`;
 ---
 <Base lang={lang} title={title} description={description}>
   <div class="notice" role="note" data-notice>
-    <span>{t(lang, 'notice.sample', { issue: issue.number })}</span>
+    <span>
+      {t(lang, 'notice.sample', { issue: issue.number })}
+      {lang === 'en' && ` ${t(lang, 'notice.machine')}`}
+    </span>
     <button type="button" data-notice-hide>{t(lang, 'notice.hide')}</button>
   </div>
   <TopBar lang={lang} issue={issue.number} current="home" />

@@ -39,7 +39,8 @@ export default function OpportunityRow({ lang, event, eventId, day, weekday, tit
     const list = await getApi().toggleRegistration(eventId);
     setReg(list.includes(eventId));
   };
-  const left = daysLeft < 0 ? t(lang, 'opp.past') : tp(lang, 'opp.daysLeft', daysLeft);
+  const ended = daysLeft < 0;
+  const left = ended ? t(lang, 'opp.past') : tp(lang, 'opp.daysLeft', daysLeft);
 
   return (
     <article class="row">
@@ -53,7 +54,7 @@ export default function OpportunityRow({ lang, event, eventId, day, weekday, tit
         <p class="left">{left}</p>
       </div>
       <div class="acts">
-        <button type="button" class={`btn sm${reg ? ' done' : ''}`} aria-pressed={!!reg} onClick={toggle} disabled={reg === null}>
+        <button type="button" class={`btn sm${reg ? ' done' : ''}`} aria-pressed={!!reg} onClick={toggle} disabled={reg === null || ended}>
           {reg ? t(lang, 'opp.registered') : t(lang, 'opp.register')}
         </button>
         <AddToCalendar lang={lang} event={event} />

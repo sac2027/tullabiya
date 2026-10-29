@@ -7,7 +7,8 @@
   the prize and the closing date.
 - `src/data/community.json`: the four guest questions with their vote counts and the three kudos.
   The three previous captions are real (issue 21, page 7).
-- `src/components/islands/ProfileChip.tsx`: the three `?demo=1` students.
+- `src/components/islands/ProfileChip.tsx`: the three `?demo=1` students and the reading history that
+  lights archive tiles for them.
 - Reaction counts are generated from each story id (`LocalApi.seedReactions`).
 - `events.json`: the `colleges` targeting of Career Talks and BCG is an editorial guess; the printed
   calendar does not say which colleges each event is for.

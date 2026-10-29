@@ -31,6 +31,7 @@
   "hero.subAnon": "Issue {issue}, {month}. {events} on campus and this month's riddle waiting for you.",
   "hero.start": "Start the issue",
   "hero.quick": "The 5-minute version",
+  "hero.personalize": "Make this issue yours",
   "events.count": { "zero": "No events", "one": "1 event", "other": "{n} events" },
 
   "favs.title": "Your favorite sections",

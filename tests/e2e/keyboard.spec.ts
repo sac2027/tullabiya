@@ -32,8 +32,8 @@ test('keyboard order and visible focus on the home page', async ({ page }) => {
   expectBefore(/A\.skip/, /A\.mark/);
   expectBefore(/A\.mark/, /A\.tool:English/);
   expectBefore(/A\.tool:English/, /BUTTON\.me-chip/);
-  expectBefore(/BUTTON\.me-chip/, /BUTTON\.btn:عرّفنا/);
-  expectBefore(/BUTTON\.btn:عرّفنا/, /A\.btn:ابدأ/);
+  expectBefore(/BUTTON\.me-chip/, /BUTTON\.btn:خصّص/);
+  expectBefore(/BUTTON\.btn:خصّص/, /A\.btn:ابدأ/);
   expectBefore(/A\.btn:ابدأ/, /BUTTON\.chip/);
   expectBefore(/BUTTON\.chip/, /BUTTON\.day/);
   expect(ringOk, `every focused element shows a focus ring\n${order}`).toBe(true);

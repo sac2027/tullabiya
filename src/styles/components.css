@@ -834,6 +834,7 @@
   }
 }
 .serious {
+  align-self: start;
   background: var(--bg2);
   padding: clamp(22px, 2.6vw, 36px);
 }
@@ -853,6 +854,10 @@
 .serious .msg {
   margin-block-start: 16px;
   min-block-size: 28px;
+}
+.serious .msg:empty {
+  margin-block-start: 0;
+  min-block-size: 0;
   font-weight: 700;
   color: var(--fg);
 }
@@ -1639,10 +1644,11 @@
   font-family: var(--font-display);
   font-weight: 900;
   font-size: var(--display-xl);
-  line-height: 1;
+  line-height: 1.15;
   margin-block-end: 32px;
   white-space: nowrap;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 .foot-grid {
   display: grid;
@@ -1715,5 +1721,31 @@
 @media (max-width: 600px) {
   .foot-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Phone width: nothing hides past an edge; rows become even grids. */
+@media (max-width: 600px) {
+  .nav {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+  .chips {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .chips .chip:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+  .hunt-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .hunt-stats div {
+    font-size: var(--text-sm);
+  }
+  .hunt-stats b {
+    font-size: 1.875rem;
   }
 }

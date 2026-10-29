@@ -29,7 +29,7 @@ export default function HeroGreeting({ lang, issue, month, totalEvents, perColle
         <p class="hero-sub">{t(lang, 'hero.subAnon', { issue, month, events: tp(lang, 'events.count', totalEvents) })}</p>
         <p class="hero-invite">
           <button type="button" class="btn ghost on-field" onClick={() => $sheet.set('onboarding')}>
-            {t(lang, 'profile.anon')}
+            {t(lang, 'hero.personalize')}
           </button>
         </p>
       </>
