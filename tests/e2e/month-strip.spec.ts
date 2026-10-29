@@ -1,5 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
-import { readFileSync } from 'node:fs';
+import { captureDownloads, lastDownload } from './helpers';
 
 async function ready(page: Page, lang: 'ar' | 'en' = 'ar') {
   await page.goto(`/${lang}/#month`);
@@ -8,18 +8,17 @@ async function ready(page: Page, lang: 'ar' | 'en' = 'ar') {
 }
 
 test('tapping day 15 shows BCG and the ICS download is named for the date', async ({ page }) => {
+  await captureDownloads(page);
   await ready(page);
   await page.locator('.day').nth(14).click();
   await expect(page.locator('.detail h3')).toContainText('BCG');
   await page.locator('.detail').getByRole('button', { name: 'أضف إلى التقويم' }).click();
-  const [download] = await Promise.all([
-    page.waitForEvent('download'),
-    page.getByRole('menuitem', { name: /آبل|ICS/ }).click(),
-  ]);
-  expect(download.suggestedFilename()).toBe('tullabiya-20260915.ics');
-  const body = readFileSync(await download.path(), 'utf8');
+  await page.getByRole('menuitem', { name: /آبل|ICS/ }).click();
+  const { name, body } = await lastDownload(page);
+  expect(name).toBe('tullabiya-20260915.ics');
   expect(body).toContain('BCG');
   expect(body).toContain('DTSTART;VALUE=DATE:20260915');
+  expect(body).toContain('\r\n');
 });
 
 test('day 1 sits on the right in Arabic and on the left in English', async ({ page }) => {

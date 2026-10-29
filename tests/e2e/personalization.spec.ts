@@ -23,7 +23,7 @@ test('first visit is generic; the hero invites; skipping keeps it generic', asyn
   await expect(page.locator('h1')).toContainText('هذا شهرك في الجامعة');
   await expect(page.locator('.sheet-root')).toHaveAttribute('data-open', 'false');
   await openSheet(page);
-  await page.getByRole('button', { name: 'لاحقاً' }).click();
+  await page.keyboard.press('Escape');
   await expect(page.locator('.sheet-root')).toHaveAttribute('data-open', 'false');
   await expect(page.locator('h1')).toContainText('هذا شهرك في الجامعة');
 });

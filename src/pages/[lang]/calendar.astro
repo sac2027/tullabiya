@@ -1,0 +1,29 @@
+---
+import '~/styles/calendar.css';
+import Base from '~/layouts/Base.astro';
+import TopBar from '~/components/TopBar.astro';
+import Footer from '~/components/Footer.astro';
+import CalendarView from '~/components/islands/CalendarView';
+import { currentIssue, eventsInMonth, loadAll } from '~/data';
+import { L, monthName, t } from '~/i18n';
+import type { Lang } from '~/lib/model';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ar' } }, { params: { lang: 'en' } }];
+}
+const lang = Astro.params.lang as Lang;
+const issue = currentIssue();
+const events = eventsInMonth(issue.year, issue.month);
+const month = monthName(lang, issue.year, issue.month);
+const unitNames: Record<string, string> = {};
+for (const u of loadAll().units) unitNames[u.id] = L(u.name, lang);
+---
+<Base lang={lang} title={`${t(lang, 'nav.calendar')} | ${t(lang, 'site.name')}`} description={t(lang, 'cal.subscribeLead')}>
+  <TopBar lang={lang} issue={issue.number} current="calendar" />
+  <main id="main" class="wrap cal-page">
+    <h1>{t(lang, 'month.title', { month })}</h1>
+    <p class="lead">{t(lang, 'opp.lead')}</p>
+    <CalendarView client:load lang={lang} issue={issue.number} year={issue.year} month={issue.month} monthLabel={month} events={events} unitNames={unitNames} feedPath={`/calendar/${lang}.ics`} />
+  </main>
+  <Footer lang={lang} />
+</Base>

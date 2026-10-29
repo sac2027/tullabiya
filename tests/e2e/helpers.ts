@@ -30,6 +30,31 @@ export async function headingLines(page: Page, selector: string) {
   });
 }
 
+/** Record anchor-initiated downloads instead of handing them to the OS; returns name and decoded content. */
+export async function captureDownloads(page: Page) {
+  await page.addInitScript(() => {
+    (window as unknown as { __downloads: { name: string; href: string }[] }).__downloads = [];
+    const orig = HTMLAnchorElement.prototype.click;
+    HTMLAnchorElement.prototype.click = function (this: HTMLAnchorElement) {
+      if (this.hasAttribute('download')) {
+        (window as unknown as { __downloads: { name: string; href: string }[] }).__downloads.push({ name: this.download, href: this.href });
+        return;
+      }
+      return orig.call(this);
+    };
+  });
+}
+
+export async function lastDownload(page: Page): Promise<{ name: string; body: string }> {
+  return page.evaluate(async () => {
+    const list = (window as unknown as { __downloads: { name: string; href: string }[] }).__downloads;
+    const d = list[list.length - 1];
+    if (!d) throw new Error('no download captured');
+    const body = d.href.startsWith('data:') ? decodeURIComponent(d.href.slice(d.href.indexOf(',') + 1)) : await (await fetch(d.href)).text();
+    return { name: d.name, body };
+  });
+}
+
 /** Wait for the first Astro island inside `scope` to hydrate (Astro drops `ssr` after hydration). */
 export async function hydrated(page: Page, scope: string) {
   await page.locator(`${scope} astro-island:not([ssr])`).first().waitFor({ state: 'attached' });

@@ -14,15 +14,14 @@ interface Props {
 
 export function downloadIcs(events: IcsEvent[], lang: Lang, fileName: string, calName?: string): void {
   const body = buildIcs(events, lang, { calName });
-  const blob = new Blob([body], { type: 'text/calendar;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
+  // A data URL: tiny, needs no revocation, and never cancels mid-save.
+  const url = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(body);
   const a = document.createElement('a');
   a.href = url;
   a.download = fileName;
   document.body.appendChild(a);
   a.click();
   a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 60_000);
 }
 
 const Icon = ({ d }: { d: string }) => (
@@ -56,7 +55,8 @@ export default function AddToCalendar({ lang, event, label, small = true, ghost 
               role="menuitem"
               onClick={() => {
                 downloadIcs([event], lang, icsFileName(event));
-                pop.close(true);
+                // close after the download click has been dispatched
+                setTimeout(() => pop.close(true), 60);
               }}
             >
               <Icon d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v3h16v-3" />

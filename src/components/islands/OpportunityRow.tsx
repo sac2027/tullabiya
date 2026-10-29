@@ -2,6 +2,8 @@ import { useEffect, useState } from 'preact/hooks';
 import { t, tp } from '~/i18n';
 import type { Lang } from '~/lib/model';
 import { getApi } from '~/lib/api';
+import { now } from '~/lib/clock';
+import { daysUntil } from '~/lib/calendarGrid';
 import type { IcsEvent } from '~/lib/ics';
 import AddToCalendar from './AddToCalendar';
 
@@ -14,20 +16,23 @@ interface Props {
   title: string;
   organizer: string;
   askHref: string;
-  /** Days until the event relative to the demo "today"; negative when past. */
+  /** Days until the event relative to the server-side "today"; recomputed from the client clock after hydration. */
   daysLeft: number;
+  startIso: string;
 }
 
 /** One opportunity: register (state toggle), add to calendar, ask the organizer. */
-export default function OpportunityRow({ lang, event, eventId, day, weekday, title, organizer, askHref, daysLeft }: Props) {
+export default function OpportunityRow({ lang, event, eventId, day, weekday, title, organizer, askHref, daysLeft: initialDays, startIso }: Props) {
   const [reg, setReg] = useState<boolean | null>(null);
+  const [daysLeft, setDaysLeft] = useState(initialDays);
   useEffect(() => {
     let alive = true;
     getApi().getRegistrations().then((r) => alive && setReg(r.includes(eventId)));
+    setDaysLeft(daysUntil(startIso, new Date(now())));
     return () => {
       alive = false;
     };
-  }, [eventId]);
+  }, [eventId, startIso]);
   const toggle = async () => {
     setReg((r) => !r);
     const list = await getApi().toggleRegistration(eventId);

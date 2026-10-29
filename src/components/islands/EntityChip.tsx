@@ -36,13 +36,12 @@ const Icon = ({ k }: { k: string }) => (
 );
 
 function download(ev: IcsEvent, lang: Lang) {
-  const blob = new Blob([buildIcs([ev], lang)], { type: 'text/calendar;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
+  // A data URL: tiny, needs no revocation, and never cancels mid-save.
+  const url = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(buildIcs([ev], lang));
   const a = Object.assign(document.createElement('a'), { href: url, download: icsFileName(ev) });
   document.body.appendChild(a);
   a.click();
   a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 60_000);
 }
 
 /** A name in an article that opens a small dialog of real actions. */
@@ -76,7 +75,7 @@ export default function EntityChip({ lang, kind, id, name, sub, actions, event, 
               return (
                 <>
                   <li key="ics">
-                    <button type="button" class="menu-item" onClick={() => { download(event, lang); pop.close(true); }}>
+                    <button type="button" class="menu-item" onClick={() => { download(event, lang); setTimeout(() => pop.close(true), 60); }}>
                       <Icon k="calendar" />{t(lang, 'cal.apple')}
                     </button>
                   </li>

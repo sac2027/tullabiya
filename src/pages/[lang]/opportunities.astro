@@ -1,0 +1,26 @@
+---
+import Base from '~/layouts/Base.astro';
+import TopBar from '~/components/TopBar.astro';
+import Footer from '~/components/Footer.astro';
+import OpportunitiesBlock from '~/components/OpportunitiesBlock.astro';
+import { currentIssue, eventsInMonth } from '~/data';
+import { t } from '~/i18n';
+import { DEMO_TODAY } from '~/lib/clock';
+import type { Lang } from '~/lib/model';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ar' } }, { params: { lang: 'en' } }];
+}
+const lang = Astro.params.lang as Lang;
+const issue = currentIssue();
+const events = eventsInMonth(issue.year, issue.month);
+const TODAY = DEMO_TODAY ?? new Date().toISOString().slice(0, 10);
+---
+<Base lang={lang} title={`${t(lang, 'opp.title')} | ${t(lang, 'site.name')}`} description={t(lang, 'opp.lead')}>
+  <TopBar lang={lang} issue={issue.number} current="opportunities" />
+  <main id="main">
+    <h1 class="sr">{t(lang, 'opp.title')}</h1>
+    <OpportunitiesBlock lang={lang} events={events} today={TODAY} headingId="opp-page-title" />
+  </main>
+  <Footer lang={lang} />
+</Base>

@@ -44,6 +44,7 @@ const rows = events
             organizer={L(u.name, lang)}
             askHref={mailto(u.email ?? 'dsa-mag@kfupm.edu.sa', L(e.title, lang))}
             daysLeft={daysLeft}
+            startIso={e.start.slice(0, 10)}
           />
         );
       })}
