@@ -16,7 +16,7 @@ test('reading to the end marks the section and the home progress line moves', as
 
 test('selecting a sentence offers a share card; without Web Share it downloads a PNG', async ({ page }) => {
   await page.goto(MUSAB);
-  await hydrated(page, '.story-actions');
+  await hydrated(page, '[data-share-note]');
   await page.evaluate(() => {
     const p = document.querySelector('.story-body p')!;
     const sel = document.getSelection()!;

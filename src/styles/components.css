@@ -1730,12 +1730,10 @@
     flex-wrap: wrap;
     overflow-x: visible;
   }
-  .chips {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .chips .chip:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
+  .chips .chip {
+    flex: 1 1 auto;
+    justify-content: center;
+    white-space: nowrap;
   }
   .hunt-stats {
     display: grid;
