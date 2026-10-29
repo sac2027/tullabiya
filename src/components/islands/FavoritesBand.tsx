@@ -1,10 +1,11 @@
 import { useEffect } from 'preact/hooks';
 import { useStore } from '@nanostores/preact';
 import { t, L } from '~/i18n';
-import { SECTIONS, type Lang } from '~/lib/model';
+import { EMPTY_FAVORITES, SECTIONS, type Lang } from '~/lib/model';
 import { $favorites, $profile, $progress, hydrate, togglePinnedSection } from '~/lib/store';
 import { sectionsReadCount } from '~/lib/progress';
 import { Star } from './Onboarding';
+import { useMounted } from '~/lib/useMounted';
 
 interface Props {
   lang: Lang;
@@ -13,9 +14,13 @@ interface Props {
 
 /** Pin sections; see progress as five bars. Toggling is a state change: 150ms color, press feedback. */
 export default function FavoritesBand({ lang, issue }: Props) {
-  const favs = useStore($favorites);
-  const progress = useStore($progress);
-  const profile = useStore($profile);
+  const favsStore = useStore($favorites);
+  const progressStore = useStore($progress);
+  const profileStore = useStore($profile);
+  const mounted = useMounted();
+  const favs = mounted ? favsStore : EMPTY_FAVORITES;
+  const progress = mounted ? progressStore : null;
+  const profile = mounted ? profileStore : null;
   useEffect(() => void hydrate(issue), [issue]);
   const read = sectionsReadCount(progress ?? undefined);
   const readSet = new Set(progress?.sectionsRead ?? []);

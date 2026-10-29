@@ -5,6 +5,7 @@ import { college, type Lang, type Profile } from '~/lib/model';
 import { displayName, initial, dirFor } from '~/lib/name';
 import { $profile, $sheet, hydrate, saveProfile, saveFavorites } from '~/lib/store';
 import { usePopover } from '~/lib/popover';
+import { useMounted } from '~/lib/useMounted';
 
 interface Props {
   lang: Lang;
@@ -30,7 +31,9 @@ export function Avatar({ profile, size = 40 }: { profile: Profile | null; size?:
 }
 
 export default function ProfileChip({ lang, issue }: Props) {
-  const profile = useStore($profile);
+  const profileStore = useStore($profile);
+  const mounted = useMounted();
+  const profile = mounted ? profileStore : null;
   const pop = usePopover();
   useEffect(() => void hydrate(issue), [issue]);
   const demo = typeof location !== 'undefined' && new URLSearchParams(location.search).get('demo') === '1';

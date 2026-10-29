@@ -6,6 +6,7 @@ import { getApi } from '~/lib/api';
 import { issueState, type IssueState } from '~/lib/progress';
 import { $profile, hydrate } from '~/lib/store';
 import { useStore } from '@nanostores/preact';
+import { useMounted } from '~/lib/useMounted';
 
 interface Props {
   lang: Lang;
@@ -19,7 +20,9 @@ interface Props {
 /** Every issue as its own bar pattern; lit when the reader finished it. Server-rendered dim, states applied after hydration. */
 export default function ArchiveWall({ lang, issues, currentIssue, demoLit = [], demoPartial = [] }: Props) {
   const [states, setStates] = useState<Record<number, IssueState>>({});
-  const profile = useStore($profile);
+  const profileStore = useStore($profile);
+  const mounted = useMounted();
+  const profile = mounted ? profileStore : null;
   useEffect(() => {
     let alive = true;
     hydrate(currentIssue);

@@ -92,7 +92,7 @@ export default function CalendarView({ lang, issue, year, month, monthLabel, eve
                 if (!d) return <div key={ci} class="cal-cell empty" role="gridcell" aria-hidden="true" />;
                 const evs = eventsOnDay(filtered, isoDay(year, month, d));
                 return (
-                  <button key={ci} type="button" role="gridcell" class={`cal-cell${evs.length ? ' has' : ''}${day === d ? ' sel' : ''}`} aria-pressed={day === d} onClick={() => setDay(day === d ? null : d)}>
+                  <button key={ci} type="button" role="gridcell" class={`cal-cell${evs.length ? ' has' : ''}${day === d ? ' sel' : ''}`} aria-selected={day === d} onClick={() => setDay(day === d ? null : d)}>
                     <span class="cal-d">{d}</span>
                     {evs.slice(0, 3).map((e) => (
                       <span key={e.id} class={`cal-ev${isForMyCollege(e, profile) ? ' mine' : ''}`}>{L(e.title, lang)}</span>

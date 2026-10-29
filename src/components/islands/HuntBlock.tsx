@@ -5,6 +5,7 @@ import type { Lang } from '~/lib/model';
 import { getApi, type HuntState } from '~/lib/api';
 import { now } from '~/lib/clock';
 import { $profile, hydrate, markProgress } from '~/lib/store';
+import { useMounted } from '~/lib/useMounted';
 
 interface Clue {
   text: string;
@@ -21,7 +22,9 @@ interface Props {
 
 /** The Month's Hunt. A wrong answer shakes once (320ms); a right one reveals the code. */
 export default function HuntBlock({ lang, issue, huntId, month, clues, prize }: Props) {
-  const profile = useStore($profile);
+  const profileStore = useStore($profile);
+  const mounted = useMounted();
+  const profile = mounted ? profileStore : null;
   const [state, setState] = useState<HuntState | null>(null);
   const [msg, setMsg] = useState<{ text: string; ok?: boolean } | null>(null);
   const [value, setValue] = useState('');

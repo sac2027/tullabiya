@@ -8,6 +8,7 @@ import { initial } from '~/lib/name';
 import { getApi } from '~/lib/api';
 import { $profile, hydrate } from '~/lib/store';
 import AddToCalendar from './AddToCalendar';
+import { useMounted } from '~/lib/useMounted';
 
 interface Props {
   lang: Lang;
@@ -24,7 +25,9 @@ interface Props {
 
 /** Thirty slanted bars, one per day. Grows once on load (never again); selection is instant. */
 export default function MonthStrip({ lang, issue, year, month, monthLabel, today: todayProp, events, unitNames, contactHrefs }: Props) {
-  const profile = useStore($profile);
+  const profileStore = useStore($profile);
+  const mounted = useMounted();
+  const profile = mounted ? profileStore : null;
   const [today, setToday] = useState(todayProp);
   const days = useMemo(() => buildStrip(events, year, month, profile), [events, year, month, profile]);
   const firstEventDay = days.find((d) => d.events.length)?.day ?? 1;

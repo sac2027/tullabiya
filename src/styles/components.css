@@ -1474,7 +1474,7 @@
 }
 .row .left {
   font-weight: 700;
-  color: var(--green);
+  color: var(--turq);
   font-size: var(--text-sm);
 }
 [data-theme='dark'] .row .left {
@@ -1496,9 +1496,13 @@
 }
 
 /* ---------- archive ---------- */
+/* A deeper step of the brand sand: mid-tone sand cannot carry body text at 4.5:1. */
 .arch {
-  background: var(--sand);
-  color: var(--ink);
+  background: color-mix(in oklab, var(--sand) 46%, var(--ink));
+  color: var(--beige);
+}
+.arch h2 {
+  color: var(--beige);
 }
 .arch h2 {
   margin-block-end: 16px;
@@ -1538,7 +1542,7 @@
   flex-direction: column;
   justify-content: flex-end;
   aspect-ratio: 3 / 4;
-  background: color-mix(in oklab, var(--sand) 72%, var(--ink));
+  background: color-mix(in oklab, var(--sand) 26%, var(--ink));
   color: var(--beige);
   padding: 12px 12px 8px;
   text-decoration: none;
@@ -1564,7 +1568,7 @@
 .iss .fp i {
   flex: 1;
   display: block;
-  background: color-mix(in oklab, var(--sand) 55%, var(--beige));
+  background: color-mix(in oklab, var(--sand) 75%, var(--beige));
   transform: skewX(-5deg);
   transition: background-color 400ms ease;
 }

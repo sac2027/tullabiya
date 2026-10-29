@@ -4,6 +4,7 @@ import { t, tp, L } from '~/i18n';
 import { college, type CollegeId, type Lang } from '~/lib/model';
 import { displayName, dirFor } from '~/lib/name';
 import { $profile, $sheet, hydrate } from '~/lib/store';
+import { useMounted } from '~/lib/useMounted';
 
 interface Props {
   lang: Lang;
@@ -16,7 +17,9 @@ interface Props {
 
 /** The page's one h1. Server-rendered anonymous; personalized after hydration, with no motion. */
 export default function HeroGreeting({ lang, issue, month, totalEvents, perCollege }: Props) {
-  const profile = useStore($profile);
+  const profileStore = useStore($profile);
+  const mounted = useMounted();
+  const profile = mounted ? profileStore : null;
   useEffect(() => void hydrate(issue), [issue]);
 
   if (!profile) {

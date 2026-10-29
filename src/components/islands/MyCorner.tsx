@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'preact/hooks';
 import { useStore } from '@nanostores/preact';
 import { t, L } from '~/i18n';
-import { college, SECTIONS, type Lang, type Localized } from '~/lib/model';
+import { college, EMPTY_FAVORITES, SECTIONS, type Lang, type Localized } from '~/lib/model';
 import { getApi } from '~/lib/api';
 import { $favorites, $profile, $sheet, hydrate, resetAll, saveFavorites, togglePinnedSection } from '~/lib/store';
 import { Avatar } from './ProfileChip';
 import { Star } from './Onboarding';
 import ArchiveWall from './ArchiveWall';
 import MySubmissions from './MySubmissions';
+import { useMounted } from '~/lib/useMounted';
 
 interface Props {
   lang: Lang;
@@ -19,8 +20,11 @@ interface Props {
 
 /** Everything the reader owns, on one page: profile, pins, saved, fingerprints, submissions, data. */
 export default function MyCorner({ lang, issue, issues, units, stories }: Props) {
-  const profile = useStore($profile);
-  const favs = useStore($favorites);
+  const profileStore = useStore($profile);
+  const favsStore = useStore($favorites);
+  const mounted = useMounted();
+  const profile = mounted ? profileStore : null;
+  const favs = mounted ? favsStore : EMPTY_FAVORITES;
   const [saved, setSaved] = useState<string[]>([]);
   const [resetDone, setResetDone] = useState(false);
   useEffect(() => {

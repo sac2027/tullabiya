@@ -154,7 +154,7 @@ const description = `${L(issue.coverLine, lang)}. ${L(lead.summary, lang)}`;
     <VoicesBlock lang={lang} big={big} side={voicesSide} />
     <OpportunitiesBlock lang={lang} events={events} today={TODAY} limit={3} />
     <ArchiveTeaser lang={lang} issues={bundle.archive.map((a) => a.number).sort((a, b) => b - a)} currentIssue={issue.number} />
-    <EndOfIssue client:idle lang={lang} issue={issue.number} nextDate={nextDate} sectionCount={SECTIONS.length} />
+    <EndOfIssue client:visible lang={lang} issue={issue.number} nextDate={nextDate} sectionCount={SECTIONS.length} />
   </main>
   <Footer lang={lang} />
   <Onboarding client:idle lang={lang} issue={issue.number} />

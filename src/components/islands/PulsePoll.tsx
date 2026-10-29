@@ -5,6 +5,7 @@ import { college, type Lang } from '~/lib/model';
 import { getApi, type PollState } from '~/lib/api';
 import { BREAKDOWN_MIN } from '~/lib/poll';
 import { $profile, hydrate, markProgress } from '~/lib/store';
+import { useMounted } from '~/lib/useMounted';
 
 interface Props {
   lang: Lang;
@@ -16,7 +17,9 @@ interface Props {
 
 /** Vote first, then the bars grow to the result (900ms ease-out) and keep moving while the poll is live. */
 export default function PulsePoll({ lang, issue, pollId, options, lead }: Props) {
-  const profile = useStore($profile);
+  const profileStore = useStore($profile);
+  const mounted = useMounted();
+  const profile = mounted ? profileStore : null;
   const [state, setState] = useState<PollState | null>(null);
   const [live, setLive] = useState(false);
   const root = useRef<HTMLDivElement>(null);

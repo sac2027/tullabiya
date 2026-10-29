@@ -1,7 +1,7 @@
 [
   {
     "id": "badr-alhumaidi",
-    "name": { "ar": "د. بدر أحمد الحميدي", "en": "Dr. Badr Ahmed Al-Humaidi", "enStatus": "machine" },
+    "name": { "ar": "د. بدر الحميدي", "en": "Dr. Badr Al-Humaidi", "enStatus": "machine" },
     "role": { "ar": "عضو هيئة التدريس بقسم الرياضيات", "en": "Faculty member, Department of Mathematics", "enStatus": "machine" },
     "college": "comp",
     "contactable": false
