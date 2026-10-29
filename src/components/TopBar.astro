@@ -1,25 +1,24 @@
 ---
-// Task 1 stub: wordmark + theme toggle. Task 8 adds navigation, language and profile.
+// Task 2 state: wordmark, language switch, theme toggle. Task 8 adds navigation and the profile chip.
+import LangSwitch from '~/components/islands/LangSwitch';
+import { t } from '~/i18n';
 import type { Lang } from '~/lib/model';
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
-const labels = {
-  dark: lang === 'ar' ? 'الوضع الداكن' : 'Dark mode',
-  light: lang === 'ar' ? 'الوضع الفاتح' : 'Light mode',
-};
 ---
 <header class="bar">
-  <a class="mark" href={`/${lang}/`} aria-label="الطلّابية">الطلّابية</a>
+  <a class="mark" href={`/${lang}/`} aria-label={t(lang, 'site.name')}>الطلّابية</a>
   <div class="tools">
+    <LangSwitch client:idle lang={lang} pathname={Astro.url.pathname} />
     <button
       type="button"
       class="tool theme"
       id="themeBtn"
-      aria-label={labels.dark}
-      data-label-dark={labels.dark}
-      data-label-light={labels.light}
+      aria-label={t(lang, 'theme.dark')}
+      data-label-dark={t(lang, 'theme.dark')}
+      data-label-light={t(lang, 'theme.light')}
       aria-pressed="false"
     >
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
@@ -78,6 +77,10 @@ const labels = {
     align-items: center;
     gap: 6px;
     margin-inline-start: auto;
+  }
+  .tools :global(.lang) {
+    text-decoration: none;
+    font-size: var(--text-md);
   }
   .theme-fill {
     transform-origin: 12px 12px;
