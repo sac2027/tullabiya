@@ -1045,13 +1045,13 @@
 }
 /* Locked: the frame is there, the picture is not yet. Unlocking restores color in one beat. */
 .hunt .clue.locked img {
-  filter: saturate(0) contrast(0.45) brightness(1.25);
+  filter: saturate(0) contrast(0.7) brightness(1.05);
 }
 .hunt .clue.locked::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: color-mix(in oklab, var(--yellow) 72%, transparent);
+  background: color-mix(in oklab, var(--yellow) 48%, transparent);
 }
 .clue-lock {
   position: absolute;
