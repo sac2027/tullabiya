@@ -1,0 +1,32 @@
+---
+import '~/styles/my.css';
+import Base from '~/layouts/Base.astro';
+import TopBar from '~/components/TopBar.astro';
+import Footer from '~/components/Footer.astro';
+import MyCorner from '~/components/islands/MyCorner';
+import Onboarding from '~/components/islands/Onboarding';
+import { currentIssue, loadAll } from '~/data';
+import { L, t } from '~/i18n';
+import type { Lang } from '~/lib/model';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ar' } }, { params: { lang: 'en' } }];
+}
+const lang = Astro.params.lang as Lang;
+const bundle = loadAll();
+const issue = currentIssue();
+const issues = bundle.archive.map((a) => a.number).sort((a, b) => b - a);
+const units = bundle.units.filter((u) => u.id !== 'mag').map((u) => ({ id: u.id, name: u.name }));
+const stories: Record<string, { title: string; url: string }> = {};
+for (const s of bundle.stories) stories[s.id] = { title: L(s.title, lang), url: `/${lang}/issue/${s.issue}/${s.slug}/` };
+---
+<Base lang={lang} title={`${t(lang, 'my.title')} | ${t(lang, 'site.name')}`} description={t(lang, 'my.lead')}>
+  <TopBar lang={lang} issue={issue.number} current="my" />
+  <main id="main" class="wrap my-page">
+    <h1>{t(lang, 'my.title')}</h1>
+    <p class="lead">{t(lang, 'my.lead')}</p>
+    <MyCorner client:load lang={lang} issue={issue.number} issues={issues} units={units} stories={stories} />
+  </main>
+  <Footer lang={lang} />
+  <Onboarding client:idle lang={lang} issue={issue.number} />
+</Base>

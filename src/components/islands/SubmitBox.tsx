@@ -31,6 +31,7 @@ export default function SubmitBox({ lang, kind, refId, placeholder, label, butto
       const sub = await getApi().submitUserContent(kind, value, refId);
       setNote({ text: pendingText ?? t(lang, 'common.pendingRef', { id: sub.id }) });
       setValue('');
+      dispatchEvent(new CustomEvent('tullabiya:submitted', { detail: sub }));
     } catch {
       setNote({ text: t(lang, 'common.error'), error: true });
     }

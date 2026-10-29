@@ -1,0 +1,91 @@
+---
+import '~/styles/my.css';
+import { Image } from 'astro:assets';
+import Base from '~/layouts/Base.astro';
+import TopBar from '~/components/TopBar.astro';
+import Footer from '~/components/Footer.astro';
+import AskGuest from '~/components/islands/AskGuest';
+import SubmitBox from '~/components/islands/SubmitBox';
+import MySubmissions from '~/components/islands/MySubmissions';
+import PulsePoll from '~/components/islands/PulsePoll';
+import { currentIssue, loadAll } from '~/data';
+import { L, t } from '~/i18n';
+import { photo } from '~/lib/photos';
+import type { Lang } from '~/lib/model';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ar' } }, { params: { lang: 'en' } }];
+}
+const lang = Astro.params.lang as Lang;
+const bundle = loadAll();
+const issue = currentIssue();
+const c = bundle.community;
+const useful = bundle.polls.find((p) => p.kind === 'useful' && p.issue === issue.number);
+---
+<Base lang={lang} title={`${t(lang, 'community.title')} | ${t(lang, 'site.name')}`} description={t(lang, 'community.lead')}>
+  <TopBar lang={lang} issue={issue.number} current="community" />
+  <main id="main" class="wrap community-page">
+    <h1>{t(lang, 'community.title')}</h1>
+    <p class="lead">{t(lang, 'community.lead')}</p>
+    <div class="community">
+      <section class="community-block" id="pitch" aria-labelledby="pitch-title">
+        <h2 id="pitch-title">{t(lang, 'community.pitch')}</h2>
+        <p>{t(lang, 'community.pitchLead')}</p>
+        <SubmitBox client:visible lang={lang} kind="pitch" label={t(lang, 'community.pitchPlaceholder')} placeholder={t(lang, 'community.pitchPlaceholder')} multiline />
+      </section>
+
+      <section class="community-block" id="ask" aria-labelledby="ask-title">
+        <h2 id="ask-title">{t(lang, 'community.ask')}</h2>
+        <p>{t(lang, 'community.askLead')}</p>
+        <AskGuest client:visible lang={lang} questions={c.questions.map((q) => ({ id: q.id, text: L(q.text, lang), votes: q.votes }))} />
+      </section>
+
+      <section class="community-block caption" id="caption" aria-labelledby="caption-title">
+        <h2 id="caption-title">{t(lang, 'community.caption')}</h2>
+        <p>{t(lang, 'community.captionLead')}</p>
+        <figure class="caption-photo fast-photo">
+          <Image src={photo(c.captionPhoto)} alt={L(c.captionAlt, lang)} widths={[640, 1000]} sizes="(max-width: 1023px) 100vw, 640px" loading="lazy" />
+        </figure>
+        <SubmitBox client:visible lang={lang} kind="caption" label={t(lang, 'community.captionPlaceholder')} placeholder={t(lang, 'community.captionPlaceholder')} />
+        <div class="prev-captions">
+          <h3>{t(lang, 'story.more', { section: t(lang, 'community.caption') })}</h3>
+          {c.previousCaptions.map((p) => (
+            <blockquote>
+              {L(p.text, lang)}
+              <cite>{L(p.by, lang)}</cite>
+            </blockquote>
+          ))}
+        </div>
+      </section>
+
+      <section class="community-block" id="kudos" aria-labelledby="kudos-title">
+        <h2 id="kudos-title">{t(lang, 'community.kudos')}</h2>
+        <p>{t(lang, 'community.kudosLead')}</p>
+        <ul class="kudos" data-public-kudos>
+          {c.kudos.map((k) => (
+            <li>
+              <strong>{L(k.to, lang)}</strong>
+              {L(k.text, lang)}
+            </li>
+          ))}
+        </ul>
+        <div class="kudos-form">
+          <SubmitBox client:visible lang={lang} kind="kudos" label={t(lang, 'community.kudosPlaceholder')} placeholder={t(lang, 'community.kudosPlaceholder')} multiline />
+        </div>
+      </section>
+
+      {useful && (
+        <section class="community-block pulse" id="useful" aria-labelledby="useful-title">
+          <h2 id="useful-title">{L(useful.question, lang)}</h2>
+          <PulsePoll client:visible lang={lang} issue={issue.number} pollId={useful.id} options={useful.options.map((o) => ({ id: o.id, label: L(o.label, lang) }))} />
+        </section>
+      )}
+
+      <section class="community-block" id="mine" aria-labelledby="mine-title">
+        <h2 id="mine-title">{t(lang, 'community.mine')}</h2>
+        <MySubmissions client:visible lang={lang} />
+      </section>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Base>
