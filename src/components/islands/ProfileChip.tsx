@@ -25,7 +25,15 @@ export function Avatar({ profile, size = 40 }: { profile: Profile | null; size?:
   if (profile?.avatar) return <img class="av" src={profile.avatar} alt="" width={size} height={size} style={{ inlineSize: size, blockSize: size }} />;
   return (
     <span class="av" style={style} aria-hidden="true">
-      {profile ? initial(profile.name) : ''}
+      {profile ? (
+        initial(profile.name)
+      ) : (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+          <path d="M8.5 3h7l5 5v7l-5 5h-7l-5-5V8z" />
+          <circle cx="12" cy="10" r="2.6" />
+          <path d="M7.5 17.5c1.1-2.2 2.7-3.3 4.5-3.3s3.4 1.1 4.5 3.3" />
+        </svg>
+      )}
     </span>
   );
 }

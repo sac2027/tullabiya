@@ -24,7 +24,6 @@ export default function SeriousPoll({ lang, issue, pollId, question, options, an
 
   return (
     <aside class="serious" aria-labelledby="serious-title">
-      <span class="tag">{t(lang, 'pulse.serious')}</span>
       <h3 id="serious-title">{question}</h3>
       <p>{t(lang, 'pulse.seriousNote')}</p>
       <div class="row-btns">

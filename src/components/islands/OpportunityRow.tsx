@@ -6,6 +6,7 @@ import { now } from '~/lib/clock';
 import { daysUntil } from '~/lib/calendarGrid';
 import type { IcsEvent } from '~/lib/ics';
 import AddToCalendar from './AddToCalendar';
+import { latin } from '~/lib/latin';
 
 interface Props {
   lang: Lang;
@@ -47,7 +48,7 @@ export default function OpportunityRow({ lang, event, eventId, day, weekday, tit
         <small>{weekday}</small>
       </div>
       <div>
-        <h3>{title}</h3>
+        <h3>{latin(title)}</h3>
         <p>{organizer}</p>
         <p class="left">{left}</p>
       </div>

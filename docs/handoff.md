@@ -8,7 +8,6 @@
 - `src/data/community.json`: the four guest questions with their vote counts and the three kudos.
   The three previous captions are real (issue 21, page 7).
 - `src/components/islands/ProfileChip.tsx`: the three `?demo=1` students.
-- `ArchiveTeaser.astro` lights issues 14–18 and 20 on the home wall for the demo (`demoLit`).
 - Reaction counts are generated from each story id (`LocalApi.seedReactions`).
 - `events.json`: the `colleges` targeting of Career Talks and BCG is an editorial guess; the printed
   calendar does not say which colleges each event is for.

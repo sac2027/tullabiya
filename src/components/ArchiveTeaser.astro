@@ -14,6 +14,6 @@ const { lang, issues, currentIssue } = Astro.props;
   <div class="wrap">
     <h2 id="arch-title">{tp(lang, 'arch.title', issues.length)}</h2>
     <p class="lead">{t(lang, 'arch.lead')}</p>
-    <ArchiveWall client:visible lang={lang} issues={issues} currentIssue={currentIssue} demoLit={[14, 15, 16, 17, 18, 20]} demoPartial={[]} />
+    <ArchiveWall client:visible lang={lang} issues={issues} currentIssue={currentIssue} />
   </div>
 </section>

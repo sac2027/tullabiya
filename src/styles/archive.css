@@ -22,24 +22,6 @@
 .arch-page .wall {
   margin-block-start: 36px;
 }
-.arch-page .iss {
-  background: var(--bg2);
-  color: var(--fg);
-}
-.arch-page .iss .fp i {
-  background: var(--quiet);
-}
-.arch-page .iss.lit {
-  background: var(--turq);
-  color: var(--beige);
-}
-.arch-page .iss.lit .fp i {
-  background: var(--green);
-}
-.arch-page .iss.part {
-  background: color-mix(in oklab, var(--yellow) 30%, var(--bg2));
-  color: var(--fg);
-}
 .results {
   margin-block-start: 22px;
   max-inline-size: 72ch;
@@ -214,7 +196,7 @@
 }
 @media (max-width: 1023px) {
   .issue-head {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .issue-cover {
     max-inline-size: 420px;

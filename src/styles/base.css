@@ -143,6 +143,9 @@ b {
 .sec-sm {
   padding-block: var(--gap-sm);
 }
+.nowrap {
+  white-space: nowrap;
+}
 .sr {
   position: absolute;
   inline-size: 1px;
@@ -263,6 +266,7 @@ b {
 
 /* Text fields */
 .field {
+  min-inline-size: 0;
   min-block-size: 52px;
   padding: 0 18px;
   border: 0;

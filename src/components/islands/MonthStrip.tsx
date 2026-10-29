@@ -8,6 +8,7 @@ import { initial } from '~/lib/name';
 import { getApi } from '~/lib/api';
 import { $profile, hydrate } from '~/lib/store';
 import AddToCalendar from './AddToCalendar';
+import { latin } from '~/lib/latin';
 import { useMounted } from '~/lib/useMounted';
 
 interface Props {
@@ -123,7 +124,7 @@ export default function MonthStrip({ lang, issue, year, month, monthLabel, today
               >
                 {isToday && (
                   <span class="av you" aria-hidden="true" style={myCollege ? { background: myCollege.color, color: myCollege.ink === 'ink' ? 'var(--ink)' : 'var(--beige)' } : undefined}>
-                    {profile ? initial(profile.name) : '•'}
+                    {profile ? initial(profile.name) : <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M8.5 3h7l5 5v7l-5 5h-7l-5-5V8z" fill="currentColor" /></svg>}
                   </span>
                 )}
                 <span class="b" style={{ blockSize: `${d.heightPct}%` }} />
@@ -144,7 +145,7 @@ export default function MonthStrip({ lang, issue, year, month, monthLabel, today
         )}
         {ev && (
           <div>
-            <h3>{L(ev.title, lang)}</h3>
+            <h3>{latin(L(ev.title, lang))}</h3>
             <p>
               {weekdayName(lang, day.iso)}
               {day.events.length > 1 && ' ' + tp(lang, 'month.more', day.events.length - 1)}

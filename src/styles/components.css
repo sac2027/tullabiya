@@ -228,7 +228,7 @@
 }
 @media (max-width: 1023px) {
   .hero {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .hero-photo {
     order: -1;
@@ -349,7 +349,7 @@
 }
 @media (max-width: 1023px) {
   .favs-in {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -629,6 +629,8 @@
   font-weight: 700;
 }
 .day .you {
+  position: relative;
+  z-index: 2;
   flex: none;
   inline-size: 36px;
   block-size: 36px;
@@ -682,7 +684,7 @@
 }
 @media (max-width: 600px) {
   .detail {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .detail .big {
     text-align: start;
@@ -865,7 +867,7 @@
 }
 @media (max-width: 1023px) {
   .pulse-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 @media (max-width: 600px) {
@@ -1002,7 +1004,7 @@
 }
 @media (max-width: 1023px) {
   .news-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -1090,6 +1092,7 @@
 }
 .answer input {
   flex: 1 1 240px;
+  min-inline-size: 0;
   min-block-size: 56px;
   padding: 0 20px;
   background: color-mix(in oklab, var(--yellow) 55%, var(--paper));
@@ -1159,7 +1162,7 @@
 }
 @media (max-width: 1023px) {
   .hunt-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1256,6 +1259,7 @@
 }
 .yours input {
   flex: 1 1 200px;
+  min-inline-size: 0;
   min-block-size: 48px;
   padding: 0 16px;
   border: 0;
@@ -1270,7 +1274,7 @@
 }
 @media (max-width: 1023px) {
   .guest-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1413,7 +1417,7 @@
 }
 @media (max-width: 1023px) {
   .voices-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -1498,7 +1502,7 @@
 /* ---------- archive ---------- */
 /* A deeper step of the brand sand: mid-tone sand cannot carry body text at 4.5:1. */
 .arch {
-  background: color-mix(in oklab, var(--sand) 46%, var(--ink));
+  background: color-mix(in oklab, var(--sand) 52%, var(--black));
   color: var(--beige);
 }
 .arch h2 {
@@ -1519,6 +1523,7 @@
 }
 .search input {
   flex: 1 1 280px;
+  min-inline-size: 0;
   max-inline-size: 520px;
   min-block-size: 56px;
   padding: 0 22px;
@@ -1542,7 +1547,7 @@
   flex-direction: column;
   justify-content: flex-end;
   aspect-ratio: 3 / 4;
-  background: color-mix(in oklab, var(--sand) 26%, var(--ink));
+  background: color-mix(in oklab, var(--sand) 38%, var(--black));
   color: var(--beige);
   padding: 12px 12px 8px;
   text-decoration: none;
@@ -1709,6 +1714,6 @@
 }
 @media (max-width: 600px) {
   .foot-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }

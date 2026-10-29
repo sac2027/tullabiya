@@ -9,6 +9,7 @@ import { toIcsEvent } from '~/lib/ics';
 import { getApi } from '~/lib/api';
 import { $profile, hydrate } from '~/lib/store';
 import AddToCalendar, { downloadIcs } from './AddToCalendar';
+import { latin } from '~/lib/latin';
 
 interface Props {
   lang: Lang;
@@ -114,7 +115,7 @@ export default function CalendarView({ lang, issue, year, month, monthLabel, eve
               <small>{formatDate(lang, e.start.slice(0, 10), { weekday: true, year: false })}</small>
             </div>
             <div>
-              <h3>{L(e.title, lang)}</h3>
+              <h3>{latin(L(e.title, lang))}</h3>
               <p>{unitNames[e.unitId]} · {t(lang, `cal.kind.${e.kind}`)}</p>
               <p>{L(e.description, lang)}</p>
             </div>
