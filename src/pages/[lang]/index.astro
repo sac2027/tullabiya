@@ -10,6 +10,8 @@ import Footer from '~/components/Footer.astro';
 import FavoritesBand from '~/components/islands/FavoritesBand';
 import EndOfIssue from '~/components/islands/EndOfIssue';
 import Onboarding from '~/components/islands/Onboarding';
+import MonthStrip from '~/components/islands/MonthStrip';
+import { mailto } from '~/lib/entities';
 import { currentIssue, eventsInMonth, loadAll, personById, storiesOf } from '~/data';
 import { formatDate, L, monthName, t } from '~/i18n';
 import { nextIssueDate } from '~/lib/progress';
@@ -34,6 +36,12 @@ const hunt = bundle.hunts.find((h) => h.issue === issue.number)!;
 /** Prototype "today": the demo date the mockup used. A real build uses the real date. */
 const TODAY = '2026-09-12';
 const nextDate = formatDate(lang, nextIssueDate(issue.date));
+const unitNames: Record<string, string> = {};
+const contactHrefs: Record<string, string> = {};
+for (const u of bundle.units) {
+  unitNames[u.id] = L(u.name, lang);
+  contactHrefs[u.id] = mailto(u.email ?? 'dsa-mag@kfupm.edu.sa', L(u.name, lang));
+}
 const title = t(lang, 'site.issueTitle', { issue: issue.number });
 const description = `${L(issue.coverLine, lang)}. ${L(lead.summary, lang)}`;
 ---
@@ -58,7 +66,18 @@ const description = `${L(issue.coverLine, lang)}. ${L(lead.summary, lang)}`;
           </div>
           <p>{t(lang, 'month.lead')}</p>
         </div>
-        <div data-month-strip></div>
+        <MonthStrip
+          client:idle
+          lang={lang}
+          issue={issue.number}
+          year={issue.year}
+          month={issue.month}
+          monthLabel={month}
+          today={TODAY}
+          events={events}
+          unitNames={unitNames}
+          contactHrefs={contactHrefs}
+        />
       </div>
     </section>
 
