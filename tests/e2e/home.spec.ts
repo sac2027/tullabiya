@@ -1,17 +1,5 @@
-import { test, expect, type Page } from '@playwright/test';
-
-async function noHorizontalScroll(page: Page) {
-  const { sw, iw } = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, iw: window.innerWidth }));
-  expect(sw, 'horizontal overflow').toBeLessThanOrEqual(iw + 1);
-}
-
-async function headingLines(page: Page, selector: string) {
-  return page.locator(selector).first().evaluate((el) => {
-    const cs = getComputedStyle(el);
-    const lh = parseFloat(cs.lineHeight) || parseFloat(cs.fontSize) * 1.2;
-    return el.getBoundingClientRect().height / lh;
-  });
-}
+import { test, expect } from '@playwright/test';
+import { expectNoHorizontalScroll as noHorizontalScroll, headingLines } from './helpers';
 
 for (const lang of ['ar', 'en'] as const) {
   test.describe(`home ${lang}`, () => {

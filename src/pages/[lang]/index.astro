@@ -13,6 +13,11 @@ import Onboarding from '~/components/islands/Onboarding';
 import MonthStrip from '~/components/islands/MonthStrip';
 import PulsePoll from '~/components/islands/PulsePoll';
 import SeriousPoll from '~/components/islands/SeriousPoll';
+import HuntBlock from '~/components/islands/HuntBlock';
+import QaDeck from '~/components/islands/QaDeck';
+import { getImage } from 'astro:assets';
+import { photo } from '~/lib/photos';
+import { DEMO_TODAY } from '~/lib/clock';
 import { mailto } from '~/lib/entities';
 import { currentIssue, eventsInMonth, loadAll, personById, storiesOf } from '~/data';
 import { formatDate, L, monthName, t } from '~/i18n';
@@ -36,8 +41,11 @@ const month = monthName(lang, issue.year, issue.month);
 const funPoll = bundle.polls.find((p) => p.kind === 'fun' && p.issue === issue.number)!;
 const seriousPoll = bundle.polls.find((p) => p.kind === 'serious' && p.issue === issue.number)!;
 const hunt = bundle.hunts.find((h) => h.issue === issue.number)!;
-/** Prototype "today": the demo date the mockup used. A real build uses the real date. */
-const TODAY = '2026-09-12';
+const clueImg = await getImage({ src: photo('kfupm-sign'), width: 900, format: 'jpg' });
+const qa = bundle.qa.filter((q) => q.guestId === issue.guestId);
+const guestStory = stories.find((s) => s.section === 'guest');
+/** Prototype "today": pinned in src/lib/clock.ts; `?now=` overrides it in the browser. */
+const TODAY = DEMO_TODAY ?? new Date().toISOString().slice(0, 10);
 const nextDate = formatDate(lang, nextIssueDate(issue.date));
 const unitNames: Record<string, string> = {};
 const contactHrefs: Record<string, string> = {};
@@ -89,7 +97,7 @@ const description = `${L(issue.coverLine, lang)}. ${L(lead.summary, lang)}`;
         <div>
           <h2 id="pulse-title">{L(funPoll.question, lang)}</h2>
           <PulsePoll
-            client:visible
+            client:idle
             lang={lang}
             issue={issue.number}
             pollId={funPoll.id}
@@ -98,7 +106,7 @@ const description = `${L(issue.coverLine, lang)}. ${L(lead.summary, lang)}`;
           />
         </div>
         <SeriousPoll
-          client:visible
+          client:idle
           lang={lang}
           issue={issue.number}
           pollId={seriousPoll.id}
@@ -115,22 +123,38 @@ const description = `${L(issue.coverLine, lang)}. ${L(lead.summary, lang)}`;
       <div class="wrap">
         <h2 id="hunt-title">{t(lang, 'hunt.title', { month })}</h2>
         <p class="riddle">{L(hunt.riddle, lang)}</p>
-        <div data-hunt></div>
+        <HuntBlock
+          client:idle
+          lang={lang}
+          issue={issue.number}
+          huntId={hunt.id}
+          month={month}
+          prize={L(hunt.prize, lang)}
+          clues={hunt.clues.map((c) => ({ text: L(c.text, lang), photo: c.photo ? { src: clueImg.src, alt: t(lang, 'hunt.clueAlt') } : undefined }))}
+        />
       </div>
     </section>
 
     <section class="guest sec" id="guest" aria-labelledby="guest-title">
-      <div class="wrap">
-        <h2 id="guest-title">{t(lang, 'guest.title', { name: L(guest.name, lang) })}</h2>
-        <p class="who">{t(lang, 'guest.lead')}</p>
-        <div data-guest></div>
+      <div class="wrap guest-grid">
+        <div>
+          <h2 id="guest-title">{t(lang, 'guest.title', { name: L(guest.name, lang) })}</h2>
+          {guestStory?.quote && <p class="quote">«{L(guestStory.quote, lang)}»</p>}
+          <p class="who">{guestStory ? L(guestStory.summary, lang) : t(lang, 'guest.lead')}</p>
+          {guestStory && (
+            <p class="act-row" style="margin-block-start: 22px">
+              <a class="btn sm on-field" href={`/${lang}/issue/${issue.number}/${guestStory.slug}/`}>{t(lang, 'voices.readStory')}</a>
+            </p>
+          )}
+        </div>
+        <QaDeck client:idle lang={lang} items={qa.map((q) => ({ id: q.id, q: L(q.q, lang), a: L(q.a, lang) }))} />
       </div>
     </section>
 
     <VoicesBlock lang={lang} big={big} side={voicesSide} />
     <OpportunitiesBlock lang={lang} events={events} today={TODAY} limit={3} />
     <ArchiveTeaser lang={lang} issues={bundle.archive.map((a) => a.number).sort((a, b) => b - a)} currentIssue={issue.number} />
-    <EndOfIssue client:visible lang={lang} issue={issue.number} nextDate={nextDate} sectionCount={SECTIONS.length} />
+    <EndOfIssue client:idle lang={lang} issue={issue.number} nextDate={nextDate} sectionCount={SECTIONS.length} />
   </main>
   <Footer lang={lang} />
   <Onboarding client:idle lang={lang} issue={issue.number} />

@@ -1041,6 +1041,33 @@
   object-position: 8% 50%;
   transform: scale(2.4);
   transform-origin: 8% 50%;
+  transition: filter 600ms var(--ease-out);
+}
+/* Locked: the frame is there, the picture is not yet. Unlocking restores color in one beat. */
+.hunt .clue.locked img {
+  filter: saturate(0) contrast(0.45) brightness(1.25);
+}
+.hunt .clue.locked::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: color-mix(in oklab, var(--yellow) 72%, transparent);
+}
+.clue-lock {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  color: var(--ink);
+  background: var(--yellow);
+  padding: 0.2em 0.8em;
+}
+[dir='rtl'] .clue-lock {
+  transform: translate(50%, -50%);
 }
 .hunt-prog {
   display: flex;
@@ -1251,6 +1278,31 @@
     transform: none;
     filter: none;
   }
+}
+
+/* ---------- submit box ---------- */
+.submit-box {
+  display: grid;
+  gap: 10px;
+  max-inline-size: 640px;
+}
+.submit-box .field {
+  inline-size: 100%;
+  padding-block: 12px;
+  resize: vertical;
+}
+.submit-box .btn {
+  justify-self: start;
+}
+.submit-box .note,
+.yours .note {
+  min-block-size: 24px;
+  font-size: var(--text-sm);
+  color: var(--fg2);
+  flex-basis: 100%;
+}
+.form-err.note {
+  color: var(--error);
 }
 
 /* ---------- voices ---------- */

@@ -56,7 +56,10 @@ export default function MonthStrip({ lang, issue, year, month, monthLabel, today
     const sc = scroller.current;
     const el = strip.current?.children[sel - 1] as HTMLElement | undefined;
     if (!sc || !el || sc.scrollWidth <= sc.clientWidth) return;
-    el.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'auto' });
+    // Scroll only the strip's own scroller; scrollIntoView would also move the window.
+    const a = el.getBoundingClientRect();
+    const b = sc.getBoundingClientRect();
+    sc.scrollLeft += a.left + a.width / 2 - (b.left + b.width / 2);
   }, [sel]);
 
   const select = (d: number) => {

@@ -8,6 +8,7 @@ const baseURL = 'http://127.0.0.1:4321';
 export default defineConfig({
   testDir: 'tests/e2e',
   fullyParallel: true,
+  workers: process.env.CI ? 2 : 3,
   retries: 0,
   timeout: 30_000,
   expect: { timeout: 5_000 },

@@ -22,7 +22,7 @@ export function downloadIcs(events: IcsEvent[], lang: Lang, fileName: string, ca
   document.body.appendChild(a);
   a.click();
   a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
+  setTimeout(() => URL.revokeObjectURL(url), 60_000);
 }
 
 const Icon = ({ d }: { d: string }) => (

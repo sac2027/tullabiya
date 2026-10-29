@@ -42,7 +42,7 @@ function download(ev: IcsEvent, lang: Lang) {
   document.body.appendChild(a);
   a.click();
   a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
+  setTimeout(() => URL.revokeObjectURL(url), 60_000);
 }
 
 /** A name in an article that opens a small dialog of real actions. */

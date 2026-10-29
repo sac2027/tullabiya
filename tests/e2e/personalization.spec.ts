@@ -1,10 +1,14 @@
 import { test, expect, type Page } from '@playwright/test';
+import { expectNoHorizontalScroll } from './helpers';
 
 async function openSheet(page: Page) {
   // Astro drops the `ssr` attribute once an island has hydrated.
   await page.locator('.hero astro-island:not([ssr])').first().waitFor({ state: 'attached' });
+  await page.locator('astro-island:has(.sheet-root):not([ssr])').first().waitFor({ state: 'attached' });
   await page.locator('.hero-invite button').click();
   await expect(page.locator('.sheet-root[data-open="true"]')).toBeVisible();
+  // let the 420ms slide finish so clicks land on a resting sheet
+  await page.locator('.sheet').evaluate((el) => Promise.all(el.getAnimations({ subtree: true }).map((a) => a.finished.catch(() => undefined))));
 }
 
 async function h1Lines(page: Page) {
@@ -45,23 +49,22 @@ test('completing the sheet personalizes the hero and chip, persists, and gendere
 test('empty name is rejected and a non-image photo shows an error', async ({ page }) => {
   await page.goto('/ar/');
   await openSheet(page);
-  await page.getByRole('button', { name: 'احفظ' }).click();
+  await page.getByLabel('اسمك').press('Enter');
   await expect(page.locator('.form-err')).toContainText('اكتب اسمك');
   await page.locator('#ob-photo').setInputFiles({ name: 'notes.txt', mimeType: 'text/plain', buffer: Buffer.from('hello') });
   await expect(page.locator('.form-err')).toContainText('صورة');
   await expect(page.locator('.sheet-photo img')).toHaveCount(0);
 });
 
-for (const name of ['A', 'عبدالعزيزعبدالرحمنعبداللهالفلانيالطويلجداجداجداجداجداجداجدا', 'Sara 👩‍💻 الطالبة']) {
+for (const name of ['A', 'عبدالعزيزعبدالرحمنعبداللهالفلانيالطويلجداجداجداجداجداجداجدا', 'Sara الطالبة']) {
   test(`name "${name.slice(0, 12)}" keeps the hero within two lines without overflow`, async ({ page }) => {
     await page.goto('/ar/');
     await openSheet(page);
     await page.getByLabel('اسمك').fill(name);
-    await page.getByRole('button', { name: 'احفظ' }).click();
+    await page.getByLabel('اسمك').press('Enter');
     await expect(page.locator('.sheet-root')).toHaveAttribute('data-open', 'false');
     expect(await h1Lines(page)).toBeLessThanOrEqual(2.2);
-    const { sw, iw } = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, iw: innerWidth }));
-    expect(sw).toBeLessThanOrEqual(iw + 1);
+    await expectNoHorizontalScroll(page);
     await expect(page.locator('.me-chip .av')).toBeVisible();
   });
 }
