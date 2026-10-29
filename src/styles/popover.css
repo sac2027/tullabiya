@@ -1,0 +1,126 @@
+/* Popovers and menus anchored to their trigger. Always in the DOM so the
+   open/close transition can be interrupted; scale from the trigger corner;
+   entrance 180ms, exit faster. The only place a shadow is allowed. */
+.pop-wrap {
+  position: relative;
+  display: inline-block;
+}
+.popover {
+  position: absolute;
+  inset-block-start: calc(100% + 8px);
+  inset-inline-start: 0;
+  z-index: 40;
+  min-inline-size: 240px;
+  max-inline-size: min(380px, calc(100vw - 32px));
+  background: var(--bg);
+  color: var(--fg);
+  padding: 8px;
+  box-shadow: 0 14px 36px -10px color-mix(in oklab, var(--ink) 38%, transparent);
+  transform-origin: top left;
+  transition:
+    opacity var(--t-fast) var(--ease-out),
+    transform var(--t-fast) var(--ease-out),
+    visibility 0s;
+}
+[dir='rtl'] .popover {
+  transform-origin: top right;
+}
+.popover.end {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+  transform-origin: top right;
+}
+[dir='rtl'] .popover.end {
+  transform-origin: top left;
+}
+.popover.up {
+  inset-block-start: auto;
+  inset-block-end: calc(100% + 8px);
+  transform-origin: bottom left;
+}
+[dir='rtl'] .popover.up {
+  transform-origin: bottom right;
+}
+.popover[data-open='false'] {
+  opacity: 0;
+  transform: scale(0.95) translateY(-4px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 120ms var(--ease-out),
+    transform 120ms var(--ease-out),
+    visibility 0s linear 120ms;
+}
+.popover.up[data-open='false'] {
+  transform: scale(0.95) translateY(4px);
+}
+.pop-head {
+  padding: 10px 12px 6px;
+}
+.pop-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  line-height: 1.35;
+}
+.pop-sub {
+  color: var(--fg2);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 2px;
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  inline-size: 100%;
+  min-block-size: var(--tap);
+  padding: 8px 12px;
+  text-align: start;
+  text-decoration: none;
+  font-weight: 500;
+  line-height: 1.35;
+  transition:
+    background-color 120ms ease,
+    transform var(--t-press) var(--ease-out);
+}
+.menu-item:active {
+  transform: scale(0.98);
+}
+.menu-item[aria-pressed='true'],
+.menu-item.done {
+  color: var(--green);
+  font-weight: 700;
+}
+[data-theme='dark'] .menu-item[aria-pressed='true'],
+[data-theme='dark'] .menu-item.done {
+  color: var(--yellow);
+}
+.menu-item svg {
+  inline-size: 20px;
+  block-size: 20px;
+  flex: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .menu-item:hover {
+    background: var(--bg2);
+  }
+}
+.menu-item:focus-visible {
+  outline-offset: -3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .popover,
+  .popover[data-open='false'] {
+    transition:
+      opacity 120ms ease,
+      visibility 0s linear 120ms;
+    transform: none;
+  }
+}
