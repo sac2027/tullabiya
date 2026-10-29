@@ -22,11 +22,16 @@ test('the PDF download responds with a PDF', async ({ page }) => {
   expect(res.headers()['content-type']).toContain('pdf');
 });
 
-test('an issue without local pages links to the Deanship PDF', async ({ page }) => {
+// Every issue is ingested here; the remote fallback for a clone without the files is covered by
+// tests/unit/onDisk.test.ts.
+test('an ingested back issue serves its own pages and PDF', async ({ page }) => {
   await page.goto('/en/archive/20/');
   await expect(page.locator('h1')).toContainText('Issue 20');
-  await expect(page.locator('a', { hasText: 'Download PDF' })).toHaveAttribute('href', /studentaffairs\.kfupm\.edu\.sa/);
-  await expect(page.locator('.viewer')).toHaveCount(0);
+  await expect(page.locator('a', { hasText: 'Download PDF' })).toHaveAttribute('href', '/archive/20/issue.pdf');
+  await expect(page.locator('.viewer')).toHaveCount(1);
+  await expect(page.locator('.issue-head')).toContainText('8 pages');
+  const res = await page.request.get('/archive/20/p08.jpg');
+  expect(res.ok()).toBe(true);
 });
 
 test('search finds the Murshid story and says so when nothing matches', async ({ page }) => {

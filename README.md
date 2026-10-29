@@ -30,7 +30,8 @@ src/data/            content as JSON (Arabic source, optional English with enSta
   stories/*.json     one file per story (title, summary, body, author, units, photo, printed page)
   events.json        the month's calendar; colleges: 'all' or a list; opportunity: true for the board
   polls.json hunts.json community.json   sample interaction data (every file carries sample: true)
-  archive.json       the 22 issues; pages > 0 means pages exist under public/archive/<n>/
+  archive.json       the 22 issues (number, month, cover line); whether an issue is local and its
+                     page count are read from public/archive/<n>/ at build time
 src/i18n/            ui.ar.json / ui.en.json (identical key sets), plurals, dates, gendered variants
 src/lib/api/         Api.ts (the seam), LocalApi.ts (the simulation), storage.ts (never throws)
 src/lib/             entities, ics, poll, hunt, strip, calendarGrid, shareCard, personalization, clock
@@ -49,7 +50,9 @@ docs/                the design spec, the implementation plan, handoff.md, refer
 2. Add the month's events to `events.json`, the polls to `polls.json`, the hunt to `hunts.json`.
 3. Put the PDF at `public/archive/<n>/issue.pdf` and run
    `python scripts/render_pages.py public/archive/<n>/issue.pdf public/archive/<n>`.
-   Set `pages` and `local: true` for the issue in `archive.json`.
+   Add the issue's number, month and cover line to `archive.json`; the build finds the pages itself.
+   `public/archive/` is git-ignored except issue 21: after cloning, run `python scripts/ingest_archive.py`
+   to fetch and render the other issues from the Deanship site.
 4. Photos go in `src/assets/issue<n>/` and are referenced by file name without extension.
 5. `npm run check`. The content test fails on any dangling reference.
 

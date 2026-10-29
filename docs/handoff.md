@@ -36,8 +36,9 @@ and the hunt's closing state.
   are the acceptance tests for the real implementation.
 - No OCR of the 22 PDFs. Search covers the site's own stories. OCR of the PDFs and a per-issue
   text index is the next step for archive search.
-- `scripts/ingest_archive.py` downloads and renders issues 1–20 and 22 from the Deanship site; it
-  was written but not run (22 downloads; needs the owner's go-ahead and network access).
+- `scripts/ingest_archive.py` downloads and renders issues 1–20 and 22 from the Deanship site. It was
+  run once on 29 Oct 2026; the files are git-ignored (only issue 21 is committed), so a fresh clone
+  runs it again before the archive viewer covers every issue.
 - Moderation console. Submissions are stored on the device with status `pending` and are never
   shown publicly; the real backend needs a review queue.
 - Campus map, prayer times, per-college feeds beyond event targeting.

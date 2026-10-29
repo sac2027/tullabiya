@@ -1,4 +1,7 @@
-// Loads and validates every content file once. Pages and islands import from here.
+// Loads and validates every content file once. Pages import from here (server side only: it reads
+// public/archive/ from disk to learn which issues are present).
+import { existsSync, readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { z } from 'zod';
 import {
   archiveSchema, communitySchema, eventSchema, huntSchema, issueSchema, personSchema, pollSchema, qaSchema,
@@ -22,6 +25,15 @@ const storyModules = import.meta.glob('./stories/*.json', { eager: true, import:
 
 let cache: ContentBundle | null = null;
 
+/** An issue is local when its rendered pages sit under public/archive/<n>/ (git-ignored except
+ *  issue 21; `scripts/ingest_archive.py` fetches the rest). The JSON values are the fallback. */
+export function onDisk(entry: ArchiveEntry, root = process.cwd()): ArchiveEntry {
+  const dir = resolve(root, 'public', 'archive', String(entry.number));
+  if (!existsSync(resolve(dir, 'cover.jpg'))) return { ...entry, local: false };
+  const pages = readdirSync(dir).filter((f) => /^p\d{2,3}\.jpg$/.test(f)).length;
+  return { ...entry, local: pages > 0, pages: pages || entry.pages };
+}
+
 export function loadAll(): ContentBundle {
   if (cache) return cache;
   const stories = Object.keys(storyModules)
@@ -37,7 +49,7 @@ export function loadAll(): ContentBundle {
     polls: z.array(pollSchema).parse(polls) as Poll[],
     hunts: z.array(huntSchema).parse(hunts) as Hunt[],
     community: communitySchema.parse(community) as Community,
-    archive: archiveSchema.parse(archive) as ArchiveEntry[],
+    archive: (archiveSchema.parse(archive) as ArchiveEntry[]).map((a) => onDisk(a)),
   };
   validateRefs(bundle);
   cache = bundle;
