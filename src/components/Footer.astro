@@ -1,0 +1,55 @@
+---
+import { t } from '~/i18n';
+import type { Lang } from '~/lib/model';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+<footer class="foot">
+  <div class="big" aria-hidden="true">الطلّابية</div>
+  <div class="foot-grid">
+    <div>
+      <p class="tag-line">{t(lang, 'foot.tag')}</p>
+      <form class="sub" data-subscribe>
+        <label class="sr" for="foot-email">{t(lang, 'foot.email')}</label>
+        <input id="foot-email" type="email" class="field" placeholder={t(lang, 'foot.email')} autocomplete="email" required />
+        <button class="btn" type="submit">{t(lang, 'foot.subscribe')}</button>
+      </form>
+      <p class="msg" data-subscribe-msg aria-live="polite" data-done={t(lang, 'foot.subscribed')}></p>
+    </div>
+    <div>
+      <h3>{t(lang, 'foot.follow')}</h3>
+      <ul>
+        <li><a href="https://whatsapp.com/channel/" rel="noopener">{t(lang, 'foot.whatsapp')}</a></li>
+        <li><a href="https://x.com/" rel="noopener">{t(lang, 'foot.x')}</a></li>
+        <li><a href={`/${lang}/calendar/#subscribe`}>{t(lang, 'cal.subscribe')}</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>{t(lang, 'foot.join')}</h3>
+      <ul>
+        <li><a href={`/${lang}/community/#pitch`}>{t(lang, 'foot.write')}</a></li>
+        <li><a href={`/${lang}/community/#ask`}>{t(lang, 'foot.askGuest')}</a></li>
+        <li><a href="mailto:dsa-mag@kfupm.edu.sa">dsa-mag@kfupm.edu.sa</a></li>
+      </ul>
+    </div>
+  </div>
+  <small>{t(lang, 'foot.moderated')}</small>
+</footer>
+
+<script>
+  // Prototype: the subscription is acknowledged locally and never sent anywhere.
+  const form = document.querySelector<HTMLFormElement>('[data-subscribe]');
+  const msg = document.querySelector<HTMLElement>('[data-subscribe-msg]');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    if (msg) msg.textContent = msg.dataset.done ?? '';
+    form.reset();
+  });
+</script>

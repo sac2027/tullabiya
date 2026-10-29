@@ -17,7 +17,7 @@ describe('displayName', () => {
   });
   it('cuts a very long single word', () => {
     const long = 'ع'.repeat(40);
-    expect(displayName(long)).toBe('ع'.repeat(14) + '…');
+    expect(displayName(long)).toBe('ع'.repeat(12) + '…');
   });
 });
 

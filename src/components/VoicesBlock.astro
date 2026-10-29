@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+import EntityChip from '~/components/islands/EntityChip';
+import Reactions from '~/components/islands/Reactions';
+import { L, t, tp } from '~/i18n';
+import { photo, hasPhoto } from '~/lib/photos';
+import { actionsFor } from '~/lib/entities';
+import { loadAll, personById } from '~/data';
+import { SECTIONS, type Lang, type Story } from '~/lib/model';
+import { initial } from '~/lib/name';
+
+interface Props {
+  lang: Lang;
+  big: Story;
+  side: Story[];
+}
+const { lang, big, side } = Astro.props;
+const bundle = loadAll();
+const href = (s: Story) => `/${lang}/issue/${s.issue}/${s.slug}/`;
+const sectionName = (s: Story) => L(SECTIONS.find((x) => x.id === s.section)!.name, lang);
+function author(s: Story) {
+  if (!s.authorId) return null;
+  const p = personById(s.authorId);
+  return { id: p.id, name: L(p.name, lang), role: L(p.role, lang), actions: actionsFor({ kind: 'person', id: p.id }, bundle) };
+}
+const bigAuthor = author(big);
+---
+<section class="voices sec" aria-labelledby="voices-title">
+  <div class="wrap">
+    <h2 id="voices-title">{t(lang, 'voices.title')}</h2>
+    <div class="voices-grid">
+      <article class="vo big">
+        {hasPhoto(big.photo) && <Image class="fast-photo" src={photo(big.photo)} alt={L(big.photoAlt ?? big.title, lang)} widths={[640, 1000]} sizes="(max-width: 1023px) 100vw, 50vw" loading="lazy" />}
+        <h3><a href={href(big)}>{L(big.title, lang)}</a></h3>
+        {bigAuthor && (
+          <div class="by">
+            <span class="av" aria-hidden="true">{initial(bigAuthor.name)}</span>
+            <div>
+              <EntityChip client:visible lang={lang} kind="person" id={bigAuthor.id} name={bigAuthor.name} sub={bigAuthor.role} actions={bigAuthor.actions} />
+              <small>{sectionName(big)}، {tp(lang, 'voices.minutes', big.readingMinutes)}</small>
+            </div>
+          </div>
+        )}
+        <p>{L(big.summary, lang)}</p>
+        <Reactions client:visible lang={lang} storyId={big.id} />
+        <div class="act-row">
+          <a class="btn sm" href={href(big)}>{t(lang, 'voices.readStory')}</a>
+        </div>
+      </article>
+      <div class="vo-side">
+        {side.map((s) => {
+          const a = author(s);
+          return (
+            <article class="vo">
+              <h3><a href={href(s)}>{L(s.title, lang)}</a></h3>
+              {a && (
+                <div class="by">
+                  <span class="av" aria-hidden="true">{initial(a.name)}</span>
+                  <div>
+                    <EntityChip client:visible lang={lang} kind="person" id={a.id} name={a.name} sub={a.role} actions={a.actions} />
+                    <small>{sectionName(s)}، {tp(lang, 'voices.minutes', s.readingMinutes)}</small>
+                  </div>
+                </div>
+              )}
+              <Reactions client:visible lang={lang} storyId={s.id} />
+              <div class="act-row">
+                <a class="btn sm" href={href(s)}>{t(lang, 'voices.readStory')}</a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>

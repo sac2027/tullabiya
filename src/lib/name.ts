@@ -13,7 +13,7 @@ export function initial(name: string): string {
 }
 
 /** First word, cut to `maxGraphemes` with an ellipsis when a single word runs long. */
-export function displayName(name: string, maxGraphemes: number = 14): string {
+export function displayName(name: string, maxGraphemes: number = 12): string {
   const first = name.trim().split(/\s+/)[0] ?? '';
   const g = graphemes(first);
   return g.length > maxGraphemes ? g.slice(0, maxGraphemes).join('') + '…' : first;

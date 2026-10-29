@@ -1,12 +1,22 @@
 // Shared reader state for the islands: profile, pins, progress. Hydrated once from the Api.
 import { atom } from 'nanostores';
 import { getApi, type IssueProgress } from '~/lib/api';
-import { EMPTY_FAVORITES, type Favorites, type Profile, type SectionId } from '~/lib/model';
+import { EMPTY_FAVORITES, KEYS, type Favorites, type Profile, type SectionId } from '~/lib/model';
+import { readJson, safeStorage, writeJson } from '~/lib/api/storage';
 
 export const $profile = atom<Profile | null>(null);
 export const $favorites = atom<Favorites>(EMPTY_FAVORITES);
 export const $progress = atom<IssueProgress | null>(null);
 export const $ready = atom(false);
+/** Which sheet is open, shared across islands. */
+export const $sheet = atom<'onboarding' | null>(null);
+
+export function onboardingDismissed(): boolean {
+  return readJson(safeStorage(), KEYS.onboarding, false);
+}
+export function dismissOnboarding(): void {
+  writeJson(safeStorage(), KEYS.onboarding, true);
+}
 
 let hydrating: Promise<void> | null = null;
 

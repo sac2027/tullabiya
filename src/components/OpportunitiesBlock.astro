@@ -1,0 +1,52 @@
+---
+import OpportunityRow from '~/components/islands/OpportunityRow';
+import { L, t, weekdayName } from '~/i18n';
+import { unitById } from '~/data';
+import { toIcsEvent } from '~/lib/ics';
+import { mailto } from '~/lib/entities';
+import type { EventItem, Lang } from '~/lib/model';
+
+interface Props {
+  lang: Lang;
+  events: EventItem[];
+  /** ISO date treated as today for the prototype. */
+  today: string;
+  headingId?: string;
+  limit?: number;
+}
+const { lang, events, today, headingId = 'opp-title', limit } = Astro.props;
+const dayMs = 86_400_000;
+const t0 = new Date(`${today}T12:00:00+03:00`).getTime();
+const rows = events
+  .filter((e) => e.opportunity)
+  .map((e) => ({ e, daysLeft: Math.round((new Date(`${e.start.slice(0, 10)}T12:00:00+03:00`).getTime() - t0) / dayMs) }))
+  .sort((a, b) => a.e.start.localeCompare(b.e.start))
+  .slice(0, limit ?? 99);
+---
+<section class="opp sec" id="opp" aria-labelledby={headingId}>
+  <div class="wrap">
+    <div class="opp-head">
+      <h2 id={headingId}>{t(lang, 'opp.title')}</h2>
+      <p>{t(lang, 'opp.lead')}</p>
+    </div>
+    <div class="rows">
+      {rows.map(({ e, daysLeft }) => {
+        const u = unitById(e.unitId);
+        return (
+          <OpportunityRow
+            client:visible
+            lang={lang}
+            event={toIcsEvent(e)}
+            eventId={e.id}
+            day={Number(e.start.slice(8, 10))}
+            weekday={weekdayName(lang, e.start)}
+            title={L(e.title, lang)}
+            organizer={L(u.name, lang)}
+            askHref={mailto(u.email ?? 'dsa-mag@kfupm.edu.sa', L(e.title, lang))}
+            daysLeft={daysLeft}
+          />
+        );
+      })}
+    </div>
+  </div>
+</section>

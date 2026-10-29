@@ -1,15 +1,30 @@
 ---
-// Task 2 state: wordmark, language switch, theme toggle. Task 8 adds navigation and the profile chip.
 import LangSwitch from '~/components/islands/LangSwitch';
+import ProfileChip from '~/components/islands/ProfileChip';
 import { t } from '~/i18n';
 import type { Lang } from '~/lib/model';
+
 interface Props {
   lang: Lang;
+  issue: number;
+  current?: 'home' | 'calendar' | 'opportunities' | 'community' | 'archive' | 'my';
 }
-const { lang } = Astro.props;
+const { lang, issue, current } = Astro.props;
+const links: { key: Props['current']; href: string; label: string }[] = [
+  { key: 'home', href: `/${lang}/`, label: t(lang, 'nav.current') },
+  { key: 'calendar', href: `/${lang}/calendar/`, label: t(lang, 'nav.calendar') },
+  { key: 'opportunities', href: `/${lang}/opportunities/`, label: t(lang, 'nav.opportunities') },
+  { key: 'community', href: `/${lang}/community/`, label: t(lang, 'nav.community') },
+  { key: 'archive', href: `/${lang}/archive/`, label: t(lang, 'nav.archive') },
+];
 ---
 <header class="bar">
   <a class="mark" href={`/${lang}/`} aria-label={t(lang, 'site.name')}>الطلّابية</a>
+  <nav class="nav" aria-label={t(lang, 'nav.menu')}>
+    {links.map((l) => (
+      <a href={l.href} aria-current={current === l.key ? 'page' : undefined}>{l.label}</a>
+    ))}
+  </nav>
   <div class="tools">
     <LangSwitch client:idle lang={lang} pathname={Astro.url.pathname} />
     <button
@@ -26,6 +41,7 @@ const { lang } = Astro.props;
         <path class="theme-fill" d="M12 7a5 5 0 0 1 0 10z" fill="currentColor" stroke="none" />
       </svg>
     </button>
+    <ProfileChip client:idle lang={lang} issue={issue} />
   </div>
 </header>
 
@@ -51,47 +67,3 @@ const { lang } = Astro.props;
   });
   sync();
 </script>
-
-<style>
-  .bar {
-    display: flex;
-    align-items: center;
-    gap: clamp(16px, 3vw, 44px);
-    padding: 14px var(--gutter);
-    background: var(--bg);
-  }
-  .mark {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 38px;
-    line-height: 1;
-    color: var(--turq);
-    text-decoration: none;
-    white-space: nowrap;
-  }
-  [data-theme='dark'] .mark {
-    color: var(--beige);
-  }
-  .tools {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-inline-start: auto;
-  }
-  .tools :global(.lang) {
-    text-decoration: none;
-    font-size: var(--text-md);
-  }
-  .theme-fill {
-    transform-origin: 12px 12px;
-    transition: transform var(--t-ui) var(--ease-in-out);
-  }
-  .theme[aria-pressed='true'] .theme-fill {
-    transform: rotate(180deg);
-  }
-  @media (max-width: 600px) {
-    .mark {
-      font-size: 32px;
-    }
-  }
-</style>

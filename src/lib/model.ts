@@ -10,6 +10,7 @@ export const KEYS = {
   theme: 'tullabiya:v1:theme',
   lang: 'tullabiya:v1:lang',
   state: 'tullabiya:v1:state',
+  onboarding: 'tullabiya:v1:onboarding',
 } as const;
 
 /** Arabic is the source language. English is optional per field. */

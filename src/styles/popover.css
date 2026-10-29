@@ -15,6 +15,7 @@
   background: var(--bg);
   color: var(--fg);
   padding: 8px;
+  overflow-wrap: anywhere;
   box-shadow: 0 14px 36px -10px color-mix(in oklab, var(--ink) 38%, transparent);
   transform-origin: top left;
   transition:

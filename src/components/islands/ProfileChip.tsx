@@ -1,0 +1,90 @@
+import { useEffect } from 'preact/hooks';
+import { useStore } from '@nanostores/preact';
+import { t, L } from '~/i18n';
+import { college, type Lang, type Profile } from '~/lib/model';
+import { displayName, initial, dirFor } from '~/lib/name';
+import { $profile, $sheet, hydrate, saveProfile, saveFavorites } from '~/lib/store';
+import { usePopover } from '~/lib/popover';
+
+interface Props {
+  lang: Lang;
+  issue: number;
+}
+
+/** Sample students for the `?demo=1` panel; names and colleges are invented. */
+export const PERSONAS: { profile: Profile; pins: ('news' | 'guest' | 'experience' | 'contributions' | 'last')[] }[] = [
+  { profile: { name: 'عبدالله', college: 'eng', address: 'm' }, pins: ['guest', 'contributions'] },
+  { profile: { name: 'ريم', college: 'comp', address: 'f' }, pins: ['experience', 'news'] },
+  { profile: { name: 'Fahad', college: 'biz', address: 'm' }, pins: ['contributions'] },
+];
+
+export function Avatar({ profile, size = 40 }: { profile: Profile | null; size?: number }) {
+  const c = profile ? college(profile.college) : null;
+  const style = c ? { background: c.color, color: c.ink === 'ink' ? 'var(--ink)' : 'var(--beige)', inlineSize: size, blockSize: size } : { inlineSize: size, blockSize: size };
+  if (profile?.avatar) return <img class="av" src={profile.avatar} alt="" width={size} height={size} style={{ inlineSize: size, blockSize: size }} />;
+  return (
+    <span class="av" style={style} aria-hidden="true">
+      {profile ? initial(profile.name) : ''}
+    </span>
+  );
+}
+
+export default function ProfileChip({ lang, issue }: Props) {
+  const profile = useStore($profile);
+  const pop = usePopover();
+  useEffect(() => void hydrate(issue), [issue]);
+  const demo = typeof location !== 'undefined' && new URLSearchParams(location.search).get('demo') === '1';
+  const name = profile ? displayName(profile.name) : t(lang, 'profile.anon');
+
+  return (
+    <div class="pop-wrap" ref={pop.wrap}>
+      <button type="button" class="me-chip" ref={pop.trigger} aria-haspopup="dialog" aria-expanded={pop.open} aria-label={t(lang, 'profile.open')} onClick={pop.toggle}>
+        <Avatar profile={profile} />
+        <span class="nm" dir={profile ? dirFor(profile.name) : undefined}>{name}</span>
+      </button>
+      <div class={pop.panelClass + ' end'} ref={pop.panel} data-open={pop.open} role="dialog" aria-label={t(lang, 'profile.open')}>
+        {profile && (
+          <div class="pop-head">
+            <p class="pop-title" dir={dirFor(profile.name)}>{profile.name}</p>
+            <p class="pop-sub">{L(college(profile.college).name, lang)}</p>
+          </div>
+        )}
+        <ul class="menu">
+          <li>
+            <button type="button" class="menu-item" onClick={() => { pop.close(); $sheet.set('onboarding'); }}>
+              {profile ? t(lang, 'profile.edit') : t(lang, 'profile.anon')}
+            </button>
+          </li>
+          <li>
+            <a class="menu-item" href={`/${lang}/my/`}>{t(lang, 'nav.my')}</a>
+          </li>
+          {demo && (
+            <li>
+              <p class="pop-sub" style={{ padding: '8px 12px 2px' }}>{t(lang, 'demo.title')}</p>
+              <ul class="menu">
+                {PERSONAS.map((p) => (
+                  <li key={p.profile.name}>
+                    <button
+                      type="button"
+                      class="menu-item"
+                      aria-pressed={profile?.name === p.profile.name}
+                      onClick={async () => {
+                        await saveProfile(p.profile);
+                        await saveFavorites({ sections: p.pins, units: [] });
+                        pop.close(true);
+                      }}
+                    >
+                      <Avatar profile={p.profile} size={28} />
+                      <span dir={dirFor(p.profile.name)}>{p.profile.name}</span>
+                      <span class="pop-sub">{L(college(p.profile.college).name, lang)}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          )}
+        </ul>
+      </div>
+    </div>
+  );
+}
