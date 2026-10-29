@@ -1,7 +1,8 @@
 // Loads and validates every content file once. Pages import from here (server side only: it reads
 // public/archive/ from disk to learn which issues are present).
 import { existsSync, readdirSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
 import {
   archiveSchema, communitySchema, eventSchema, huntSchema, issueSchema, personSchema, pollSchema, qaSchema,
@@ -25,9 +26,20 @@ const storyModules = import.meta.glob('./stories/*.json', { eager: true, import:
 
 let cache: ContentBundle | null = null;
 
+/** The project root: the nearest ancestor of this module holding astro.config.mjs, which is the same
+ *  answer from src/ in dev, from dist/ chunks during the build, and under Vitest, whatever the cwd. */
+function projectRoot(): string {
+  let dir = dirname(fileURLToPath(import.meta.url));
+  for (let i = 0; i < 8; i++) {
+    if (existsSync(resolve(dir, 'astro.config.mjs'))) return dir;
+    dir = dirname(dir);
+  }
+  return process.cwd();
+}
+
 /** An issue is local when its rendered pages sit under public/archive/<n>/ (git-ignored except
  *  issue 21; `scripts/ingest_archive.py` fetches the rest). The JSON values are the fallback. */
-export function onDisk(entry: ArchiveEntry, root = process.cwd()): ArchiveEntry {
+export function onDisk(entry: ArchiveEntry, root = projectRoot()): ArchiveEntry {
   const dir = resolve(root, 'public', 'archive', String(entry.number));
   if (!existsSync(resolve(dir, 'cover.jpg'))) return { ...entry, local: false };
   const pages = readdirSync(dir).filter((f) => /^p\d{2,3}\.jpg$/.test(f)).length;
