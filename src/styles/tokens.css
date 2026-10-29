@@ -1,0 +1,90 @@
+/* Design tokens. Every hex here is from the KFUPM Brand Guidelines (6.1, 6.3, 6.7)
+   or one of three derived values awaiting sign-off: paper, ink, dark ground.
+   tests/unit/contrast.test.ts fails if any other hex appears in this file. */
+:root {
+  /* Brand primaries */
+  --turq: #115f66;
+  --green: #009767;
+  --beige: #ece0c7;
+  /* Brand accents */
+  --sand: #a48a70;
+  --yellow: #f0ba4f;
+  --blue: #71b8d4;
+  --white: #ffffff;
+  --gray: #adacad;
+  --black: #000000;
+  /* Feedback (web palette) */
+  --ok: #2aa880;
+  --error: #de5e5e;
+  --warn: #f2c56c;
+  --info: #89c4db;
+  /* College accents */
+  --col-biz: #004a81;
+  --col-comp: #6bbdbe;
+  --col-eng: #f58220;
+  --col-dbe: #8d5035;
+  --col-chem: #f0ba4f;
+  --col-pet: #a31f34;
+  --col-gen: #3d3c7f;
+  /* Derived, pending sign-off */
+  --paper: #f7f2e6;
+  --ink: #0b3a3f;
+  --ground-dark: #0a2f33;
+
+  /* Semantic roles (light) */
+  --bg: var(--paper);
+  --bg2: var(--beige);
+  --fg: var(--ink);
+  --fg2: color-mix(in oklab, var(--ink) 74%, var(--beige));
+  --quiet: color-mix(in oklab, var(--beige) 80%, var(--sand));
+  --field: var(--turq);
+  --field-fg: var(--beige);
+  --action: var(--turq);
+  --action-fg: var(--beige);
+  --bar: var(--turq);
+  --num: var(--turq);
+  --me: var(--col-eng);
+  --me-fg: var(--ink);
+  --on-yellow: var(--ink);
+
+  /* Type */
+  --font-display: 'KFUPM Display', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-text: 'IBM Plex Sans Arabic', 'KFUPM Display', system-ui, sans-serif;
+  --text-sm: 0.9375rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.1875rem;
+  --h3: clamp(1.375rem, 1.1rem + 1.1vw, 1.75rem);
+  --h2: clamp(2.125rem, 1.4rem + 3.4vw, 4.25rem);
+  --h1: clamp(2.875rem, 2rem + 4.2vw, 5.75rem);
+  --display-xl: clamp(5.5rem, 22vw, 22.5rem);
+
+  /* Layout */
+  --gutter: clamp(20px, 4.5vw, 72px);
+  --gap: clamp(88px, 11vw, 176px);
+  --gap-sm: clamp(52px, 6.6vw, 106px);
+  --tap: 44px;
+
+  /* Motion (see docs: animate skill curves; built-in easings are too weak) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --t-press: 160ms;
+  --t-fast: 180ms;
+  --t-ui: 220ms;
+  --t-sheet: 420ms;
+  --t-bar: 700ms;
+}
+
+:root[data-theme='dark'] {
+  --bg: var(--ground-dark);
+  --bg2: color-mix(in oklab, var(--ground-dark) 82%, var(--turq));
+  --fg: var(--beige);
+  --fg2: color-mix(in oklab, var(--beige) 76%, var(--blue));
+  --quiet: color-mix(in oklab, var(--ground-dark) 62%, var(--turq));
+  --field: var(--turq);
+  --field-fg: var(--beige);
+  --action: var(--beige);
+  --action-fg: var(--ink);
+  --bar: var(--blue);
+  --num: var(--yellow);
+}

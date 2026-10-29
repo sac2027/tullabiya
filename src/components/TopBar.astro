@@ -1,0 +1,94 @@
+---
+// Task 1 stub: wordmark + theme toggle. Task 8 adds navigation, language and profile.
+import type { Lang } from '~/lib/model';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const labels = {
+  dark: lang === 'ar' ? 'الوضع الداكن' : 'Dark mode',
+  light: lang === 'ar' ? 'الوضع الفاتح' : 'Light mode',
+};
+---
+<header class="bar">
+  <a class="mark" href={`/${lang}/`} aria-label="الطلّابية">الطلّابية</a>
+  <div class="tools">
+    <button
+      type="button"
+      class="tool theme"
+      id="themeBtn"
+      aria-label={labels.dark}
+      data-label-dark={labels.dark}
+      data-label-light={labels.light}
+      aria-pressed="false"
+    >
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+        <path d="M8.5 3h7l5 5v7l-5 5h-7l-5-5V8z" />
+        <path class="theme-fill" d="M12 7a5 5 0 0 1 0 10z" fill="currentColor" stroke="none" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<script>
+  import { KEYS } from '~/lib/model';
+  const btn = document.getElementById('themeBtn') as HTMLButtonElement | null;
+  const root = document.documentElement;
+  function sync() {
+    if (!btn) return;
+    const dark = root.getAttribute('data-theme') === 'dark';
+    btn.setAttribute('aria-pressed', String(dark));
+    btn.setAttribute('aria-label', dark ? btn.dataset.labelLight! : btn.dataset.labelDark!);
+  }
+  btn?.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theming', '');
+    root.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem(KEYS.theme, JSON.stringify(next));
+    } catch {}
+    sync();
+    setTimeout(() => root.removeAttribute('data-theming'), 260);
+  });
+  sync();
+</script>
+
+<style>
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, 3vw, 44px);
+    padding: 14px var(--gutter);
+    background: var(--bg);
+  }
+  .mark {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 38px;
+    line-height: 1;
+    color: var(--turq);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  [data-theme='dark'] .mark {
+    color: var(--beige);
+  }
+  .tools {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-inline-start: auto;
+  }
+  .theme-fill {
+    transform-origin: 12px 12px;
+    transition: transform var(--t-ui) var(--ease-in-out);
+  }
+  .theme[aria-pressed='true'] .theme-fill {
+    transform: rotate(180deg);
+  }
+  @media (max-width: 600px) {
+    .mark {
+      font-size: 32px;
+    }
+  }
+</style>

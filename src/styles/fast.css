@@ -1,0 +1,37 @@
+/* FAST shapes: the brand's 5-degree slant (wordmark, FAST Matrix bars, FAST Container).
+   Physical left/right appear only inside clip-path, with a [dir=ltr] mirror each time. */
+.fast-bar {
+  transform: skewX(-5deg);
+}
+.fast-photo {
+  --slant: 64px;
+  clip-path: polygon(0 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%);
+}
+[dir='ltr'] .fast-photo {
+  clip-path: polygon(var(--slant) 0, 100% 0, 100% 100%, 0 100%);
+}
+.fast-photo.down {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--slant)), 0 100%);
+}
+[dir='ltr'] .fast-photo.down {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - var(--slant)));
+}
+.fast-label {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--on-yellow);
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: 1.2;
+  padding: 0.25em 1em 0.25em 0.8em;
+  clip-path: polygon(0.45em 0, 100% 0, calc(100% - 0.45em) 100%, 0 100%);
+}
+[dir='ltr'] .fast-label {
+  padding: 0.25em 0.8em 0.25em 1em;
+}
+.fast-slab {
+  clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
+}
+[dir='ltr'] .fast-slab {
+  clip-path: polygon(22px 0, 100% 0, 100% 100%, 0 100%);
+}

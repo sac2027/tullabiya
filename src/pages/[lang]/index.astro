@@ -1,14 +1,17 @@
 ---
 import Base from '~/layouts/Base.astro';
+import TopBar from '~/components/TopBar.astro';
+import type { Lang } from '~/lib/model';
 
 export function getStaticPaths() {
   return [{ params: { lang: 'ar' } }, { params: { lang: 'en' } }];
 }
-const lang = Astro.params.lang as 'ar' | 'en';
+const lang = Astro.params.lang as Lang;
 const title = lang === 'ar' ? 'الطلّابية | العدد 21' : 'Al-Tullabiya | Issue 21';
 ---
 <Base lang={lang} title={title}>
-  <main id="main">
+  <TopBar lang={lang} />
+  <main id="main" class="wrap sec">
     <h1>{lang === 'ar' ? 'الطلّابية' : 'Al-Tullabiya'}</h1>
   </main>
 </Base>

@@ -1,0 +1,50 @@
+/* KFUPM Display: the university's Arabic-Latin display face (brand guide 7.1).
+   IBM Plex Sans Arabic: body face (brand guide 7.3), SIL OFL, see /fonts/OFL-IBMPlex.txt. */
+@font-face {
+  font-family: 'KFUPM Display';
+  src: url('/fonts/KFUPM-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'KFUPM Display';
+  src: url('/fonts/KFUPM-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'KFUPM Display';
+  src: url('/fonts/KFUPM-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('/fonts/IBMPlexSansArabic-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('/fonts/IBMPlexSansArabic-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('/fonts/IBMPlexSansArabic-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('/fonts/IBMPlexSansArabic-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('/fonts/IBMPlexSansArabic-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}

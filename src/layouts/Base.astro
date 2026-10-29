@@ -1,21 +1,55 @@
 ---
-// Task 0 stub. Task 1 adds tokens, fonts and the pre-paint theme script.
-type Lang = 'ar' | 'en';
+import '~/styles/tokens.css';
+import '~/styles/fonts.css';
+import '~/styles/base.css';
+import '~/styles/fast.css';
+import type { Lang } from '~/lib/model';
+
 interface Props {
   lang: Lang;
   title: string;
+  description?: string;
 }
-const { lang, title } = Astro.props;
+const { lang, title, description } = Astro.props;
 const dir = lang === 'ar' ? 'rtl' : 'ltr';
+const other = lang === 'ar' ? 'en' : 'ar';
+const path = Astro.url.pathname;
+const otherPath = path.replace(/^\/(ar|en)(?=\/|$)/, `/${other}`);
 ---
 <!doctype html>
-<html lang={lang} dir={dir}>
+<html lang={lang} dir={dir} data-theme="light">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#115F66" />
+    <link rel="alternate" hreflang={other} href={otherPath} />
+    <link rel="alternate" hreflang={lang} href={path} />
+    <link rel="preload" href="/fonts/KFUPM-Black.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/IBMPlexSansArabic-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <script is:inline>
+      // Pre-paint theme: saved choice, else the OS preference. Storage may throw.
+      (function () {
+        var t = 'light';
+        try {
+          var s = localStorage.getItem('tullabiya:v1:theme');
+          if (s === '"dark"' || s === 'dark') t = 'dark';
+          else if (s === '"light"' || s === 'light') t = 'light';
+          else if (matchMedia('(prefers-color-scheme: dark)').matches) t = 'dark';
+        } catch (e) {
+          try {
+            if (matchMedia('(prefers-color-scheme: dark)').matches) t = 'dark';
+          } catch (e2) {}
+        }
+        document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
+    <slot name="head" />
   </head>
   <body>
+    <a class="skip" href="#main">{lang === 'ar' ? 'تخطَّ إلى المحتوى' : 'Skip to content'}</a>
     <slot />
   </body>
 </html>
