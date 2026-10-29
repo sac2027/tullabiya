@@ -1,0 +1,51 @@
+[
+  {
+    "id": "tea-coffee-21",
+    "issue": 21,
+    "kind": "fun",
+    "question": { "ar": "شاي أم قهوة في ليلة الاختبار؟", "en": "Tea or coffee on exam night?", "enStatus": "machine" },
+    "lead": { "ar": "الدكتور بدر الحميدي اختار الشاي في «ضيف الثلاثين».", "en": "Dr. Badr Al-Humaidi picked tea in \"Guest of the 30th\".", "enStatus": "machine" },
+    "options": [
+      { "id": "tea", "label": { "ar": "الشاي", "en": "Tea", "enStatus": "reviewed" } },
+      { "id": "coffee", "label": { "ar": "القهوة", "en": "Coffee", "enStatus": "reviewed" } }
+    ],
+    "seed": { "tea": 696, "coffee": 504 },
+    "seedByCollege": {
+      "eng": { "tea": 198, "coffee": 112 },
+      "comp": { "tea": 121, "coffee": 134 },
+      "biz": { "tea": 84, "coffee": 61 },
+      "chem": { "tea": 69, "coffee": 42 },
+      "pet": { "tea": 102, "coffee": 70 },
+      "dbe": { "tea": 51, "coffee": 48 },
+      "gen": { "tea": 71, "coffee": 37 }
+    },
+    "guestPick": "tea",
+    "sample": true
+  },
+  {
+    "id": "study-place-21",
+    "issue": 21,
+    "kind": "useful",
+    "question": { "ar": "أين تذاكر في أسبوع الاختبارات؟", "en": "Where do you study in exam week?", "enStatus": "machine" },
+    "options": [
+      { "id": "library", "label": { "ar": "المكتبة", "en": "The library", "enStatus": "reviewed" } },
+      { "id": "dorm", "label": { "ar": "السكن", "en": "The dorm", "enStatus": "reviewed" } },
+      { "id": "cafe", "label": { "ar": "المقاهي", "en": "Cafés", "enStatus": "reviewed" } },
+      { "id": "home", "label": { "ar": "البيت", "en": "Home", "enStatus": "reviewed" } }
+    ],
+    "seed": { "library": 412, "dorm": 287, "cafe": 164, "home": 203 },
+    "sample": true
+  },
+  {
+    "id": "library-24h-21",
+    "issue": 21,
+    "kind": "serious",
+    "question": { "ar": "هل تريد مكتبة مفتوحة 24 ساعة في أسبوع الاختبارات؟", "en": "Do you want a 24-hour library during exam week?", "enStatus": "machine" },
+    "options": [
+      { "id": "yes", "label": { "ar": "نعم", "en": "Yes", "enStatus": "reviewed" } },
+      { "id": "no", "label": { "ar": "لا", "en": "No", "enStatus": "reviewed" } }
+    ],
+    "seed": { "yes": 812, "no": 143 },
+    "sample": true
+  }
+]

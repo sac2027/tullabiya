@@ -1,0 +1,28 @@
+{
+  "id": "21-top5",
+  "issue": 21,
+  "section": "contributions",
+  "slug": "top-5-matches-world-cup-2026",
+  "title": { "ar": "قائمة أفضل 5 مباريات في كأس العالم 2026", "en": "The five best matches of World Cup 2026", "enStatus": "machine" },
+  "summary": { "ar": "من إنجلترا وفرنسا إلى الأرجنتين والرأس الأخضر: خمس مباريات اختارها طالب لتبقى في الذاكرة.", "en": "From England vs France to Argentina vs Cape Verde: five matches one student picked to remember.", "enStatus": "machine" },
+  "body": {
+    "ar": [
+      "1. إنجلترا – فرنسا: كثرة الأهداف واللعب المفتوح نادرًا ما نشهدهما في عصر يطغى عليه التكتيك واللعب الجماعي.",
+      "2. الأرجنتين – مصر: الكثير من الدراما، مفاجأة مصر في الشوط الأول وريمونتادا الأرجنتين بقيادة الأسطورة ليونيل ميسي.",
+      "3. بلجيكا – السنغال: بعد عدة مباريات سيئة وشوطين سيئين من المنتخب البلجيكي، تظهر شخصية البطل ويقلبون الطاولة على المنتخب السنغالي.",
+      "4. الأرجنتين – إنجلترا: 60 دقيقة كاسحة للمنتخب الإنجليزي ولكن ميسي له رأي آخر.",
+      "5. الأرجنتين – الرأس الأخضر: مفاجأة كبيرة من منتخب محدود الإمكانيات مثل الرأس الأخضر، يواجه المنتخب الأرجنتيني رأسًا برأس ويكاد أن يتغلب عليه!"
+    ],
+    "en": [
+      "1. England vs France: so many goals and such open play are rare in an era dominated by tactics and collective football.",
+      "2. Argentina vs Egypt: pure drama, Egypt's first-half surprise and Argentina's comeback led by the legend Lionel Messi.",
+      "3. Belgium vs Senegal: after several poor matches and two poor halves, Belgium's champion character showed and they turned the table on Senegal.",
+      "4. Argentina vs England: 60 overwhelming minutes for England, but Messi had other ideas.",
+      "5. Argentina vs Cape Verde: a huge surprise from a side with limited means, going head to head with Argentina and nearly beating them!"
+    ]
+  },
+  "authorId": "hadi-alsaidi",
+  "unitIds": ["mag"],
+  "pdfPage": 7,
+  "readingMinutes": 1
+}

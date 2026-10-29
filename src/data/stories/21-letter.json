@@ -1,0 +1,32 @@
+{
+  "id": "21-letter",
+  "issue": 21,
+  "section": "contributions",
+  "slug": "letter-to-the-class-of-2026",
+  "title": { "ar": "رسالة إلى المستجدين دفعة 2026", "en": "A letter to the class of 2026", "enStatus": "machine" },
+  "summary": { "ar": "الإنسان لا يُقاس بعدد المرات التي سقط فيها، بل بعدد المرات التي نهض فيها من جديد. طالبة تكتب لمن بدأوا للتو.", "en": "\"A person isn't measured by how many times they fell, but by how many times they got back up.\" A student writes to those who have just begun.", "enStatus": "machine" },
+  "body": {
+    "ar": [
+      "أعزائي المستجدين دفعة 2026،",
+      "عندما بدأت رحلتي الجامعية، كنت أعتقد أن الطريق سيكون واضحًا ومستقيمًا، لكني اكتشفت سريعًا أن النجاح ليس خطًا مستقيمًا، بل مجموعة من المحاولات والتجارب والتحديات. انتقلت بعيدًا عن أهلي، وتأقلمت مع بيئة جديدة ومسؤوليات جديدة، ومررت بلحظات شككت فيها بقدراتي وبالطريق الذي اخترته.",
+      "واجهت صعوبات دراسية وضغوطًا كبيرة، ولم تسر كل خططي كما أردت. كانت هناك أهداف لم تتحقق من أول محاولة، وقرارات احتجت إلى إعادة التفكير فيها، وأيام شعرت فيها أن الوصول بعيد جدًا. لكني تعلمت أن التعثر لا يعني النهاية، وأن الفشل في خطوة لا يلغي إمكانية النجاح في الخطوات التالية.",
+      "أهم ما أدركته أن الإنسان لا يُقاس بعدد المرات التي سقط فيها، بل بعدد المرات التي نهض فيها من جديد. كل تجربة مررت بها جعلتني أقوى وأكثر وعيًا بنفسي وبما أريد تحقيقه.",
+      "لذلك، إذا واجهتم صعوبة في بداياتكم الجامعية، فلا تجعلوا لحظة واحدة تحدد مستقبلكم. آمنوا بقدراتكم، وواصلوا السعي، وامنحوا أنفسكم الوقت للنمو. قد لا تصلون بسرعة، لكنكم ستصلون ما دمتم مستمرين.",
+      "ولا تنسوا أن شعار جامعتنا: «نحلم ونحقق». فتمسكوا بأحلامكم، واجتهدوا من أجلها، وثقوا أن كل خطوة تبذلونها اليوم تقربكم من أهدافكم غدًا.",
+      "أهلًا بكم يا بتروليين وبتروليات، وأتمنى لكم رحلة جامعية مليئة بالإنجازات والذكريات الجميلة."
+    ],
+    "en": [
+      "Dear class of 2026,",
+      "When I began my university journey I thought the road would be clear and straight. I quickly learned that success isn't a straight line but a series of attempts, experiments and challenges. I moved far from my family, adapted to a new environment and new responsibilities, and went through moments when I doubted my abilities and the path I had chosen.",
+      "I faced academic difficulties and real pressure, and not all my plans went the way I wanted. Some goals didn't come on the first try, some decisions had to be rethought, and some days the finish line felt very far away. But I learned that stumbling isn't the end, and that failing at one step doesn't cancel the chance of succeeding at the next.",
+      "The most important thing I realized is that a person isn't measured by how many times they fell, but by how many times they got back up. Every experience made me stronger and more aware of myself and of what I want to achieve.",
+      "So if you hit a rough patch at the start of university, don't let a single moment define your future. Believe in yourselves, keep going, and give yourselves time to grow. You may not get there fast, but you will get there as long as you keep moving.",
+      "And don't forget our university's motto: \"Dream Big & Accomplish\". Hold on to your dreams, work for them, and trust that every step you take today brings you closer to your goals tomorrow.",
+      "Welcome, KFUPM students, and I wish you a university journey full of achievements and beautiful memories."
+    ]
+  },
+  "authorId": "reema-alfaraj",
+  "unitIds": ["mag"],
+  "pdfPage": 6,
+  "readingMinutes": 2
+}

@@ -1,0 +1,32 @@
+{
+  "number": 21,
+  "date": "2026-09-01",
+  "year": 2026,
+  "month": 9,
+  "coverLine": { "ar": "أهلاً بالرّواد", "en": "Welcome, Pioneers", "enStatus": "machine" },
+  "coverPhoto": "cover",
+  "coverAlt": { "ar": "طلاب مستجدون يجلسون في قاعة الاستقبال خلال البرنامج التعريفي", "en": "New students seated in the welcome hall during the orientation program", "enStatus": "machine" },
+  "pages": 8,
+  "leadStoryId": "21-orientation",
+  "guestId": "badr-alhumaidi",
+  "pdf": "/archive/21/issue.pdf",
+  "storyIds": [
+    "21-orientation",
+    "21-murshid",
+    "21-council",
+    "21-formula",
+    "21-guest",
+    "21-musab",
+    "21-letter",
+    "21-khudr",
+    "21-akhdar",
+    "21-raas-akhdar",
+    "21-top5",
+    "21-mondial",
+    "21-nashama",
+    "21-comments",
+    "21-caption",
+    "21-nawafidh",
+    "21-bcg"
+  ]
+}

@@ -76,3 +76,161 @@ export interface Favorites {
 }
 
 export const EMPTY_FAVORITES: Favorites = { sections: [], units: [] };
+
+/* ---------- Content (validated by src/data/schemas.ts) ---------- */
+
+export type EventKind = 'career' | 'culture' | 'national' | 'conference' | 'competition';
+
+export interface EventItem {
+  id: string;
+  title: Localized;
+  description: Localized;
+  /** YYYY-MM-DD for all-day events, else ISO datetime with offset. */
+  start: string;
+  end?: string;
+  allDay: boolean;
+  colleges: CollegeId[] | 'all';
+  unitId: string;
+  kind: EventKind;
+  place?: Localized;
+  /** Shown on the opportunities board. */
+  opportunity?: boolean;
+}
+
+export interface Unit {
+  id: string;
+  name: Localized;
+  short?: Localized;
+  email?: string;
+  office?: Localized;
+}
+
+export interface Person {
+  id: string;
+  name: Localized;
+  role: Localized;
+  college?: CollegeId;
+  contactable: boolean;
+  photo?: string;
+}
+
+export interface StoryStep {
+  label: Localized;
+  when: Localized;
+  note: Localized;
+}
+
+export interface Story {
+  id: string;
+  issue: number;
+  section: SectionId;
+  slug: string;
+  title: Localized;
+  summary: Localized;
+  body?: { ar: string[]; en?: string[] };
+  authorId?: string;
+  unitIds: string[];
+  peopleIds?: string[];
+  eventIds?: string[];
+  photo?: string;
+  photos?: string[];
+  photoAlt?: Localized;
+  photoCredit?: Localized;
+  pdfPage: number;
+  readingMinutes: number;
+  steps?: StoryStep[];
+  quote?: Localized;
+}
+
+export interface QaItem {
+  id: string;
+  guestId: string;
+  q: Localized;
+  a: Localized;
+}
+
+export interface Issue {
+  number: number;
+  /** First day of the issue's month. */
+  date: string;
+  year: number;
+  month: number;
+  coverLine: Localized;
+  coverPhoto: string;
+  coverAlt: Localized;
+  coverCredit?: Localized;
+  pages: number;
+  leadStoryId: string;
+  guestId: string;
+  pdf: string;
+  storyIds: string[];
+}
+
+export interface PollOption {
+  id: string;
+  label: Localized;
+}
+
+export interface Poll {
+  id: string;
+  issue: number;
+  kind: 'fun' | 'useful' | 'serious';
+  question: Localized;
+  lead?: Localized;
+  options: PollOption[];
+  /** Simulated starting counts per option id. */
+  seed: Record<string, number>;
+  seedByCollege?: Partial<Record<CollegeId, Record<string, number>>>;
+  guestPick?: string;
+  answer?: Localized;
+  sample: true;
+}
+
+export interface HuntClue {
+  text: Localized;
+  photo?: string;
+}
+
+export interface Hunt {
+  id: string;
+  issue: number;
+  riddle: Localized;
+  clues: HuntClue[];
+  answers: string[];
+  closesAt: string;
+  prize: Localized;
+  firstSeats: number;
+  drawSeats: number;
+  seedTaken: number;
+  sample: true;
+}
+
+export interface Community {
+  questions: { id: string; text: Localized; votes: number }[];
+  kudos: { id: string; to: Localized; text: Localized }[];
+  captionPhoto: string;
+  captionAlt: Localized;
+  previousCaptions: { text: Localized; by: Localized }[];
+  sample: true;
+}
+
+export interface ArchiveEntry {
+  number: number;
+  pages: number;
+  month?: string;
+  coverLine?: Localized;
+  local?: boolean;
+}
+
+export interface ContentBundle {
+  issues: Issue[];
+  stories: Story[];
+  events: EventItem[];
+  units: Unit[];
+  people: Person[];
+  qa: QaItem[];
+  polls: Poll[];
+  hunts: Hunt[];
+  community: Community;
+  archive: ArchiveEntry[];
+}

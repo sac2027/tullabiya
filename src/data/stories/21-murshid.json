@@ -1,0 +1,27 @@
+{
+  "id": "21-murshid",
+  "issue": 21,
+  "section": "news",
+  "slug": "murshid-fifth-edition",
+  "title": { "ar": "برنامج الإرشاد يختتم نسخته الخامسة ويطلق السادسة", "en": "The Murshid program closes its fifth edition and launches the sixth", "enStatus": "machine" },
+  "summary": { "ar": "أكثر من 220 طالبًا وطالبة في النسخة الخامسة، وأكثر من 800 مستفيد على مدى خمس نسخ، والنسخة السادسة بدأت بفتح باب التسجيل.", "en": "More than 220 students in the fifth edition, over 800 beneficiaries across five editions, and the sixth has opened for registration.", "enStatus": "machine" },
+  "body": {
+    "ar": [
+      "اختتم برنامج الإرشاد بجامعة الملك فهد للبترول والمعادن نسخته الخامسة بمشاركة أكثر من 220 طالبًا وطالبة، وامتدت من 11 يناير حتى 20 مايو 2026. وأقيم الحفل الختامي داخل الحرم الجامعي في 2 مايو 2026، في لقاء اتخذ طابعًا تفاعليًا ركّز على التعارف والتواصل وبناء العلاقات، بما أتاح للمشاركين فرصة توسيع شبكة علاقاتهم وتعزيز التواصل بينهم، بما يمتد أثره إلى ما بعد انتهاء البرنامج.",
+      "ويهدف برنامج الإرشاد إلى ربط طلاب جامعة الملك فهد للبترول والمعادن بخريجيها، من خلال مواءمة الطالب مع مرشد مهني في القطاع الذي يختاره الطالب، بما يتيح له الاستفادة من خبرة المرشد والتعرف على طبيعة العمل في المجال، والمهارات والمتطلبات التي يحتاجها سوق العمل، إلى جانب الحصول على توجيه يساعده في رسم مساره المهني واتخاذ قرارات أكثر وضوحًا بشأن مستقبله.",
+      "وعلى مدى خمس نسخ، واصل البرنامج تحقيق أثر متنامٍ في دعم طلاب الجامعة وإعدادهم لمساراتهم المهنية، واستفاد منه أكثر من 800 طالب وطالبة من مختلف التخصصات، بمشاركة نخبة من المرشدين من خريجي الجامعة العاملين في قطاعات ومجالات مهنية متنوعة.",
+      "وقد بدأت النسخة السادسة من برنامج الإرشاد للعام الدراسي 2026–2027، بعد فتح باب التسجيل واستقبال طلبات الطلاب الراغبين في الاستفادة من تجربة الإرشاد، ليواصل بذلك البرنامج مسيرته في تعزيز التواصل بين طلاب الجامعة وخريجيها، ودعم الطلاب في بناء مساراتهم المهنية."
+    ],
+    "en": [
+      "KFUPM's Murshid mentoring program closed its fifth edition with more than 220 students taking part, running from 11 January to 20 May 2026. The closing ceremony was held on campus on 2 May 2026 as an interactive gathering centered on meeting, connecting and building relationships, giving participants a chance to widen their networks in ways that outlast the program itself.",
+      "Murshid connects KFUPM students with the university's alumni by matching each student with a professional mentor in the sector of their choice. Students draw on the mentor's experience, learn what work in the field is like and what skills the job market demands, and receive guidance that helps them map their career path and make clearer decisions about their future.",
+      "Across five editions the program has grown its impact in supporting students and preparing them for their careers: more than 800 students from every major have taken part, mentored by a select group of alumni working across a wide range of sectors and professions.",
+      "The sixth edition for the 2026-2027 academic year has begun, with registration open and applications arriving from students who want the mentoring experience, as the program continues to strengthen ties between students and alumni and to support students in building their careers."
+    ]
+  },
+  "unitIds": ["murshid"],
+  "photo": "murshid",
+  "photoAlt": { "ar": "طلاب في الحفل الختامي لبرنامج الإرشاد", "en": "Students at the Murshid program's closing ceremony", "enStatus": "machine" },
+  "pdfPage": 3,
+  "readingMinutes": 3
+}

@@ -1,0 +1,21 @@
+{
+  "id": "21-guest",
+  "issue": 21,
+  "section": "guest",
+  "slug": "guest-badr-alhumaidi",
+  "title": { "ar": "د. بدر الحميدي: غادرت الطب واخترت الرياضيات", "en": "Dr. Badr Al-Humaidi: I left medicine and chose mathematics", "enStatus": "machine" },
+  "summary": { "ar": "أنا متعلم مدى الحياة.. وأجمل لحظاتي حين ألتقي طلابي وطالباتي. ثلاثون سؤالًا سريعًا وإجابات صريحة.", "en": "\"I'm a lifelong learner, and my best moments are when I meet my students.\" Thirty quick questions and frank answers.", "enStatus": "machine" },
+  "quote": { "ar": "المدينة المنورة أجمل من كل الدنيا", "en": "Madinah is more beautiful than the whole world", "enStatus": "machine" },
+  "body": {
+    "ar": [
+      "الدكتور بدر أحمد الحميدي، عضو هيئة التدريس بقسم الرياضيات. حصل على شهادة البكالوريوس والماجستير والدكتوراه في الرياضيات من جامعة الملك فهد للبترول والمعادن. ويعد الدكتور الحميدي من المهتمين في جملة من المجالات البحثية كالطرق العددية في المعادلات التفاضلية والتكاملية، والدوال الخاصة، والمعادلات الدالية، ومصفوفة فوربيه، ودالة الخطأ، والدالة القابلة للتكامل المطلق، وتمثيل المتسلسلات، وصيغة الاشتقاق، وغيرها. وللدكتور نشاط ملموس في الإرشاد الأكاديمي ودعم الطلاب على تخطي التحديات الأكاديمية، وقد ترك أثرًا إيجابيًا في العديد من قصص النجاح."
+    ],
+    "en": [
+      "Dr. Badr Ahmed Al-Humaidi is a faculty member in the Department of Mathematics. He earned his bachelor's, master's and doctorate in mathematics from KFUPM. His research interests span numerical methods for differential and integral equations, special functions, functional equations, the Fourier matrix, the error function, absolutely integrable functions, series representation, differentiation formulas and more. He is active in academic advising and in helping students overcome academic challenges, and has left a positive mark on many success stories."
+    ]
+  },
+  "unitIds": ["mag"],
+  "peopleIds": ["badr-alhumaidi"],
+  "pdfPage": 4,
+  "readingMinutes": 3
+}

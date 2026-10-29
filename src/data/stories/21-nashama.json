@@ -1,0 +1,18 @@
+{
+  "id": "21-nashama",
+  "issue": 21,
+  "section": "contributions",
+  "slug": "al-nashama-at-the-world-cup",
+  "title": { "ar": "النشامى في المونديال", "en": "Al-Nashama at the World Cup", "enStatus": "machine" },
+  "summary": { "ar": "أول ظهور للمنتخب الأردني في كأس العالم: ندّ قوي في كل مباراة، وتسجيل في كل لقاء، وقرب شديد من التأهل.", "en": "Jordan's first World Cup: a tough opponent in every match, a goal in every game, and so close to going through.", "enStatus": "machine" },
+  "body": {
+    "ar": [
+      "كانت مشاركة المنتخب الأردني في أول ظهور له بكأس العالم مشاركة مشرّفة بكل المقاييس. رغم قوة المنتخبات في المجموعة، كان ندًا قويًا في جميع المباريات، ونجح في التسجيل في كل مباراة خاضها، وكان قريبًا جدًا من تحقيق الفوز والتأهل، لكن قدّر الله وما شاء فعل.",
+      "كل الشكر للاعبين والجهازين الفني والإداري على جهودهم الكبيرة، وبالتوفيق في كأس آسيا 2027 في المملكة العربية السعودية."
+    ]
+  },
+  "authorId": "marah-alamlah",
+  "unitIds": ["mag"],
+  "pdfPage": 6,
+  "readingMinutes": 1
+}

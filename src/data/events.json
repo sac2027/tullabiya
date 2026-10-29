@@ -1,0 +1,77 @@
+[
+  {
+    "id": "career-talks-2026-09-01",
+    "title": { "ar": "برنامج Career Talks", "en": "Career Talks program", "enStatus": "machine" },
+    "description": { "ar": "لقاء مهني ضمن برنامج Career Talks الذي تنظمه إدارة توظيف وتدريب الطلاب.", "en": "A career session in the Career Talks program run by Student Recruitment & Training.", "enStatus": "machine" },
+    "start": "2026-09-01",
+    "allDay": true,
+    "colleges": ["eng", "comp", "biz", "chem", "pet"],
+    "unitId": "srt",
+    "kind": "career",
+    "opportunity": true
+  },
+  {
+    "id": "src-2026",
+    "title": { "ar": "مؤتمر SRC 2026", "en": "SRC 2026 conference", "enStatus": "machine" },
+    "description": { "ar": "مؤتمر SRC 2026 على مدى يومين في الحرم الجامعي.", "en": "The two-day SRC 2026 conference on campus.", "enStatus": "machine" },
+    "start": "2026-09-01",
+    "end": "2026-09-02",
+    "allDay": true,
+    "colleges": "all",
+    "unitId": "dsa",
+    "kind": "conference"
+  },
+  {
+    "id": "the-stage-2026",
+    "title": { "ar": "مسابقة The Stage @ KFUPM", "en": "The Stage @ KFUPM competition", "enStatus": "machine" },
+    "description": { "ar": "مسابقة المسرح الطلابي في الحرم الجامعي.", "en": "The student stage competition on campus.", "enStatus": "machine" },
+    "start": "2026-09-13",
+    "allDay": true,
+    "colleges": "all",
+    "unitId": "dsa",
+    "kind": "competition",
+    "opportunity": true
+  },
+  {
+    "id": "bcg-2026-09-15",
+    "title": { "ar": "BCG في الحرم الجامعي", "en": "BCG on Campus", "enStatus": "machine" },
+    "description": { "ar": "لقاء تعريفي مع شركة Boston Consulting Group ضمن برنامج Company on Campus لاستكشاف عالم الاستشارات والتعرّف على طبيعة العمل في BCG ومجالاتها الاستراتيجية والتقنية والمسارات المهنية في الشركة. يستهدف طلاب البكالوريوس المتوقع تخرجهم في 2027 وما بعده من مختلف التخصصات.", "en": "An introductory session with Boston Consulting Group in the Company on Campus program: the world of consulting, how BCG works across strategy and technology, and its career paths. For undergraduates graduating in 2027 or later, from every major.", "enStatus": "machine" },
+    "start": "2026-09-15",
+    "allDay": true,
+    "colleges": ["eng", "comp", "biz"],
+    "unitId": "srt",
+    "kind": "career",
+    "opportunity": true
+  },
+  {
+    "id": "khaleeji-27-opening",
+    "title": { "ar": "افتتاح كأس الخليج 27", "en": "Opening of Khaleeji 27", "enStatus": "machine" },
+    "description": { "ar": "افتتاح بطولة كأس الخليج 27 (خليجي 27).", "en": "The opening of the 27th Arabian Gulf Cup (Khaleeji 27).", "enStatus": "machine" },
+    "start": "2026-09-23",
+    "allDay": true,
+    "colleges": "all",
+    "unitId": "dsa",
+    "kind": "culture"
+  },
+  {
+    "id": "national-day-2026",
+    "title": { "ar": "اليوم الوطني السعودي: عزنا بطبعنا", "en": "Saudi National Day: Our pride is our nature", "enStatus": "machine" },
+    "description": { "ar": "احتفال الجامعة باليوم الوطني السعودي تحت شعار «عزنا بطبعنا».", "en": "The university celebrates Saudi National Day under the theme \"Our pride is our nature\".", "enStatus": "machine" },
+    "start": "2026-09-23",
+    "allDay": true,
+    "colleges": "all",
+    "unitId": "dsa",
+    "kind": "national"
+  },
+  {
+    "id": "career-talks-2026-09-29",
+    "title": { "ar": "برنامج Career Talks", "en": "Career Talks program", "enStatus": "machine" },
+    "description": { "ar": "لقاء مهني ضمن برنامج Career Talks الذي تنظمه إدارة توظيف وتدريب الطلاب.", "en": "A career session in the Career Talks program run by Student Recruitment & Training.", "enStatus": "machine" },
+    "start": "2026-09-29",
+    "allDay": true,
+    "colleges": ["eng", "comp", "biz", "chem", "pet"],
+    "unitId": "srt",
+    "kind": "career",
+    "opportunity": true
+  }
+]

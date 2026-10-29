@@ -1,0 +1,18 @@
+{
+  "id": "21-formula",
+  "issue": 21,
+  "section": "news",
+  "slug": "formula-student-uk-2026",
+  "title": { "ar": "حول العالم: فريق الجامعة في سباق فورمولا للطلاب بسيلفرستون", "en": "Around the world: the university team at Formula Student UK in Silverstone", "enStatus": "machine" },
+  "summary": { "ar": "قدّم الفريق مفهومًا متكاملًا لسيارة سباق يجمع الجوانب الهندسية والتجارية، من التصميم إلى خطة الأعمال.", "en": "The team presented a complete race-car concept spanning engineering and business, from vehicle design to the business plan.", "enStatus": "machine" },
+  "body": {
+    "ar": [
+      "شارك فريق من طلاب الجامعة في مسابقة فورمولا للطلاب في المملكة المتحدة 2026، التي أقيمت في حلبة سيلفرستون في 15 يوليو 2026، حيث قدم الفريق مفهومًا متكاملًا لسيارة سباق يجمع بين الجوانب الهندسية والتجارية، شمل تصميم المركبة وأنظمتها، إلى جانب تطوير استراتيجية للتصنيع ونموذج للتكاليف وخطة أعمال."
+    ]
+  },
+  "unitIds": ["dsa"],
+  "photo": "formula-team",
+  "photoAlt": { "ar": "فريق الجامعة يرفع علم KFUPM في حلبة سيلفرستون", "en": "The university team raising the KFUPM flag at Silverstone", "enStatus": "machine" },
+  "pdfPage": 3,
+  "readingMinutes": 1
+}

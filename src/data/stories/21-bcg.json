@@ -1,0 +1,20 @@
+{
+  "id": "21-bcg",
+  "issue": 21,
+  "section": "last",
+  "slug": "discover-consulting-with-bcg",
+  "title": { "ar": "اكتشف عالم الاستشارات مع BCG", "en": "Discover the world of consulting with BCG", "enStatus": "machine" },
+  "summary": { "ar": "الثلاثاء 15 سبتمبر: لقاء تعريفي مع Boston Consulting Group ضمن برنامج Company on Campus لطلاب البكالوريوس المتوقع تخرجهم في 2027 وما بعده.", "en": "Tuesday 15 September: an introductory session with Boston Consulting Group in the Company on Campus program, for undergraduates graduating in 2027 or later.", "enStatus": "machine" },
+  "body": {
+    "ar": [
+      "تستضيف إدارة توظيف وتدريب الطلاب بعمادة شؤون الطلاب يوم الثلاثاء 15 سبتمبر 2026 شركة Boston Consulting Group ضمن برنامجها المميز Company on Campus في لقاء تعريفي يتيح للطلاب استكشاف عالم الاستشارات، والتعرّف على طبيعة العمل في BCG ومجالاتها الاستراتيجية والتقنية، إلى جانب التعرف على المسارات المهنية في الشركة. يستهدف اللقاء طلاب البكالوريوس المتوقع تخرجهم في 2027 وما بعده من مختلف التخصصات."
+    ],
+    "en": [
+      "On Tuesday 15 September 2026, Student Recruitment & Training at the Deanship of Student Affairs hosts Boston Consulting Group in its Company on Campus program: an introductory session where students explore the world of consulting, learn how BCG works across its strategy and technology practices, and discover the firm's career paths. For undergraduates graduating in 2027 or later, from every major."
+    ]
+  },
+  "unitIds": ["srt"],
+  "eventIds": ["bcg-2026-09-15"],
+  "pdfPage": 8,
+  "readingMinutes": 1
+}

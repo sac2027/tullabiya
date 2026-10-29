@@ -1,0 +1,77 @@
+[
+  {
+    "id": "badr-alhumaidi",
+    "name": { "ar": "د. بدر أحمد الحميدي", "en": "Dr. Badr Ahmed Al-Humaidi", "enStatus": "machine" },
+    "role": { "ar": "عضو هيئة التدريس بقسم الرياضيات", "en": "Faculty member, Department of Mathematics", "enStatus": "machine" },
+    "college": "comp",
+    "contactable": false
+  },
+  {
+    "id": "musab-albaqir",
+    "name": { "ar": "مصعب أحمد الباقر", "en": "Musab Ahmed Al-Baqir", "enStatus": "machine" },
+    "role": { "ar": "طالب دكتوراه، الهندسة البيئية", "en": "PhD student, Environmental Engineering", "enStatus": "machine" },
+    "college": "eng",
+    "contactable": true
+  },
+  {
+    "id": "reema-alfaraj",
+    "name": { "ar": "ريما فهد الفراج", "en": "Reema Fahad Al-Faraj", "enStatus": "machine" },
+    "role": { "ar": "طالبة", "en": "Student", "enStatus": "machine" },
+    "contactable": true
+  },
+  {
+    "id": "shafia-sultani",
+    "name": { "ar": "شافية سلطاني", "en": "Shafia Sultani", "enStatus": "machine" },
+    "role": { "ar": "طالبة", "en": "Student", "enStatus": "machine" },
+    "contactable": true
+  },
+  {
+    "id": "fatimah-alsabe",
+    "name": { "ar": "فاطمة توفيق السبع", "en": "Fatimah Tawfiq Al-Sabe", "enStatus": "machine" },
+    "role": { "ar": "طالبة", "en": "Student", "enStatus": "machine" },
+    "contactable": true
+  },
+  {
+    "id": "nabil-allam",
+    "name": { "ar": "نبيل سامي علام", "en": "Nabil Sami Allam", "enStatus": "machine" },
+    "role": { "ar": "طالب", "en": "Student", "enStatus": "machine" },
+    "contactable": true
+  },
+  {
+    "id": "hadi-alsaidi",
+    "name": { "ar": "هادي أحمد السعيدي", "en": "Hadi Ahmed Al-Saidi", "enStatus": "machine" },
+    "role": { "ar": "طالب", "en": "Student", "enStatus": "machine" },
+    "contactable": true
+  },
+  {
+    "id": "abdulaziz-qaisi",
+    "name": { "ar": "عبدالعزيز يحيى قيسي", "en": "Abdulaziz Yahya Qaisi", "enStatus": "machine" },
+    "role": { "ar": "طالب", "en": "Student", "enStatus": "machine" },
+    "contactable": true
+  },
+  {
+    "id": "marah-alamlah",
+    "name": { "ar": "مرح محمد العمله", "en": "Marah Mohammed Al-Amlah", "enStatus": "machine" },
+    "role": { "ar": "طالبة", "en": "Student", "enStatus": "machine" },
+    "contactable": true
+  },
+  {
+    "id": "fatimah-allihyani",
+    "name": { "ar": "فاطمة حامد اللحياني", "en": "Fatimah Hamid Al-Lihyani", "enStatus": "machine" },
+    "role": { "ar": "طالبة، تصوير", "en": "Student, photography", "enStatus": "machine" },
+    "contactable": true
+  },
+  {
+    "id": "aqeelah-alhumaidi",
+    "name": { "ar": "العقيله مرتضى الحميدي", "en": "Aqeelah Murtada Al-Humaidi", "enStatus": "machine" },
+    "role": { "ar": "طالبة مستجدة، شعر", "en": "New student, poetry", "enStatus": "machine" },
+    "contactable": true
+  },
+  {
+    "id": "bassam-altawabini",
+    "name": { "ar": "د. بسام الطوابيني", "en": "Dr. Bassam Al-Tawabini", "enStatus": "machine" },
+    "role": { "ar": "أستاذ الهندسة البيئية", "en": "Professor of Environmental Engineering", "enStatus": "machine" },
+    "college": "eng",
+    "contactable": false
+  }
+]

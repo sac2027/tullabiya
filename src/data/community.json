@@ -1,0 +1,21 @@
+{
+  "questions": [
+    { "id": "cq1", "text": { "ar": "ما أول شيء تفعله بعد آخر اختبار في الفصل؟", "en": "What's the first thing you do after the last exam of the term?", "enStatus": "machine" }, "votes": 41 },
+    { "id": "cq2", "text": { "ar": "أي مادة ندمت على تأجيلها؟", "en": "Which course do you regret postponing?", "enStatus": "machine" }, "votes": 27 },
+    { "id": "cq3", "text": { "ar": "لو عدت إلى سنتك الأولى، ماذا تغيّر؟", "en": "If you went back to your first year, what would you change?", "enStatus": "machine" }, "votes": 63 },
+    { "id": "cq4", "text": { "ar": "أفضل مكان للقهوة في الحرم؟", "en": "Best coffee spot on campus?", "enStatus": "machine" }, "votes": 18 }
+  ],
+  "kudos": [
+    { "id": "k1", "to": { "ar": "إلى أمين المكتبة في الدور الثاني", "en": "To the second-floor librarian", "enStatus": "machine" }, "text": { "ar": "فتح لنا القاعة قبل موعدها في أسبوع الاختبارات.", "en": "Opened the hall early for us in exam week.", "enStatus": "machine" } },
+    { "id": "k2", "to": { "ar": "إلى سائق حافلة الاختبارات", "en": "To the exam-shuttle driver", "enStatus": "machine" }, "text": { "ar": "انتظرنا دقيقتين إضافيتين ولم نتأخر عن الاختبار.", "en": "Waited two extra minutes and none of us missed the exam.", "enStatus": "machine" } },
+    { "id": "k3", "to": { "ar": "إلى موظفي الاستقبال في مبنى 54", "en": "To the reception staff in Building 54", "enStatus": "machine" }, "text": { "ar": "أول يوم لنا مرّ بسلاسة بفضلكم.", "en": "Our first day went smoothly thanks to you.", "enStatus": "machine" } }
+  ],
+  "captionPhoto": "kfupm-sign",
+  "captionAlt": { "ar": "حروف KFUPM الضخمة على التلة المطلة على طريق الجامعة", "en": "The giant KFUPM letters on the hill above the campus road", "enStatus": "machine" },
+  "previousCaptions": [
+    { "text": { "ar": "رمزُ الصمود ورفيقُ الأجداد.. حين تنطق الصورة بهيبة التراث.", "en": "A symbol of endurance and the ancestors' companion, when a photo speaks with the dignity of heritage.", "enStatus": "machine" }, "by": { "ar": "الطالبة روان محمد القحطاني", "en": "Rawan Mohammed Al-Qahtani", "enStatus": "machine" } },
+    { "text": { "ar": "كيف خُلقت", "en": "How it was created", "enStatus": "machine" }, "by": { "ar": "الطالب عبدالرحمن خالد التنق", "en": "Abdulrahman Khalid Al-Tunuq", "enStatus": "machine" } },
+    { "text": { "ar": "«فَمَا حَمَلَتْ مِنْ نَاقَةٍ فَوْقَ رَحْلِهَا .. أَبَرَّ وَأَوْفَىٰ ذِمَّةً مِنْ مُحَمَّدِ»", "en": "\"No she-camel ever carried on her saddle one more righteous and faithful than Muhammad\"", "enStatus": "machine" }, "by": { "ar": "الطالبة مريم عبدالله السليم", "en": "Maryam Abdullah Al-Saleem", "enStatus": "machine" } }
+  ],
+  "sample": true
+}

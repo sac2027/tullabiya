@@ -1,0 +1,23 @@
+{
+  "id": "21-caption",
+  "issue": 21,
+  "section": "last",
+  "slug": "caption-this-photo",
+  "title": { "ar": "حروف من وحي الصورة", "en": "Caption this photo", "enStatus": "machine" },
+  "summary": { "ar": "شاركنا بتعليق مناسب للصورة.. وانتظره في العدد القادم. نسعد باستقبال تعليقاتكم.", "en": "Send us a caption for the photo and look for it in the next issue. We'd love to hear from you.", "enStatus": "machine" },
+  "body": {
+    "ar": [
+      "شاركنا بتعليق مناسب للصورة.. وانتظره في العدد القادم. نسعد باستقبال تعليقاتكم عبر الموقع أو عبر مسح رمز الاستجابة السريعة في النسخة المطبوعة."
+    ],
+    "en": [
+      "Send us a caption for the photo and look for it in the next issue. We'd love to receive your captions on the site or by scanning the QR code in the printed copy."
+    ]
+  },
+  "unitIds": ["mag"],
+  "peopleIds": ["fatimah-allihyani"],
+  "photo": "kfupm-sign",
+  "photoAlt": { "ar": "حروف KFUPM الضخمة على التلة المطلة على طريق الجامعة", "en": "The giant KFUPM letters on the hill above the campus road", "enStatus": "machine" },
+  "photoCredit": { "ar": "تصوير الطالبة فاطمة حامد اللحياني", "en": "Photo by Fatimah Hamid Al-Lihyani", "enStatus": "machine" },
+  "pdfPage": 8,
+  "readingMinutes": 1
+}
