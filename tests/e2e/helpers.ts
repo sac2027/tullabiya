@@ -57,5 +57,5 @@ export async function lastDownload(page: Page): Promise<{ name: string; body: st
 
 /** Wait for the first Astro island inside `scope` to hydrate (Astro drops `ssr` after hydration). */
 export async function hydrated(page: Page, scope: string) {
-  await page.locator(`${scope} astro-island:not([ssr])`).first().waitFor({ state: 'attached' });
+  await page.locator(`${scope} astro-island:not([ssr]), astro-island:has(${scope}):not([ssr])`).first().waitFor({ state: 'attached' });
 }

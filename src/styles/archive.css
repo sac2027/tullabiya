@@ -1,0 +1,222 @@
+/* Archive: the wall of fingerprints, search, and the page viewer. */
+.arch-page {
+  padding-block: clamp(32px, 5vw, 64px) var(--gap);
+}
+.arch-page h1 {
+  font-size: var(--h2);
+  margin-block-end: 10px;
+}
+.arch-page .lead {
+  color: var(--fg2);
+  max-inline-size: 52ch;
+  margin-block-end: 32px;
+}
+.arch-page .search input {
+  background: var(--bg2);
+  color: var(--fg);
+}
+.arch-page .search .btn {
+  background: var(--action);
+  color: var(--action-fg);
+}
+.arch-page .wall {
+  margin-block-start: 36px;
+}
+.arch-page .iss {
+  background: var(--bg2);
+  color: var(--fg);
+}
+.arch-page .iss .fp i {
+  background: var(--quiet);
+}
+.arch-page .iss.lit {
+  background: var(--turq);
+  color: var(--beige);
+}
+.arch-page .iss.lit .fp i {
+  background: var(--green);
+}
+.arch-page .iss.part {
+  background: color-mix(in oklab, var(--yellow) 30%, var(--bg2));
+  color: var(--fg);
+}
+.results {
+  margin-block-start: 22px;
+  max-inline-size: 72ch;
+}
+.results-n {
+  color: var(--fg2);
+  font-size: var(--text-sm);
+  margin-block-end: 8px;
+}
+.results-empty {
+  background: var(--bg2);
+  padding: 16px 20px;
+}
+.results ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.results li {
+  background: var(--bg2);
+  padding: 14px 18px;
+}
+.results li a {
+  font-weight: 700;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+}
+.results li p {
+  color: var(--fg2);
+  font-size: var(--text-sm);
+  margin-block-start: 4px;
+}
+.results mark {
+  background: var(--yellow);
+  color: var(--on-yellow);
+}
+
+/* issue page */
+.issue-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 32px 56px;
+  align-items: start;
+  margin-block-end: var(--gap-sm);
+}
+.issue-cover {
+  --slant: 48px;
+}
+.issue-cover img {
+  inline-size: 100%;
+  block-size: auto;
+}
+.issue-fp {
+  aspect-ratio: 3 / 4;
+  background: var(--turq);
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  padding: 24px;
+}
+.issue-fp i {
+  flex: 1;
+  display: block;
+  background: var(--beige);
+  transform: skewX(-5deg);
+}
+.issue-head h1 {
+  font-size: var(--h2);
+  margin-block-end: 8px;
+}
+.issue-head .cover-line {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--h3);
+  color: var(--turq);
+  margin-block-end: 18px;
+}
+[data-theme='dark'] .issue-head .cover-line {
+  color: var(--yellow);
+}
+.issue-head .act-row {
+  margin-block: 18px 28px;
+}
+.toc h2 {
+  font-size: var(--h3);
+  margin-block-end: 10px;
+}
+.toc ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.toc a {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 14px;
+  background: var(--bg2);
+  text-decoration: none;
+  font-weight: 500;
+}
+.toc a small {
+  color: var(--fg2);
+  white-space: nowrap;
+}
+@media (hover: hover) and (pointer: fine) {
+  .toc a:hover {
+    background: color-mix(in oklab, var(--bg2) 80%, var(--action));
+  }
+}
+.viewer {
+  display: grid;
+  gap: 16px;
+}
+.viewer-stage {
+  background: var(--bg2);
+  display: grid;
+  place-items: center;
+  padding: clamp(8px, 2vw, 24px);
+  touch-action: pan-y;
+  user-select: none;
+}
+.viewer-stage img {
+  inline-size: min(100%, 760px);
+  block-size: auto;
+  background: var(--white);
+  transition: opacity 120ms ease;
+}
+.viewer-stage img.fading {
+  opacity: 0;
+}
+.viewer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.viewer-count {
+  font-variant-numeric: tabular-nums;
+  color: var(--fg2);
+}
+.thumbs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-block: 6px;
+  scrollbar-width: thin;
+}
+.thumb {
+  flex: none;
+  padding: 3px;
+  background: var(--bg2);
+  transition:
+    background-color 150ms ease,
+    transform var(--t-press) var(--ease-out);
+}
+.thumb:active {
+  transform: scale(0.96);
+}
+.thumb.sel {
+  background: var(--action);
+}
+.thumb img {
+  inline-size: 92px;
+  block-size: 130px;
+  object-fit: cover;
+  background: var(--white);
+}
+@media (max-width: 1023px) {
+  .issue-head {
+    grid-template-columns: 1fr;
+  }
+  .issue-cover {
+    max-inline-size: 420px;
+  }
+}

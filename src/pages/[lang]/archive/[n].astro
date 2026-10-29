@@ -1,0 +1,77 @@
+---
+import '~/styles/archive.css';
+import Base from '~/layouts/Base.astro';
+import TopBar from '~/components/TopBar.astro';
+import Footer from '~/components/Footer.astro';
+import PageViewer from '~/components/islands/PageViewer';
+import sources from '../../../../scripts/archive-sources.json';
+import { currentIssue, loadAll, storiesOf } from '~/data';
+import { L, formatDate, t, tp } from '~/i18n';
+import { fingerprint } from '~/lib/fingerprint';
+import { SECTIONS, type ArchiveEntry, type Lang } from '~/lib/model';
+
+export function getStaticPaths() {
+  const b = loadAll();
+  return (['ar', 'en'] as Lang[]).flatMap((lang) => b.archive.map((a) => ({ params: { lang, n: String(a.number) }, props: { entry: a } })));
+}
+const lang = Astro.params.lang as Lang;
+const { entry } = Astro.props as { entry: ArchiveEntry };
+const current = currentIssue();
+const n = entry.number;
+const local = !!entry.local && entry.pages > 0;
+const base = `/archive/${n}/`;
+const remote = (sources as { base: string; issues: Record<string, string> }).issues[String(n)];
+const remoteUrl = remote ? (sources as { base: string }).base + encodeURIComponent(remote) : null;
+const stories = storiesOf(n);
+const sectionName = (id: string) => L(SECTIONS.find((s) => s.id === id)!.name, lang);
+const title = t(lang, 'arch.issue', { n });
+---
+<Base lang={lang} title={`${title} | ${t(lang, 'site.name')}`} description={entry.coverLine ? L(entry.coverLine, lang) : title}>
+  <TopBar lang={lang} issue={current.number} current="archive" />
+  <main id="main" class="wrap arch-page">
+    <div class="issue-head">
+      <div class="issue-cover fast-photo">
+        {local ? (
+          <img src={`${base}cover.jpg`} alt={entry.coverLine ? L(entry.coverLine, lang) : title} width={1240} height={1754} loading="eager" />
+        ) : (
+          <div class="issue-fp" aria-hidden="true">
+            {fingerprint(n, 12).map((h) => <i style={`block-size:${h}%`} />)}
+          </div>
+        )}
+      </div>
+      <div>
+        <h1>{title}</h1>
+        {entry.coverLine && <p class="cover-line">{L(entry.coverLine, lang)}</p>}
+        {entry.month && <p>{formatDate(lang, entry.month, { month: 'long' }).replace(/^\d+\s*/, '')}</p>}
+        {local && <p>{tp(lang, 'arch.pages', entry.pages)}</p>}
+        <div class="act-row">
+          {local && <a class="btn sm" href={`${base}issue.pdf`} download>{t(lang, 'arch.download')}</a>}
+          {!local && remoteUrl && <a class="btn sm" href={remoteUrl} rel="noopener">{t(lang, 'arch.download')}</a>}
+          <a class="btn sm ghost" href={`/${lang}/archive/`}>{t(lang, 'nav.archive')}</a>
+        </div>
+        {stories.length > 0 && (
+          <nav class="toc" aria-labelledby="toc-title">
+            <h2 id="toc-title">{t(lang, 'arch.inThisIssue')}</h2>
+            <ul>
+              {stories.map((s) => (
+                <li>
+                  <a href={`/${lang}/issue/${s.issue}/${s.slug}/`}>
+                    <span>{L(s.title, lang)}</span>
+                    <small>{sectionName(s.section)}</small>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+      </div>
+    </div>
+    {local && (
+      <section aria-labelledby="viewer-title">
+        <h2 id="viewer-title" class="sr">{t(lang, 'arch.viewer')}</h2>
+        <PageViewer client:load lang={lang} issue={n} pages={entry.pages} base={base} />
+      </section>
+    )}
+  </main>
+  <Footer lang={lang} />
+</Base>
